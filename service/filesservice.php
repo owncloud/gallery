@@ -106,9 +106,11 @@ class FilesService extends Service {
 	}
 
 	/**
-	 * Determines if the files are hosted locally (shared or not)
+	 * Determines if the files are hosted locally (shared or not) and can be used by the preview
+	 * system
 	 *
-	 * isMounted() includes externally hosted shares, so we need to exclude those
+	 * isMounted() includes externally hosted shares (s2s) and locally mounted shares, so we need
+	 * to exclude those
 	 *
 	 * @param Node $node
 	 *
@@ -117,7 +119,7 @@ class FilesService extends Service {
 	protected function isLocalAndAvailable($node) {
 		try {
 			if (!$node->isMounted()) {
-				return !$this->isExternalShare($node) && $node->isReadable();
+				return $this->isLocal($node) && $this->isAvailable($node);
 			}
 		} catch (\Exception $exception) {
 			$message = 'The folder is not available: ' . $exception->getMessage();
@@ -260,6 +262,33 @@ class FilesService extends Service {
 		}
 
 		return [];
+	}
+
+	/**
+	 * Determines if we can consider the node mounted locally or if it's been authorised to be
+	 * scanned
+	 *
+	 * @param Node $node
+	 *
+	 * @return bool
+	 */
+	private function isLocal($node) {
+		$mount = $node->getMountPoint();
+
+		return !$this->isExternalShare($node) && $mount && $mount->getOption('previews', true);
+	}
+
+	/**
+	 * Determines if the node is available, as in readable
+	 *
+	 * @todo Test to see by how much using file_exists slows things down
+	 *
+	 * @param Node $node
+	 *
+	 * @return bool
+	 */
+	private function isAvailable($node) {
+		return $node->isReadable();
 	}
 
 	/**
