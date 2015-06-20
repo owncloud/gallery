@@ -31,11 +31,8 @@ class DownloadService extends Service {
 	 * @param bool $base64Encode
 	 *
 	 * @return false|array
-	 *
-	 * @throws NotFoundServiceException
 	 */
 	public function downloadFile($file = null, $base64Encode = false) {
-		$download = false;
 		try {
 			// If no file is given, we try to get it from the token
 			if (is_null($file)) {
@@ -55,7 +52,7 @@ class DownloadService extends Service {
 				$download['preview'] = $this->encode($download['preview']);
 			}
 		} catch (\Exception $exception) {
-			$this->logAndThrowNotFound($exception->getMessage());
+			$download = false;
 		}
 
 		return $download;
