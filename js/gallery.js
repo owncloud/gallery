@@ -313,6 +313,14 @@ Gallery.slideShow = function (images, startImage, autoPlay) {
 
 	slideShow.init(autoPlay);
 	slideShow.show(start);
+
+	// Stop the slideshow when backing out.
+	$(window).bind('popstate', function () {
+		if ( slideShow.zoomablePreview.zoomable !== null ) {
+			slideShow.controls._stop();
+		};
+	});
+
 };
 
 Gallery.activeSlideShow = null;
