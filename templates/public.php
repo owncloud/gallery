@@ -34,7 +34,8 @@ style(
 		'public',
 		'gallerybutton',
 		'github-markdown',
-		'slideshow'
+		'slideshow',
+		'gallerybutton'
 	]
 );
 

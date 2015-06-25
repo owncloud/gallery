@@ -32,7 +32,8 @@ style(
 		'styles',
 		'mobile',
 		'github-markdown',
-		'slideshow'
+		'slideshow',
+		'gallerybutton'
 	]
 );
 ?>
