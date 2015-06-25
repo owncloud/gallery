@@ -200,7 +200,6 @@ Gallery.switchToFilesView = function (event) {
 
 	var button = $('#filelist-button');
 	button.addClass('loading');
-	button.find('img').attr('src', OC.imagePath('core', 'loading-small.gif'));
 	OC.redirect(OC.generateUrl(subUrl, params));
 };
 
