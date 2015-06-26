@@ -8,6 +8,7 @@ It's possible to configure a Gallery album via a simple text file, using the [Ya
 The following special features are currently implemented:
 
 * Enabling native SVG support
+* Enabling access to external shares
 
 ### Albums 
 
@@ -23,8 +24,6 @@ The following album features are currently implemented:
 
 ### File format
 UTF-8, without BOM. A file created from within the web GUI works.
-
-On 8.0, you can simply create a .txt file and rename it to .cnf when you're finished.
 
 ### Structure
 It's advised to add a comment in the file, so that people stumbling upon that file know what it's for.
@@ -50,6 +49,7 @@ sorting:
   inherit: yes
 features:
   external_shares: yes
+  native_svg: yes
 ```
 
 ### Supported variables
@@ -61,11 +61,14 @@ features:
 * `sorting`: `date` or `name`. `date` only works for files
 * `sort_order`: `asc` or `des`
 * `inherit`: set it to yes if you want sub-folders to inherit this part of the configuration
+* `external_shares`: set it to yes in your root configuration file if you want to be able to load images coming from external clouds
 * `native_svg`: set it to yes in your root configuration file if you want to be able to see SVG images rendered by the browser. This may represent a security risk if you can't fully trust your SVG files
 
 See [this page](http://www.markitdown.net/markdown) for the markdown syntax
 
 _Note: Do not add links to your `copyright` string if you intend on adding a `copyright link`_
+
+_Warning: External shares are 20-50 times slower than local shares. Be prepared to wait a long time before being able to see all the images contained in a shared album_
 
 ### Possible future extensions
 
@@ -110,6 +113,20 @@ information:
   inherit: yes
 ```
 
+### Load images from external clouds
+
+**Features can only be defined in the root folder**
+
+You can add standard configuration items to the same configuration file
+
+```
+---
+# Gallery configuration file
+features:
+  external_shares: yes
+...
+```
+
 ### Enabling native SVG
 
 **Special features can only be defined in the root folder**
@@ -123,4 +140,3 @@ features:
   native_svg: yes
 ...
 ```
-
