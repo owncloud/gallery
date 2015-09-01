@@ -55,7 +55,7 @@ script:
   # Acceptance tests, using Firefox, without code coverage
   #- sh -c "if [ '$TRAVIS_PHP_VERSION' != 'hhvm' ] && [ '$TRAVIS_PHP_VERSION' != '7' ]; then php vendor/bin/codecept run acceptance --env firefox; fi;"
   # Unit, integration and api tests, without code coverage
-  - sh -c "if [ '$TRAVIS_PHP_VERSION' != 'hhvm' ] && [ '$TRAVIS_PHP_VERSION' != '7' ]; then php vendor/bin/codecept run tests/api/OcsCreateUserCest.php; fi;"
+  - sh -c "if [ '$TRAVIS_PHP_VERSION' != 'hhvm' ] && [ '$TRAVIS_PHP_VERSION' != '7' ]; then php vendor/bin/codecept run tests/api/OcsCreateUserCest.php --debug; fi;"
 
 matrix:
   include:
