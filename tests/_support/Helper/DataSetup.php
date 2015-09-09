@@ -132,6 +132,10 @@ class DataSetup extends \Codeception\Module {
 		// Enable encryption
 		$this->server->getConfig()
 					 ->setAppValue('core', 'encryption_enabled', 'yes');
+		$this->assertTrue(\OC_App::isEnabled('encryption'));
+		$defaultModule = $this->server->getConfig()
+									  ->getAppValue('core', 'default_encryption_module', null);
+		$this->assertSame('OC_DEFAULT_MODULE',$defaultModule);
 
 		// This is because the filesystem is not properly cleaned up sometimes
 		$this->server->getAppManager()
