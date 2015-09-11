@@ -97,7 +97,6 @@
 			var currentImageId = index;
 			return this.loadImage(this.images[index]).then(function (img) {
 				this.container.css('background-position', '-10000px 0');
-				this.container.find('.changeBackground').show();
 
 				// check if we moved along while we were loading
 				if (currentImageId === index) {
@@ -113,8 +112,6 @@
 					img.setAttribute('alt', image.name);
 					$(img).css('position', 'absolute');
 					$(img).css('background-color', backgroundColour);
-					var $border = 30 / window.devicePixelRatio;
-					$(img).css('outline', $border + 'px solid ' + backgroundColour);
 
 					// We cannot use nice things on IE8
 					if ($('html').is('.ie8')) {
@@ -214,15 +211,12 @@
 			var container = this.zoomablePreviewContainer.children('img');
 			var rgb = container.css('background-color').match(/\d+/g);
 			var hex = "#" + toHex(rgb[0]) + toHex(rgb[1]) + toHex(rgb[2]);
-			var $border = 30 / window.devicePixelRatio;
 
 			// Grey #363636
 			if (hex === "#000000") {
 				container.css('background-color', '#FFF');
-				container.css('outline', $border + 'px solid #FFF');
 			} else {
 				container.css('background-color', '#000');
-				container.css('outline', $border + 'px solid #000');
 			}
 		},
 
@@ -239,7 +233,6 @@
 			}
 			this.container.find('.notification').html(message);
 			this.container.find('.notification').show();
-			this.container.find('.changeBackground').hide();
 		},
 
 		/**
@@ -364,11 +357,6 @@
 						{
 							el: '.downloadImage',
 							trans: t('gallery', 'Download'),
-							toolTip: true
-						},
-						{
-							el: '.changeBackground',
-							trans: t('gallery', 'Toggle background'),
 							toolTip: true
 						}
 					];

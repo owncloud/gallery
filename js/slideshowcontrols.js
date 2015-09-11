@@ -59,9 +59,6 @@
 			// Hide prev/next and play buttons when we only have one pic
 			this.container.find('.next, .previous, .play').toggle(this.images.length > 1);
 
-			// Hide the toggle background button until we have something to show
-			this.container.find('.changeBackground').hide();
-
 			if (autoPlay) {
 				this._play();
 			}
@@ -126,7 +123,6 @@
 		 */
 		_specialButtonSetup: function (makeCallBack) {
 			this.container.children('.downloadImage').click(makeCallBack(this._getImageDownload));
-			this.container.children('.changeBackground').click(makeCallBack(this._toggleBackground));
 		},
 
 		/**
@@ -337,15 +333,6 @@
 			var downloadUrl = this.images[this.current].downloadUrl;
 
 			return this.slideshow.getImageDownload(downloadUrl);
-		},
-
-		/**
-		 * Changes the colour of the background of the image
-		 *
-		 * @private
-		 */
-		_toggleBackground: function () {
-			this.slideshow.toggleBackground();
 		}
 
 	};
