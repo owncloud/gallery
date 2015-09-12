@@ -86,6 +86,7 @@ div.crumb.last a{
 
 #content-wrapper {
 	overflow-x: auto;
+	-webkit-overflow-scrolling: touch;
 }
 
 #gallery.hascontrols {
