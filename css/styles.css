@@ -75,6 +75,7 @@ div.crumb.last a {
 	-o-transition: background-color 1s linear;
 	-ms-transition: background-color 1s linear;
 	transition: background-color 1s linear;
+	-webkit-overflow-scrolling: touch;
 }
 
 #gallery.hascontrols {
