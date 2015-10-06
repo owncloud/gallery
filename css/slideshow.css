@@ -100,11 +100,13 @@
 	top: 0;
 	margin-top: 0;
 }
+
 #slideshow > .next {
 	width: 80%;
 	right: 0;
 	background-position: right 10px center;
 }
+
 #slideshow > .previous {
 	width: 20%;
 	left: 0;
@@ -134,6 +136,7 @@
 	opacity: .5;
 	height: 0;
 	min-height: 0;
+	cursor: pointer;
 }
 
 #slideshow > .menu {
@@ -171,7 +174,7 @@
 	padding: 0 50px 3px;
 	text-align: center;
 	color: #fff;
-	text-shadow: 1px 1px 4px #333, 1px -1px 4px #333, -1px 1px 4px #333,-1px -1px 4px #333;
+	text-shadow: 1px 1px 4px #333, 1px -1px 4px #333, -1px 1px 4px #333, -1px -1px 4px #333;
 	font-size: 18px;
 	line-height: normal;
 	text-overflow: ellipsis;
