@@ -128,6 +128,7 @@
 	opacity: .5;
 	height: 0;
 	min-height: 0;
+	cursor: pointer;
 }
 
 #slideshow > .menu {
@@ -165,7 +166,7 @@
 	padding: 0 50px 3px;
 	text-align: center;
 	color: #fff;
-	text-shadow: 1px 1px 4px #333, 1px -1px 4px #333, -1px 1px 4px #333,-1px -1px 4px #333;
+	text-shadow: 1px 1px 4px #333, 1px -1px 4px #333, -1px 1px 4px #333, -1px -1px 4px #333;
 	font-size: 18px;
 	line-height: normal;
 	text-overflow: ellipsis;
