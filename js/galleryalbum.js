@@ -6,10 +6,11 @@
 		'<div class="item-container album-container" ' +
 		'style="width: {{targetWidth}}px; height: {{targetHeight}}px;" ' +
 		'data-width="{{targetWidth}}" data-height="{{targetHeight}}">' +
-		'	<div class="album-loader loading"></div>' +
-		'	<span class="album-label">{{label}}</span>' +
-		'	<a class="album" href="{{targetPath}}"></a>' +
-		'</div>';
+		'<div class="album-loader loading"></div>' +
+		'<a class="album" href="{{targetPath}}">' + 
+		'<div class="album-label">' + 
+		'<span class="title">{{label}}</span>' +
+		'</div></a></div>';
 
 	/**
 	 * Creates a new album object to store information about an album
@@ -62,7 +63,6 @@
 				album.domDef.click(album._showLoader.bind(album));
 
 				album._fillSubAlbum(targetHeight);
-
 				return album.domDef;
 			});
 		},
