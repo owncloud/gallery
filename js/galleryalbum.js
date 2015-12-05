@@ -6,9 +6,12 @@
 		'<div class="item-container album-container" ' +
 		'style="width: {{targetWidth}}px; height: {{targetHeight}}px;" ' +
 		'data-width="{{targetWidth}}" data-height="{{targetHeight}}">' +
+		'	<a class="album" href="{{targetPath}}">' +
+		'		<div class="album-label">' +
+		'			<span class="title">{{label}}</span>' +
+		'		</div>' +
+		'	</a>' +
 		'	<div class="album-loader loading"></div>' +
-		'	<span class="album-label">{{label}}</span>' +
-		'	<a class="album" href="{{targetPath}}"></a>' +
 		'</div>';
 
 	/**
@@ -59,10 +62,9 @@
 				album.domDef = $(template);
 				album.loader = album.domDef.children('.album-loader');
 				album.loader.hide();
-				album.domDef.click(album._showLoader.bind(album));
+				album.domDef.click(album._openAlbum.bind(album));
 
 				album._fillSubAlbum(targetHeight);
-
 				return album.domDef;
 			});
 		},
@@ -126,13 +128,14 @@
 		},
 
 		/**
-		 * Shows a loading animation
+		 * Call when the album is clicked on.
 		 *
 		 * @param event
 		 * @private
 		 */
-		_showLoader: function (event) {
+		_openAlbum: function (event) {
 			event.stopPropagation();
+			// show loading animation
 			this.loader.show();
 		},
 
@@ -222,7 +225,7 @@
 				// At least one thumbnail could not be retrieved
 				if (fail) {
 					// Clean up the album
-					a.children().remove();
+					a.children('div.cropped').remove();
 					// Send back the list of images which have thumbnails
 					def.reject(validImages);
 				}
@@ -244,7 +247,7 @@
 		 */
 		_fillSubAlbum: function (targetHeight) {
 			var album = this;
-			var a = this.domDef.children('a');
+			var a = this.domDef.children('a.album');
 
 			if (this.images.length >= 1) {
 				this._getFourImages(this.images, targetHeight, a).fail(function (validImages) {
