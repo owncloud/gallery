@@ -347,11 +347,11 @@
 		_exit: function () {
 
 			// Only modern browsers can manipulate history
-			if (history && history.replaceState && window.history.length > 1) {
+			if (history && history.replaceState) {
 				// We simulate a click on the back button in order to be consistent
 				window.history.back();
 			} else {
-				// There is no history to go back to.
+				// For ancient browsers supported in core
 				this.stop();
 			}
 		},
