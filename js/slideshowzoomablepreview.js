@@ -50,8 +50,8 @@
 				this.zoomable = null;
 			}
 			var maxZoom = this.maxZoom;
-			var imgWidth = image.naturalWidth / window.devicePixelRatio;
-			var imgHeight = image.naturalHeight / window.devicePixelRatio;
+			var imgWidth = image.naturalWidth;
+			var imgHeight = image.naturalHeight;
 			// Disable zooming in IE when we can't get the image's size (SVG)
 			if (imgWidth === 0) {
 				$(image).attr('width', '100%')
