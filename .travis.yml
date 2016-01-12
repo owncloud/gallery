@@ -4,7 +4,7 @@ php:
   - 5.4
   - 5.5
   - 5.6
-  - 7
+  - 7.0
   - hhvm
 
 env:
@@ -76,31 +76,31 @@ before_script:
   # Install the Imagick PHP extension
   - sh -c "if [ '$TRAVIS_PHP_VERSION' != 'hhvm' ]; then pecl config-set preferred_state beta; echo yes | printf "\n" | pecl install imagick; fi;"
   # Disable xdebug when we don't need coverage to speed up testing
-  - sh -c "if [ '$TRAVIS_PHP_VERSION' != 'hhvm' ] && [ '$TRAVIS_PHP_VERSION' != '5.6' ] && [ '$TRAVIS_PHP_VERSION' != '7.0' ]; then phpenv config-rm xdebug.ini; fi;"
+  - sh -c "if [ '$TRAVIS_PHP_VERSION' != '7.0' ]; then phpenv config-rm xdebug.ini; fi;"
   # Install a newer xdebug PHP extension
-  - sh -c "if [ '$TRAVIS_PHP_VERSION' = '5.6' ] || [ '$TRAVIS_PHP_VERSION' != '7' ]; then cd build; bash xdebug_install.sh; cd ${TRAVIS_BUILD_DIR}/../core/apps/$APP_NAME; fi"
+  - sh -c "if [ '$TRAVIS_PHP_VERSION' = '7.0' ]; then cd build; bash xdebug_install.sh; cd ${TRAVIS_BUILD_DIR}/../core/apps/$APP_NAME; fi"
 
 script:
   # Test lint
   - php vendor/bin/parallel-lint --exclude travis --exclude vendor . vendor/composer vendor/symfony/yaml vendor/autoload.php
 
   # Acceptance tests, using Firefox, without code coverage
-  - sh -c "if [ '$TRAVIS_PHP_VERSION' != 'hhvm' ] && [ '$TRAVIS_PHP_VERSION' != '7' ]; then php vendor/bin/codecept run acceptance --env firefox; fi;"
+  - sh -c "if [ '$TRAVIS_PHP_VERSION' != 'hhvm' ]; then php vendor/bin/codecept run acceptance --env firefox; fi;"
   # Unit, integration and api tests, without code coverage
-  - sh -c "if [ '$TRAVIS_PHP_VERSION' != 'hhvm' ] && [ '$TRAVIS_PHP_VERSION' != '7' ] && [ '$TRAVIS_PHP_VERSION' != '5.6' ]; then php vendor/bin/codecept run api,integration,unit; fi;"
+  - sh -c "if [ '$TRAVIS_PHP_VERSION' != 'hhvm' ] && [ '$TRAVIS_PHP_VERSION' != '7.0' ]; then php vendor/bin/codecept run api,integration,unit; fi;"
 
-  # PHP 5.6 ONLY: Unit, integration and api tests with code coverage
-  - sh -c "if [ '$TRAVIS_PHP_VERSION' = '5.6' ]; then php vendor/bin/codecept run api,integration,unit --coverage --coverage-xml --coverage-html; fi;"
+  # PHP 7.0 ONLY: Unit, integration and api tests with code coverage
+  - sh -c "if [ '$TRAVIS_PHP_VERSION' = '7.0' ]; then php vendor/bin/codecept run api,integration,unit --coverage --coverage-xml --coverage-html; fi;"
   # Send coverage report to Scrutinizer
-  - sh -c "if [ '$TRAVIS_PHP_VERSION' = '5.6' ]; then wget https://scrutinizer-ci.com/ocular.phar; fi"
-  - sh -c "if [ '$TRAVIS_PHP_VERSION' = '5.6' ]; then php ocular.phar code-coverage:upload --format=php-clover tests/_output/coverage.xml; fi"
+  - sh -c "if [ '$TRAVIS_PHP_VERSION' = '7.0' ]; then wget https://scrutinizer-ci.com/ocular.phar; fi"
+  - sh -c "if [ '$TRAVIS_PHP_VERSION' = '7.0' ]; then php ocular.phar code-coverage:upload --format=php-clover tests/_output/coverage.xml; fi"
 
   # Generate API documentation
-  - sh -c "if [ '$TRAVIS_PHP_VERSION' = '5.6' ]; then php vendor/bin/phpdoc run; fi"
+  - sh -c "if [ '$TRAVIS_PHP_VERSION' = '7.0' ]; then php vendor/bin/phpdoc run; fi"
   # Generate Wiki documentation
-  - sh -c "if [ '$TRAVIS_PHP_VERSION' = '5.6' ]; then git submodule update --init; fi"
+  - sh -c "if [ '$TRAVIS_PHP_VERSION' = '7.0' ]; then git submodule update --init; fi"
   # Send documentation to Github Pages
-  - sh -c "if [ '$TRAVIS_PHP_VERSION' = '5.6' ]; then cd build/documentation; bash ./docpublisher.sh; fi"
+  - sh -c "if [ '$TRAVIS_PHP_VERSION' = '7.0' ]; then cd build/documentation; bash ./docpublisher.sh; fi"
 
 matrix:
   include:
@@ -110,5 +110,5 @@ matrix:
       env: DB=pgsql
   allow_failures:
     - php: hhvm
-    - php: 7
+    - php: 7.0
   fast_finish: true
