@@ -66,7 +66,8 @@ before_install:
   # Composer
   - cd ${TRAVIS_BUILD_DIR}/../core/apps/$APP_NAME
   - composer self-update
-  - composer install -o --prefer-dist --no-interaction
+  - composer update -o --prefer-dist --no-interaction
+  - composer show -i
 
 before_script:
   # Make sure Webdriver is running
@@ -90,7 +91,10 @@ script:
   - sh -c "if [ '$TRAVIS_PHP_VERSION' != 'hhvm' ] && [ '$TRAVIS_PHP_VERSION' != '7.0' ]; then php vendor/bin/codecept run api,integration,unit; fi;"
 
   # PHP 7.0 ONLY: Unit, integration and api tests with code coverage
-  - sh -c "if [ '$TRAVIS_PHP_VERSION' = '7.0' ]; then php vendor/bin/codecept run api,integration,unit --coverage --coverage-xml --coverage-html; fi;"
+  - sh -c "if [ '$TRAVIS_PHP_VERSION' = '7.0' ]; then php vendor/bin/codecept run api,integration,unit -vvv --coverage --coverage-xml --coverage-html; fi;"
+
+  -cat tests/_output/phpbuiltinserver.errors.txt
+
   # Send coverage report to Scrutinizer
   - sh -c "if [ '$TRAVIS_PHP_VERSION' = '7.0' ]; then wget https://scrutinizer-ci.com/ocular.phar; fi"
   - sh -c "if [ '$TRAVIS_PHP_VERSION' = '7.0' ]; then php ocular.phar code-coverage:upload --format=php-clover tests/_output/coverage.xml; fi"

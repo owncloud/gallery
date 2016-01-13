@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "3866f318c0f642ace333fd1207333b74",
-    "content-hash": "9f650ce248cd9473324c84d7f08a4a7a",
+    "hash": "bb1b91dee1be15bd418d8f39c906350d",
+    "content-hash": "c9fbb4c0bfa8be3c7a58ab880bc7a5ae",
     "packages": [
         {
             "name": "symfony/yaml",
