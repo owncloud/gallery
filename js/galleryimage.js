@@ -3,15 +3,15 @@
 	"use strict";
 
 	var TEMPLATE =
-		'<div class="item-container image-container" ' +
+		'<a class="item-container image-container" ' +
 		'style="width: {{targetWidth}}px; height: {{targetHeight}}px;" ' +
-		'data-width="{{targetWidth}}" data-height="{{targetHeight}}">' +
-		'	<a class="image" href="{{targetPath}}" data-path="{{path}}">' +
-		'		<div class="image-label">' +
-		'			<span class="title">{{label}}</span>' +
-		'		</div>' +
-		'	</a>' +
-		'</div>';
+		'data-width="{{targetWidth}}" data-height="{{targetHeight}}"' +
+		'href="{{targetPath}}">' +
+		'	<span class="image-label">' +
+		'		<span class="title">{{label}}</span>' +
+		'	</span>' +
+		'	<span class="image" data-path="{{path}}"></span>' +
+		'</a>';
 
 	/**
 	 * Creates a new image object to store information about a media file
@@ -114,7 +114,7 @@
 						'height': targetHeight
 					});
 					img.alt = encodeURI(image.path);
-					image.domDef.find('a.image').append(img);
+					image.domDef.find('.image').append(img);
 
 					image.domDef.click(image._openImage.bind(image));
 

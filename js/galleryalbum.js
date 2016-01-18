@@ -3,16 +3,16 @@
 	"use strict";
 
 	var TEMPLATE =
-		'<div class="item-container album-container" ' +
+		'<a class="item-container album-container album" ' +
 		'style="width: {{targetWidth}}px; height: {{targetHeight}}px;" ' +
-		'data-width="{{targetWidth}}" data-height="{{targetHeight}}">' +
-		'	<a class="album" href="{{targetPath}}">' +
-		'		<div class="album-label">' +
-		'			<span class="title">{{label}}</span>' +
-		'		</div>' +
-		'	</a>' +
+		'data-width="{{targetWidth}}" data-height="{{targetHeight}}"' +
+		'href="{{targetPath}}">' +
+		'       <span class="album-label">' +
+		'               <span class="title">{{label}}</span>' +
+		'       </span>' +
 		'	<div class="album-loader loading"></div>' +
-		'</div>';
+		'</a>';
+
 
 	/**
 	 * Creates a new album object to store information about an album
@@ -247,7 +247,7 @@
 		 */
 		_fillSubAlbum: function (targetHeight) {
 			var album = this;
-			var a = this.domDef.children('a.album');
+			var a = this.domDef;
 
 			if (this.images.length >= 1) {
 				this._getFourImages(this.images, targetHeight, a).fail(function (validImages) {

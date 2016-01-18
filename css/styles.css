@@ -192,7 +192,7 @@ div.crumb.last a {
 	opacity: .5;
 }
 
-#gallery a.image > img {
+#gallery .image-container .image > img {
 	max-height: 200px;
 }
 
