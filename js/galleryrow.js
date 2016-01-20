@@ -91,7 +91,12 @@
 					.css('height', $(this).data('height') * scaleRatio);
 				// This scales the anchors inside the item-container divs
 				$(this).children('a').css('transform-origin', 'left top')
-					.css('transform', 'scale(' + scaleRatio + ')');
+					.css('transform', 'scale(' + scaleRatio + ')')
+					.css('filter', 'none')
+					.css('-webkit-filter', 'grayscale(0%)')
+					.css('-moz-filter', 'grayscale(0%)')
+					.css('-ms-filter', 'grayscale(0%)')
+					.css('-o-filter', 'grayscale(0%)');
 			});
 
 			// Restore the rows to their normal opacity. This happens immediately with rows
