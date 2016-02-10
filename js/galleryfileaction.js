@@ -112,9 +112,7 @@
 						requesttoken: oc_requesttoken
 					};
 					if (galleryFileAction.previewsDisabled) {
-						imageUrl = OC.generateUrl('apps/files/ajax/download.php');
-						imageUrl += '?dir=' + encodeURIComponent(dir);
-						imageUrl += '&files=' + encodeURIComponent(file.name);
+						imageUrl = OCA.Files.Files.getDownloadUrl(file.name, dir);
 					} else {
 						imageUrl = galleryFileAction.buildGalleryUrl('preview', '/' + file.id, params);
 					}
@@ -218,7 +216,7 @@ $(document).ready(function () {
 		window.galleryFileAction.buildFeaturesList(config.features);
 
 		if (config.mediatypes.length === 0) {
-			config.mediatypes = ['image/png', 'image/jpeg', 'image/gif', 'image/x-xbitmap', 'image/bmp'];
+			config.mediatypes = ['image/png', 'image/jpeg', 'image/gif'];
 			window.galleryFileAction.previewsDisabled = true;
 			$('#gallery-button').remove();
 		}
