@@ -111,7 +111,13 @@
 						c: file.etag,
 						requesttoken: oc_requesttoken
 					};
-					imageUrl = galleryFileAction.buildGalleryUrl('preview', '/' + file.id, params);
+					if (galleryFileAction.previewsDisabled) {
+						imageUrl = OC.generateUrl('apps/files/ajax/download.php');
+						imageUrl += '?dir=' + encodeURIComponent(dir);
+						imageUrl += '&files=' + encodeURIComponent(file.name);
+					} else {
+						imageUrl = galleryFileAction.buildGalleryUrl('preview', '/' + file.id, params);
+					}
 					params = {
 						c: file.etag,
 						requesttoken: oc_requesttoken
@@ -210,6 +216,13 @@ $(document).ready(function () {
 	var url = window.galleryFileAction.buildGalleryUrl('config', '', {extramediatypes: 1});
 	$.getJSON(url).then(function (config) {
 		window.galleryFileAction.buildFeaturesList(config.features);
+
+		if (config.mediatypes.length === 0) {
+			config.mediatypes = ['image/png', 'image/jpeg', 'image/gif', 'image/x-xbitmap', 'image/bmp'];
+			window.galleryFileAction.previewsDisabled = true;
+			$('#gallery-button').remove();
+		}
+
 		window.galleryFileAction.register(config.mediatypes);
 	});
 });
