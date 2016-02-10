@@ -346,7 +346,7 @@
 				return {
 					name: name,
 					path: image.path,
-					file: image.fileId,
+					fileId: image.fileId,
 					mimeType: image.mimeType,
 					url: previewUrl,
 					downloadUrl: downloadUrl

@@ -45,6 +45,33 @@ trait Files {
 	/** @var ILogger */
 	private $logger;
 
+        /**
+         * @NoAdminRequired
+         *
+         * Returns a exif of picture
+         *
+         * @param string $location a path picture
+         * @return array
+         */
+        public function exif($fileId){
+	    $file = $this->downloadService->getResourceFromId($fileId);
+	    $path=$file->getInternalPath();
+	    $storage=$file->getStorage();
+	    $filename=$storage->getLocalFile($path);
+	    $exif = false;
+	    $iptc = false;
+	    if (is_callable('exif_read_data')) {
+		$exif=@exif_read_data($filename);
+	    }
+	    getimagesize($filename,$blocks);
+	    if (is_array($blocks)){
+		foreach($blocks as $key => $block){
+		    $iptc[$key]=iptcparse($block);
+		}
+	    }
+	    return ['exif'=>$exif,'iptc'=>$iptc];
+	}
+
 	/**
 	 * @NoAdminRequired
 	 *
