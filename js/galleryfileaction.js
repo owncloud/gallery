@@ -215,7 +215,7 @@ $(document).ready(function () {
 	$.getJSON(url).then(function (config) {
 		window.galleryFileAction.buildFeaturesList(config.features);
 
-		if (config.mediatypes.length === 0) {
+		if (!config.enablePreviews) {
 			config.mediatypes = ['image/png', 'image/jpeg', 'image/gif'];
 			window.galleryFileAction.previewsDisabled = true;
 			$('#gallery-button').remove();

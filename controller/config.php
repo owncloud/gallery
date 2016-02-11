@@ -52,7 +52,9 @@ trait Config {
 		$mediaTypes =
 			$this->configService->getSupportedMediaTypes($extraMediaTypes, $nativeSvgSupport);
 
-		return ['features' => $features, 'mediatypes' => $mediaTypes];
+		$enablePreviews = \OC::$server->getConfig()->getSystemValue('enable_previews',  true);
+
+		return ['features' => $features, 'mediatypes' => $mediaTypes, 'enablePreviews' => $enablePreviews];
 	}
 
 	/**
