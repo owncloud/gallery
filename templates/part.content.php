@@ -154,12 +154,9 @@ style(
 <div id="content-wrapper">
 	<div id="content" class="app-<?php p($_['appName']) ?>"
 		 data-albumname="<?php p($_['albumName']) ?>">
-		<div id="app">
-			<div id="gallery" class="hascontrols"></div>
-			<div id="emptycontent" class="hidden"></div>
-			<div id="loading-indicator" class="loading"></div>
-			<input type="hidden" name="allowShareWithLink" id="allowShareWithLink" value="yes"/>
-		</div>
+		<div id="gallery" class="hascontrols"></div>
+		<div id="emptycontent" class="hidden"></div>
+		<input type="hidden" name="allowShareWithLink" id="allowShareWithLink" value="yes"/>
 	</div>
 	<footer>
 		<p class="info"><?php print_unescaped($theme->getLongFooter()); ?></p>
