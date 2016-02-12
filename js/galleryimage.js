@@ -3,14 +3,15 @@
 	"use strict";
 
 	var TEMPLATE =
-		'<div class="item-container image-container" ' +
+		'<a class="item-container image-container" ' +
 		'style="width: {{targetWidth}}px; height: {{targetHeight}}px;" ' +
-		'data-width="{{targetWidth}}" data-height="{{targetHeight}}">' +
+		'data-width="{{targetWidth}}" data-height="{{targetHeight}}"' +
+		'href="{{targetPath}}">' +
 		'	<span class="image-label">' +
 		'		<span class="title">{{label}}</span>' +
 		'	</span>' +
-		'	<a class="image" href="{{targetPath}}" data-path="{{path}}"></a>' +
-		'</div>';
+		'	<span class="image" data-path="{{path}}"></span>' +
+		'</a>';
 
 	/**
 	 * Creates a new image object to store information about a media file
@@ -113,7 +114,9 @@
 						'height': targetHeight
 					});
 					img.alt = encodeURI(image.path);
-					image.domDef.children('a').append(img);
+					image.domDef.find('.image').append(img);
+
+					image.domDef.click(image._openImage.bind(image));
 
 					return image.domDef;
 				});
@@ -127,7 +130,7 @@
 		 * @private
 		 */
 		_addLabel: function () {
-			var imageLabel = this.domDef.children('.image-label');
+			var imageLabel = this.domDef.find('.image-label');
 			this.domDef.hover(function () {
 				imageLabel.slideToggle(OC.menuSpeed);
 			}, function () {
@@ -156,6 +159,17 @@
 			}
 
 			return url;
+		},
+
+		/**
+		 * Call when the image is clicked on.
+		 *
+		 * @param event
+		 * @private
+		 */
+		_openImage: function (event) {
+			event.stopPropagation();
+			// click function for future use.
 		}
 	};
 
