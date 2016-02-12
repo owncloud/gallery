@@ -6,10 +6,11 @@
 		'<div class="item-container image-container" ' +
 		'style="width: {{targetWidth}}px; height: {{targetHeight}}px;" ' +
 		'data-width="{{targetWidth}}" data-height="{{targetHeight}}">' +
-		'	<span class="image-label">' +
-		'		<span class="title">{{label}}</span>' +
-		'	</span>' +
-		'	<a class="image" href="{{targetPath}}" data-path="{{path}}"></a>' +
+		'<a class="image" href="{{targetPath}}" data-path="{{path}}">'+ 
+		'<div class="image-label">' +
+		'<span class="title">{{label}}</span>' +
+		'</div>' + 
+		'</a>' + 
 		'</div>';
 
 	/**
@@ -127,7 +128,7 @@
 		 * @private
 		 */
 		_addLabel: function () {
-			var imageLabel = this.domDef.children('.image-label');
+			var imageLabel = this.domDef.find('.image-label');
 			this.domDef.hover(function () {
 				imageLabel.slideToggle(OC.menuSpeed);
 			}, function () {
