@@ -146,14 +146,11 @@ style(
 <div id="content-wrapper">
 	<div id="content" class="app-<?php p($_['appName']) ?>"
 		 data-albumname="<?php p($_['albumName']) ?>">
-		<div id="app">
-			<div id="gallery" class="hascontrols"
-				 data-requesttoken="<?php p($_['requesttoken']) ?>"
-				 data-token="<?php isset($_['token']) ? p($_['token']) : p(false) ?>">
-			</div>
-			<div id="emptycontent" class="hidden"></div>
-			<div id="loading-indicator" class="loading"></div>
+		<div id="gallery" class="hascontrols"
+			 data-requesttoken="<?php p($_['requesttoken']) ?>"
+			 data-token="<?php isset($_['token']) ? p($_['token']) : p(false) ?>">
 		</div>
+		<div id="emptycontent" class="hidden"></div>
 	</div>
 	<footer>
 		<p class="info"><?php print_unescaped($theme->getLongFooter()); ?></p>

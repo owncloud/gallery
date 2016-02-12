@@ -3,6 +3,7 @@
 	"use strict";
 	var Gallery = {
 		currentAlbum: null,
+		currentEtag: null,
 		config: {},
 		/** Map of the whole gallery, built as we navigate through folders */
 		albumMap: {},
@@ -272,7 +273,6 @@
 			emptyContentElement.html(message);
 			emptyContentElement.removeClass('hidden');
 			$('#controls').addClass('hidden');
-			$('#loading-indicator').hide();
 		},
 
 		/**
@@ -392,6 +392,7 @@
 			var mimeType = null;
 			var mTime = null;
 			var etag = null;
+			var size = null;
 			var albumInfo = data.albuminfo;
 			var currentLocation = albumInfo.path;
 			// This adds a new node to the map for each parent album
@@ -407,8 +408,9 @@
 					mimeType = files[i].mimetype;
 					mTime = files[i].mtime;
 					etag = files[i].etag;
+					size = files[i].size;
 
-					image = new GalleryImage(path, path, fileId, mimeType, mTime, etag);
+					image = new GalleryImage(path, path, fileId, mimeType, mTime, etag, size);
 
 					// Determines the folder name for the image
 					var dir = OC.dirname(path);
