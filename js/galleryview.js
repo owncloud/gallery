@@ -42,16 +42,12 @@
 			}
 			if ($.isEmptyObject(Gallery.imageMap)) {
 				this.clear();
-				if (albumPath === '') {
-					Gallery.showEmpty();
-				} else {
-					Gallery.showEmptyFolder();
-					this.hideButtons();
-					Gallery.currentAlbum = albumPath;
-					var availableWidth = $(window).width() - Gallery.buttonsWidth;
-					this.breadcrumb.init(albumPath, availableWidth);
-					Gallery.config.albumDesign = null;
-				}
+				Gallery.showEmptyFolder();
+				this.hideButtons();
+				Gallery.currentAlbum = albumPath;
+				var availableWidth = $(window).width() - Gallery.buttonsWidth;
+				this.breadcrumb.init(albumPath, availableWidth);
+				Gallery.config.albumDesign = null;
 			} else {
 				this.viewAlbum(albumPath);
 			}

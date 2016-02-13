@@ -263,28 +263,13 @@
 		/**
 		 * Shows an empty gallery message
 		 */
-		showEmpty: function () {
-			var emptyContentElement = $('#emptycontent');
-			var message = '<div class="icon-gallery"></div>';
-			message += '<h2>' + t('gallery',
-				'No pictures found') + '</h2>';
-			message += '<p>' + t('gallery',
-				'Upload pictures in the files app to display them here') + '</p>';
-			emptyContentElement.html(message);
-			emptyContentElement.removeClass('hidden');
-			$('#controls').addClass('hidden');
-		},
-
-		/**
-		 * Shows an empty gallery message
-		 */
 		showEmptyFolder: function () {
 			var emptyContentElement = $('#emptycontent');
 			var message = '<div class="icon-gallery"></div>';
 			message += '<h2>' + t('gallery',
-				'Nothing in here') + '</h2>';
+				'No media files found') + '</h2>';
 			message += '<p>' + t('gallery',
-				'No media files found in this folder') + '</p>';
+				'Upload new files via drag and drop or by using the [+] button above') + '</p>';
 			emptyContentElement.html(message);
 			emptyContentElement.removeClass('hidden');
 		},
