@@ -10,6 +10,8 @@ script(
 	[
 		'app',
 		'vendor/owncloud/share',
+		'vendor/jquery-touch-events/src/1.0.1/jquery.mobile-events.min',
+		'vendor/jquery.ui.touch-punch-custom',
 		'gallery',
 		'galleryutility',
 		'galleryconfig',

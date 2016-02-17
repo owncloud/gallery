@@ -206,6 +206,7 @@
 		 * @private
 		 */
 		_initButtons: function () {
+			this.element.on("contextmenu", function(e) { e.preventDefault(); });
 			$('#filelist-button').click(Gallery.switchToFilesView);
 			$('#download').click(Gallery.download);
 			$('#share-button').click(Gallery.share);
