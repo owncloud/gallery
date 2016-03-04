@@ -360,7 +360,8 @@
 				}
 			};
 			Gallery.activeSlideShow.show(start);
-
+			Gallery.Share.hideDropDown();
+			$('.album-info-container').slideUp();
 			// Resets the last focused element
 			document.activeElement.blur();
 		},
