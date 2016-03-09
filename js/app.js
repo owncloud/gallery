@@ -77,7 +77,7 @@ $(document).ready(function () {
 	}
 
 	/**
-	 * Prevent from submitting empty value when adding public gallery
+	 * Prevent from submitting empty URL when adding public gallery
 	 */
 
 	$('#remote_address').on("change keyup paste", function() {
