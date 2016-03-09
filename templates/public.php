@@ -80,7 +80,7 @@ style(
 										) ?></button>
 									<form class="save-form hidden" action="#">
 										<input type="text" id="remote_address"
-											   placeholder="example.com/owncloud"/>
+											   placeholder="example.com/owncloud" required />
 										<button id="save-button-confirm"
 												class="icon-confirm svg"></button>
 									</form>
