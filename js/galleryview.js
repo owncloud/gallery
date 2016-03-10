@@ -232,8 +232,17 @@
 			var availableWidth = $(window).width() - Gallery.buttonsWidth;
 			this.breadcrumb.init(albumPath, availableWidth);
 
-			$('#sort-name-button').show();
-			$('#sort-date-button').show();
+            if (Gallery.albumMap[Gallery.currentAlbum].images.length <= 1)
+            {
+                $('#sort-name-button').hide();
+                $('#sort-date-button').hide();
+            }
+            else
+            {
+                $('#sort-name-button').show();
+                $('#sort-date-button').show();
+            }
+
 			var currentSort = Gallery.config.albumSorting;
 			this.sortControlsSetup(currentSort.type, currentSort.order);
 			Gallery.albumMap[Gallery.currentAlbum].images.sort(
