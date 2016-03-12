@@ -26,6 +26,7 @@
 		 * Shows an information box to the user
 		 */
 		showInfo: function () {
+			$('#dropdown').slideUp();
 			if (this.infoContentContainer.is(':visible')) {
 				this.infoContentContainer.slideUp();
 			} else {
