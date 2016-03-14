@@ -233,8 +233,19 @@
 			var availableWidth = $(window).width() - Gallery.buttonsWidth;
 			this.breadcrumb.init(albumPath, availableWidth);
 			var album = Gallery.albumMap[albumPath];
-			
-			var sum = album.images.length + album.subAlbums.length;
+			var sum = 0;
+			if(!_.isUndefined(album.images) && !_.isUndefined(album.subAlbums))
+			{
+				sum = album.images.length + album.subAlbums.length;
+			}
+			else if(_.isUndefined(album.images) && !_.isUndefined(album.subAlbums))
+			{
+				sum = album.subAlbums.length;	
+			}
+			else if(!_.isUndefined(album.images) && _.isUndefined(album.subAlbums))
+			{
+				sum = album.images.length;
+			}
 			//If sum of the number of images and subalbums exceeds 1 then show the buttons.
 			if(sum > 1)
 			{
