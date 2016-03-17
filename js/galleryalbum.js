@@ -157,7 +157,9 @@
 			event.stopPropagation();
 			// show loading animation
 			this.loader.show();
-			Gallery.Share.hideDropDown();
+			if(!_.isUndefined(Gallery.Share)){
+				Gallery.Share.hideDropDown();
+			}
 		},
 
 		/**
