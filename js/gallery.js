@@ -360,8 +360,7 @@
 				}
 			};
 			Gallery.activeSlideShow.show(start);
-			if(!_.isUndefined(Gallery.Share))
-			{
+			if(!_.isUndefined(Gallery.Share)){
 				Gallery.Share.hideDropDown();
 			}
 			$('.album-info-container').slideUp();
