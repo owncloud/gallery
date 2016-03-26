@@ -87,6 +87,7 @@
 				if(actionItem != null) {
 					actionItem.actionHandler();
 				}
+				OC.hideMenus();
 			}
 		},
 
@@ -100,10 +101,10 @@
 		 */
 		addMenuEntry: function(actionSpec) {
 			this._menuItems.push({
-				id: actionSpec.id,
-				displayName: actionSpec.displayName,
-				iconClass: actionSpec.iconClass,
-				actionHandler: actionSpec.actionHandler,
+				'id': actionSpec.id,
+				'displayName': actionSpec.displayName,
+				'iconClass': actionSpec.iconClass,
+				'actionHandler': actionSpec.actionHandler,
 			});
 		},
 
