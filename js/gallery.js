@@ -12,7 +12,7 @@
 		appName: 'gallery',
 		token: undefined,
 		activeSlideShow: null,
-		buttonsWidth: 350,
+		buttonsWidth: 600,
 		browserToolbarHeight: 150,
 		filesClient: null,
 
@@ -306,6 +306,7 @@
 			Gallery.activeSlideShow.setImages(images, autoPlay);
 			Gallery.activeSlideShow.onStop = function () {
 				$('#content').show();
+				Gallery.view.removeLoading();
 				if (Gallery.currentAlbum !== '') {
 					// Only modern browsers can manipulate history
 					if (history && history.replaceState) {
