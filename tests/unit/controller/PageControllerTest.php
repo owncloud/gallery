@@ -69,7 +69,22 @@ class PageControllerTest extends \Test\TestCase {
 
 
 	public function testIndex() {
-		$params = ['appName' => $this->appName];
+		$url = 'http://owncloud/ajax/upload.php';
+		$this->mockUrlToUploadEndpoint($url);
+		$publicUploadEnabled = 'yes';
+		$mailNotificationEnabled = 'no';
+		$mailPublicNotificationEnabled = 'yes';
+		$params = [
+			'appName' => $this->appName,
+			'uploadUrl' => $url,
+			'publicUploadEnabled' => $publicUploadEnabled,
+			'mailNotificationEnabled' => $mailNotificationEnabled,
+			'mailPublicNotificationEnabled' => $mailPublicNotificationEnabled
+		];
+		$this->mockGetTestAppValue(
+			$publicUploadEnabled, $mailNotificationEnabled, $mailPublicNotificationEnabled
+		);
+
 		$template = new TemplateResponse($this->appName, 'index', $params);
 
 		$response = $this->controller->index();
@@ -226,6 +241,21 @@ class PageControllerTest extends \Test\TestCase {
 						   ->willReturn($url);
 	}
 
+	private function mockGetTestAppValue(
+		$publicUploadEnabled, $mailNotificationEnabled, $mailPublicNotificationEnabled
+	) {
+		$map = [
+			['core', 'shareapi_allow_public_upload', 'yes', $publicUploadEnabled],
+			['core', 'shareapi_allow_mail_notification', 'no', $mailNotificationEnabled],
+			['core', 'shareapi_allow_public_notification', 'no', $mailPublicNotificationEnabled]
+		];
+		$this->appConfig
+			->method('getAppValue')
+			->will(
+				$this->returnValueMap($map)
+			);
+	}
+
 	/**
 	 * Needs to be called at least once by testDownloadWithWrongId() or the tests will fail
 	 *
@@ -239,4 +269,10 @@ class PageControllerTest extends \Test\TestCase {
 					  ->willReturn($value);
 	}
 
+	private function mockUrlToUploadEndpoint($url) {
+		$this->urlGenerator->expects($this->once())
+						   ->method('linkTo')
+						   ->with('files', 'ajax/upload.php')
+						   ->willReturn($url);
+	}
 }
