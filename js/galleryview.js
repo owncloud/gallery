@@ -312,6 +312,7 @@
 		 */
 		_initButtons: function () {
 			this.element.on("contextmenu", function(e) { e.preventDefault(); });
+			$('#bin-button').click(Gallery.displayBin);
 			$('#filelist-button').click(Gallery.switchToFilesView);
 			$('#download').click(Gallery.download);
 			$('#share-button').click(Gallery.share);
@@ -375,6 +376,7 @@
 		 */
 		_hideButtons: function (uploadAllowed) {
 			$('#album-info-button').hide();
+			$('#bin-button').hide();
 			$('#share-button').hide();
 			$('#sort-name-button').hide();
 			$('#sort-date-button').hide();

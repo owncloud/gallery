@@ -181,6 +181,13 @@
 		},
 
 		/**
+		 * Displays the list of deleted files
+		 */
+		displayBin: function () {
+			OC.redirect(OC.generateUrl('apps/files?view=trashbin'));
+		},
+
+		/**
 		 * Populates the share dialog with the needed information
 		 *
 		 * @param event
