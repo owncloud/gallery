@@ -2,6 +2,7 @@ OC.L10N.register(
     "gallery",
     {
     "Gallery" : "Galerie",
+    "There was a problem reading files from this album" : "Es gab ein Problem Dateien aus diesem Album zu lesen",
     "Aborting preview. Could not find the file" : "Die Vorschau wird abgebrochen. Die Datei konnte nicht gefunden werden",
     "Could not move \"{file}\", target exists" : "Konnte nicht verschieben \"{file}\", Ziel existiert bereits",
     "Could not move \"{file}\"" : "Konnte nicht verschieben \"{file}\"",
@@ -25,7 +26,7 @@ OC.L10N.register(
     "Configuration error" : "Konfigurationsfehler",
     "New" : "Neu",
     "Error loading slideshow template" : "Fehler beim Laden der Slideshow-Vorlage",
-    "<strong>Error!</strong> Could not generate a preview of this file.<br>" : "<strong>Fehler!</strong> Konnte keine Vorschau dieser Datei erstellen.<br>",
+    "<strong>Error!</strong> Could not generate a preview of this file.<br>Please go to the next slide while we remove this image from the slideshow" : "<strong>Fehler!</strong> Konnte keine Vorschau dieser Datei erzeugen.<br> Bitte wechsle zum nächsten Bild, während im Hintergrund das Bild aus der Diashow entfernt wird.",
     "Next" : "Weiter",
     "Play" : "Abspielen",
     "Pause" : "Anhalten",

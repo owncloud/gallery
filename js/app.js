@@ -49,8 +49,7 @@ $(document).ready(function () {
 
 		// This block loads new rows
 		$('html, #content-wrapper').scroll(function () {
-			Gallery.view.loadVisibleRows(Gallery.albumMap[Gallery.currentAlbum],
-				Gallery.currentAlbum);
+			Gallery.view.loadVisibleRows(Gallery.albumMap[Gallery.currentAlbum]);
 		});
 
 
@@ -87,6 +86,7 @@ $(document).ready(function () {
  */
 window.onhashchange = function () {
 	"use strict";
+	Gallery.view.dimControls();
 	var currentLocation = window.location.href.split('#')[1] || '';
 	// The hash location is ALWAYS encoded, despite what the browser shows
 	var path = decodeURIComponent(currentLocation);

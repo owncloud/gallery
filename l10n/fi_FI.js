@@ -2,6 +2,7 @@ OC.L10N.register(
     "gallery",
     {
     "Gallery" : "Galleria",
+    "There was a problem reading files from this album" : "Ongelma tämä kansion tiedostoja lukiessa",
     "Aborting preview. Could not find the file" : "Perutaan esikatselu, tiedostoa ei löytynyt",
     "Could not move \"{file}\", target exists" : "Tiedoston \"{file}\" siirtäminen ei onnistunut, kohde on olemassa",
     "Could not move \"{file}\"" : "Tiedoston \"{file}\" siirtäminen ei onnistunut",
@@ -25,7 +26,7 @@ OC.L10N.register(
     "Configuration error" : "Asetusvirhe",
     "New" : "Uusi",
     "Error loading slideshow template" : "Virhe ladatessa diaesityksen mallipohjaa",
-    "<strong>Error!</strong> Could not generate a preview of this file.<br>" : "<strong>Virhe!</strong> Esikatselua tälle tiedostolle ei voitu toteuttaa.<br>",
+    "<strong>Error!</strong> Could not generate a preview of this file.<br>Please go to the next slide while we remove this image from the slideshow" : "<strong>Virhe!</strong> Tästä tiedostosta ei voitu luoda esikatselukuvaa.<br>Siirry seuraavaan diaan, tämä kuva poistetaan diaesityksestä",
     "Next" : "Seuraava",
     "Play" : "Toista",
     "Pause" : "Keskeytä",
