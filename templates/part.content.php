@@ -118,6 +118,12 @@ style(
 			<div class="album-info-loader"></div>
 			<div class="album-info-content markdown-body"></div>
 		</div>
+		<!-- button for opening bin -->
+		<div id="bin-button" class="button">
+			<img class="svg" src="<?php print_unescaped(
+				image_path('core', 'actions/delete.svg')
+			); ?>" alt="<?php p($l->t('Deleted files')); ?>"/>
+		</div>
 		<!-- button for opening the current album as file list -->
 		<div id="filelist-button" class="button view-switcher gallery">
 			<div id="button-loading"></div>

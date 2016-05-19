@@ -122,6 +122,7 @@
 				this._showBackgroundToggle();
 			}
 			this.showButton('.downloadImage');
+			this.showButton('.deleteImage');
 		},
 
 		/**
@@ -130,6 +131,7 @@
 		hideActionButtons: function () {
 			this.hideButton('.changeBackground');
 			this.hideButton('.downloadImage');
+			this.hideButton('.deleteImage');
 		},
 
 		/**
@@ -184,6 +186,7 @@
 		 */
 		_specialButtonSetup: function (makeCallBack) {
 			this.container.find('.downloadImage').click(makeCallBack(this._getImageDownload));
+			this.container.find('.deleteImage').click(makeCallBack(this._deleteImage));
 			this.container.find('.menu').width = 52;
 			if (this.backgroundToggle) {
 				this.container.find('.changeBackground').click(
@@ -417,6 +420,95 @@
 		_setName: function (imageName) {
 			var nameElement = this.container.find('.title');
 			nameElement.text(imageName);
+		},
+
+		do_delete:function(files, dir) {
+			var self = this;
+			if (files && files.substr) {
+				files=[files];
+			}
+			if (!files) {
+				// delete all files in directory
+				files = _.pluck(this.files, 'name');
+			}
+			if (files) {
+				this.showFileBusyState(files, true);
+			}
+			// Finish any existing actions
+			if (this.lastAction) {
+				this.lastAction();
+			}
+
+			dir = dir || this.getCurrentDirectory();
+
+			function removeFromList(file) {
+				var fileEl = self.remove(file, {updateSummary: false});
+				// FIXME: not sure why we need this after the
+				// element isn't even in the DOM any more
+				fileEl.find('.selectCheckBox').prop('checked', false);
+				fileEl.removeClass('selected');
+				self.fileSummary.remove({type: fileEl.attr('data-type'), size: fileEl.attr('data-size')});
+				// TODO: this info should be returned by the ajax call!
+				self.updateEmptyContent();
+				self.fileSummary.update();
+				self.updateSelectionSummary();
+				// FIXME: don't repeat this, do it once all files are done
+				self.updateStorageStatistics();
+			}
+
+			_.each(files, function(file) {
+				self.filesClient.remove(dir + '/' + file)
+					.done(function() {
+						removeFromList(file);
+					})
+					.fail(function(status) {
+						if (status === 404) {
+							// the file already did not exist, remove it from the list
+							removeFromList(file);
+						} else {
+							// only reset the spinner for that one file
+							OC.Notification.showTemporary(
+								t('files', 'Error deleting file "{fileName}".', {fileName: file}),
+								{timeout: 10}
+							);
+							var deleteAction = self.findFileEl(file).find('.action.delete');
+							deleteAction.removeClass('icon-loading-small').addClass('icon-delete');
+							self.showFileBusyState(files, false);
+						}
+					});
+			});
+		},
+		/**
+		 * Delete the image from the slideshow
+		 * @private
+		 */
+		_deleteImage: function () {
+			var imageName = this.images[this.current].name;
+			var imagePath = this.images[this.current].path;
+			var fileId = Gallery.imageMap[imagePath].fileId;
+			var self=this;
+			$.ajax({
+				type:'DELETE',
+				url:OC.getRootPath()+'/remote.php/webdav/'+imagePath,
+				success: function (){
+					self.images.splice(self.current, 1);
+					delete self.images[self.current];
+					delete Gallery.imageMap[imagePath];
+					fileId = fileId.substring(1, fileId.length-1);
+					delete Thumbnails.map[fileId];
+					Gallery.albumMap[Gallery.currentAlbum].images.splice(self.current, 1);
+					if(self.images.length == 0)
+					{
+						self._exit();
+					}
+					else {
+						self.current = (self.current + 1) % self.images.length;
+						var next = (self.current + 1) % self.images.length;
+						self._updateSlideshow(next);
+					}
+					Gallery.view.init(Gallery.currentAlbum);
+				}
+			});
 		}
 	};
 
