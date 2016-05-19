@@ -2,6 +2,7 @@ OC.L10N.register(
     "gallery",
     {
     "Gallery" : "Galeri",
+    "There was a problem reading files from this album" : "Pati një problem me leximin e kartelave prej këtij albumi",
     "Aborting preview. Could not find the file" : "Po ndërpritet paraparja. S’u gjet dot kartela",
     "Could not move \"{file}\", target exists" : "S’u lëviz dot \"{file}\", objektivi ekziston",
     "Could not move \"{file}\"" : "S’u lëviz dot \"{file}\"",
@@ -25,7 +26,7 @@ OC.L10N.register(
     "Configuration error" : "Gabim formësimi",
     "New" : "E re",
     "Error loading slideshow template" : "Gabim gjatë ngarkimit të gjedhes për diapozitiva",
-    "<strong>Error!</strong> Could not generate a preview of this file.<br>" : "<strong>Gabim!</strong> S’u prodhua dot një paraparje e kësaj kartele.<br>",
+    "<strong>Error!</strong> Could not generate a preview of this file.<br>Please go to the next slide while we remove this image from the slideshow" : "<strong>Gabim!</strong> S’u prodhua dot një paraparje e kësaj kartele.<br>Ju lutemi, kaloni te diapozitiva pasuese, teksa heqim këtë figurë nga paraqitja",
     "Next" : "Pasuesja",
     "Play" : "Luaje",
     "Pause" : "Pauzë",

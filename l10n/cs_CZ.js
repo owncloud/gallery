@@ -2,6 +2,7 @@ OC.L10N.register(
     "gallery",
     {
     "Gallery" : "Galerie",
+    "There was a problem reading files from this album" : "Nastal problém při čtení souborů z tohoto alba",
     "Aborting preview. Could not find the file" : "Načítání náhledu ukončeno. Soubor nelze nalézt",
     "Could not move \"{file}\", target exists" : "Nelze přesunout \"{file}\", cíl existuje",
     "Could not move \"{file}\"" : "Nelze přesunout \"{file}\"",
@@ -25,7 +26,7 @@ OC.L10N.register(
     "Configuration error" : "Chyba konfigurace",
     "New" : "Nový",
     "Error loading slideshow template" : "Chyba při načítání šablony prezentace",
-    "<strong>Error!</strong> Could not generate a preview of this file.<br>" : "<strong>Chyba!</strong> Náhled tohoto souboru nelze vytvořit.<br>",
+    "<strong>Error!</strong> Could not generate a preview of this file.<br>Please go to the next slide while we remove this image from the slideshow" : "<strong>Chyba!</strong> Náhled tohoto souboru nelze vytvořit.<br>Přejděte prosím na následující položku a tento obrázek bude odstraněn ze slideshow",
     "Next" : "Následující",
     "Play" : "Přehrát",
     "Pause" : "Pozastavit",
