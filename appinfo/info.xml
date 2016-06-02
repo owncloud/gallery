@@ -32,7 +32,15 @@
 	<author>Olivier Paroz, Robin Appelman</author>
 	<version>15.0.0</version>
 	<namespace>Gallery</namespace>
+	<documentation>
+		<user>https://github.com/owncloud/gallery/blob/master/README.md</user>
+		<admin>https://github.com/owncloud/gallery/blob/master/README.md</admin>
+		<developer>https://github.com/owncloud/gallery/blob/master/README.md</developer>
+	</documentation>
 	<category>Multimedia</category>
+	<website>https://github.com/owncloud/gallery</website>
+	<bugs>https://github.com/owncloud/gallery/issues</bugs>
+	<repository type="git">https://github.com/owncloud/gallery.git</repository>
 	<dependencies>
 		<php min-version="5.4" max-version="7"/>
 		<owncloud min-version="9.0" max-version="9.1.99"/>
