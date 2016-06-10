@@ -15,7 +15,7 @@ namespace Page;
 class Files
 {
     // include url of current page
-    public static $URL = '/index.php/apps/files/';
+    public static $URL = '/index.php/apps/files/?dir=/&fileid=2';
     public static $contentDiv = '#content.app-files';
 
     /**
