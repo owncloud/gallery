@@ -16,6 +16,7 @@
 
 namespace OCA\Gallery\Middleware;
 
+use OCP\Constants;
 use OCP\IRequest;
 use OCP\IURLGenerator;
 use OCP\ISession;
@@ -162,6 +163,7 @@ class EnvCheckMiddleware extends CheckMiddleware {
 
 		$this->checkShareIsValid($share, $token);
 		$this->checkItemType($share);
+		$this->checkShareIsNotWriteOnly($share);
 
 		return $share;
 	}
@@ -196,6 +198,19 @@ class EnvCheckMiddleware extends CheckMiddleware {
 		if ($share->getNodeType() === null) {
 			$message = 'No item type set for share id: ' . $share->getId();
 			throw new CheckException($message, Http::STATUS_NOT_FOUND);
+		}
+	}
+
+	/**
+	 * Makes sure the share is not write-only
+	 *
+	 * @param IShare $share
+	 *
+	 * @throws CheckException
+	 */
+	private function checkShareIsNotWriteOnly($share) {
+		if (!($share->getPermissions() & Constants::PERMISSION_READ)) {
+			throw new CheckException("Share is a write-only share", Http::STATUS_FORBIDDEN);
 		}
 	}
 

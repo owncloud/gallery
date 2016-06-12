@@ -194,6 +194,26 @@ class EnvCheckMiddlewareTest extends \Test\GalleryUnitTest {
 	 *
 	 * @expectedException \OCA\Gallery\Middleware\CheckException
 	 */
+	public function testBeforeControllerWithPublicNotationAndWriteOnlyToken() {
+		$this->reflector->reflect(__CLASS__, __FUNCTION__);
+
+		$token = 'aaaabbbbccccdddd';
+		$this->mockGetTokenParam($token);
+
+		$share = $this->mockShare(
+			'folder', 'tester', 'shared1', Share::SHARE_TYPE_LINK, null,
+			Constants::PERMISSION_CREATE, null
+		);
+		$this->mockShareManagerGetShareByToken($token, $share);
+
+		$this->middleware->beforeController(__CLASS__, __FUNCTION__);
+	}
+
+	/**
+	 * @PublicPage
+	 *
+	 * @expectedException \OCA\Gallery\Middleware\CheckException
+	 */
 	public function testBeforeControllerWithPublicNotationAndNoToken() {
 		$this->reflector->reflect(__CLASS__, __FUNCTION__);
 
