@@ -76,11 +76,11 @@ style(
 						  data-owner="<?php p($_['displayName']) ?>"
 						  data-name="<?php p($_['filename']) ?>">
 									<button id="save-button"><?php p(
-											$l->t('Add to your ownCloud')
+											$l->t('Add to your %s', [(new \OCP\Defaults())->getName()])
 										) ?></button>
 									<form class="save-form hidden" action="#">
 										<input type="text" id="remote_address"
-											   placeholder="example.com/owncloud"/>
+											   placeholder="cloud.example.com"/>
 										<button id="save-button-confirm"
 												class="icon-confirm svg"></button>
 									</form>
