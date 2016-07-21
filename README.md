@@ -1,16 +1,15 @@
-# Gallery 
+# ownCloud Gallery 
 [![Build Status](https://travis-ci.org/owncloud/gallery.svg?branch=master)](https://travis-ci.org/owncloud/gallery)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/owncloud/gallery/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/owncloud/gallery/?branch=master)
 [![Code Coverage](https://scrutinizer-ci.com/g/owncloud/gallery/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/owncloud/gallery/?branch=master)
 [![PHP 7 ready](http://php7ready.timesplinter.ch/owncloud/gallery/badge.svg)](https://travis-ci.org/owncloud/gallery)
 
-Media gallery for ownCloud which includes previews for all media types supported by your ownCloud installation.
-
+**Media gallery for ownCloud which includes previews for all media types supported by your ownCloud installation.**
 Provides a dedicated view of all images in a grid, adds image viewing capabilities to the files app and adds a gallery view to public links.
 
-**This version is for ownCloud 9.1. If you need the same app for older versions of ownCloud. Use [Gallery+](https://apps.owncloud.com/content/show.php/Gallery?content=169116) from the app store.**
+*This version is for ownCloud 9.1. If you need the same app for older versions of ownCloud. Use [Gallery+](https://apps.owncloud.com/content/show.php/Gallery?content=169116) from the app store.*
 
-![Screenshot](https://raw.githubusercontent.com/owncloud/gallery/master/build/screenshots/Gallery.jpg)
+![](https://raw.githubusercontent.com/owncloud/screenshots/master/gallery/gallery.png)
 ## Featuring
 * Support for large selection of media types (depending on ownCloud setup)
 * Upload and organise images and albums straight from the app
