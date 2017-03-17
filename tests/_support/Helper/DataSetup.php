@@ -136,13 +136,13 @@ class DataSetup extends \Codeception\Module {
 		$this->userManager = $this->server->getUserManager();
 		$this->shareManager = $this->server->getShareManager();
 
-		/**
-		 * Logging hooks are missing at the moment, so we need to disable encryption
-		 *
-		 * @link https://github.com/owncloud/core/issues/18085#issuecomment-128093797
-		 */
+		// Enable encryption
 		$this->server->getConfig()
-					 ->setAppValue('core', 'encryption_enabled', 'no');
+					 ->setAppValue('core', 'encryption_enabled', 'yes');
+		$this->assertTrue(\OC_App::isEnabled('encryption'));
+		$defaultModule = $this->server->getConfig()
+									  ->getAppValue('core', 'default_encryption_module', null);
+		$this->assertSame('OC_DEFAULT_MODULE',$defaultModule);
 
 		// This is because the filesystem is not properly cleaned up sometimes
 		$this->server->getAppManager()
@@ -241,6 +241,9 @@ class DataSetup extends \Codeception\Module {
 		$this->deleteUser($userId);
 		$this->createUser($userId, $userPassword);
 
+		$this->coreTestCase->loginAsUser($userId);
+		// Does not work because of @link https://github.com/owncloud/core/issues/18085#issuecomment-128093797
+		$this->coreTestCase->logoutUser();
 		$this->coreTestCase->loginAsUser($userId);
 
 		// Create folders and files

@@ -23,6 +23,10 @@ OC::$loader->addValidRoot(OC::$SERVERROOT . '/tests');
 // Give access to core tests to Codeception
 Autoload::addNamespace('Test', '/../../../tests/lib');
 
+// Enable encryption
+OC_App::installApp('encryption');
+OC_App::enable('encryption');
+
 // Load all apps
 OC_App::loadApps();
 
