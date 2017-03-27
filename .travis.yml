@@ -4,6 +4,8 @@ php:
   - 5.6
   - 7.0
   - 7.1
+  
+  
 addons:
   apt:
     packages:
@@ -16,8 +18,8 @@ env:
     - GH_REF: github.com/owncloud/gallery.git
     - secure: "cLmMqrbVZrvn2GAoVs6JWa5h70tzrAISjPZUfENjl0KYT6B84z3B94W/dGU+I2mxwvyBqEP+x83Bih2CxEflqc7tJmdqC+MM/ZZiigPX7RCjq5XHbzUpPpMbC8MFxT2K3jcFXUitfwZvNaZXJIiK3ZQJU4ayKaegLvI91x1SqH0="
   matrix:
-    - DB=sqlite;CLOUD=nextcloud
-    - DB=mysql;CLOUD=nextcloud
+    - DB=sqlite;CLOUD=owncloud
+    - DB=mysql;CLOUD=owncloud
 
 branches:
   only:
@@ -66,10 +68,8 @@ before_install:
   #- cat /proc/sys/kernel/core_pattern
 
   # Installing the server
-  - sh -c "if [ '$CLOUD' = 'nextcloud' ]; then wget https://raw.githubusercontent.com/nextcloud/travis_ci/master/before_install.sh; fi;"
   - sh -c "if [ '$CLOUD' = 'owncloud' ]; then wget https://raw.githubusercontent.com/owncloud/administration/master/travis-ci/before_install.sh; fi;"
   - bash ./before_install.sh $APP_NAME $CORE_BRANCH $DB
-  - sh -c "if [ '$CLOUD' = 'nextcloud' ]; then mv ../server ../core; fi;"
   - cd ../core
   - php occ app:enable $APP_NAME
 
@@ -131,12 +131,6 @@ after_failure:
 
 matrix:
   include:
-    - php: 5.6
-      env: DB=sqlite;CLOUD=owncloud
-    - php: 5.6
-      env: DB=mysql;CLOUD=owncloud
-    - php: 5.6
-      env: DB=pgsql;CLOUD=nextcloud
     - php: 5.6
       env: DB=pgsql;CLOUD=owncloud
     - php: 7.0
