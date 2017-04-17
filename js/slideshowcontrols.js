@@ -86,7 +86,12 @@
 			if (this.playing) {
 				this._setTimeout();
 			}
-			this._setName(currentImage.name);
+			// check exif descr
+                        if (currentImage.desc){
+                            this._setName(currentImage.desc);
+                        }else{
+                            this._setName(currentImage.name);
+                        }
 		},
 
 		/**
@@ -303,9 +308,11 @@
 			if (this.playing === true) {
 				this.playing = false;
 				this._clearTimeout();
+                                this.zoomablePreview._fullScreenExit();
 			} else {
 				this.playing = true;
 				this._setTimeout();
+                                this.zoomablePreview._fullScreenStart();
 			}
 
 			this.container.find('.play, .pause, .progress').toggleClass('hidden');
