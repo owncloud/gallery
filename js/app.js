@@ -78,6 +78,18 @@ $(document).ready(function () {
 		}, 250)); // A shorter delay avoids redrawing the view in the middle of a previous request,
 				  // but it may kill baby CPUs
 	}
+
+	/**
+	 * Prevent from submitting empty URL when adding public gallery
+	 */
+
+	$('#remote_address').on("change keyup paste", function() {
+			if ($(this).val() === '') {
+				$('#save-button-confirm').prop('disabled', true);
+			} else {
+				$('#save-button-confirm').prop('disabled', false);
+			}
+		});
 });
 
 /**
