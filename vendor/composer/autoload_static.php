@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit3cfd72445e0ad28db5332442bcda1e66
+class ComposerStaticInit29e062417f23608594ce026e85269165
 {
     public static $prefixLengthsPsr4 = array (
         'S' => 
@@ -20,25 +20,11 @@ class ComposerStaticInit3cfd72445e0ad28db5332442bcda1e66
         ),
     );
 
-    public static $classMap = array (
-        'Symfony\\Component\\Yaml\\Dumper' => __DIR__ . '/..' . '/symfony/yaml/Dumper.php',
-        'Symfony\\Component\\Yaml\\Escaper' => __DIR__ . '/..' . '/symfony/yaml/Escaper.php',
-        'Symfony\\Component\\Yaml\\Exception\\DumpException' => __DIR__ . '/..' . '/symfony/yaml/Exception/DumpException.php',
-        'Symfony\\Component\\Yaml\\Exception\\ExceptionInterface' => __DIR__ . '/..' . '/symfony/yaml/Exception/ExceptionInterface.php',
-        'Symfony\\Component\\Yaml\\Exception\\ParseException' => __DIR__ . '/..' . '/symfony/yaml/Exception/ParseException.php',
-        'Symfony\\Component\\Yaml\\Exception\\RuntimeException' => __DIR__ . '/..' . '/symfony/yaml/Exception/RuntimeException.php',
-        'Symfony\\Component\\Yaml\\Inline' => __DIR__ . '/..' . '/symfony/yaml/Inline.php',
-        'Symfony\\Component\\Yaml\\Parser' => __DIR__ . '/..' . '/symfony/yaml/Parser.php',
-        'Symfony\\Component\\Yaml\\Unescaper' => __DIR__ . '/..' . '/symfony/yaml/Unescaper.php',
-        'Symfony\\Component\\Yaml\\Yaml' => __DIR__ . '/..' . '/symfony/yaml/Yaml.php',
-    );
-
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit3cfd72445e0ad28db5332442bcda1e66::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit3cfd72445e0ad28db5332442bcda1e66::$prefixDirsPsr4;
-            $loader->classMap = ComposerStaticInit3cfd72445e0ad28db5332442bcda1e66::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit29e062417f23608594ce026e85269165::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit29e062417f23608594ce026e85269165::$prefixDirsPsr4;
 
         }, null, ClassLoader::class);
     }

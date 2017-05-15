@@ -70,6 +70,7 @@ appstore:
 	service \
 	utility \
 	templates \
+	vendor \
 	js \
 	$(appstore_package_name)
 
