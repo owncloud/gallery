@@ -17,7 +17,7 @@
         "require": {
             "php": ">=5.3.9"
         },
-        "time": "2016-06-06 11:11:27",
+        "time": "2016-06-06T11:11:27+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
