@@ -111,7 +111,11 @@
 						c: file.etag,
 						requesttoken: oc_requesttoken
 					};
-					imageUrl = galleryFileAction.buildGalleryUrl('preview', '/' + file.id, params);
+					if (galleryFileAction.previewsDisabled) {
+						imageUrl = OCA.Files.Files.getDownloadUrl(file.name, dir);
+					} else {
+						imageUrl = galleryFileAction.buildGalleryUrl('preview', '/' + file.id, params);
+					}
 					params = {
 						c: file.etag,
 						requesttoken: oc_requesttoken
@@ -215,6 +219,13 @@ $(document).ready(function () {
 	var url = window.galleryFileAction.buildGalleryUrl('config', '', {extramediatypes: 1});
 	$.getJSON(url).then(function (config) {
 		window.galleryFileAction.buildFeaturesList(config.features);
+
+		if (!config.enablePreviews) {
+			config.mediatypes = ['image/png', 'image/jpeg', 'image/gif'];
+			window.galleryFileAction.previewsDisabled = true;
+			$('#gallery-button').remove();
+		}
+
 		window.galleryFileAction.register(config.mediatypes);
 	});
 });
