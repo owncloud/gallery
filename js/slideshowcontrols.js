@@ -363,8 +363,8 @@
 
 			// Only modern browsers can manipulate history
 			if (history && history.replaceState) {
-				// We simulate a click on the back button in order to be consistent
-				window.history.back();
+				// We stop displaying the image
+				$('#slideshow').css('display', 'none');
 			} else {
 				// For ancient browsers supported in core
 				this.stop();
