@@ -58,6 +58,7 @@ OC.L10N.register(
     "An error occured. Please try again" : "Tekkis tõrge. Palun proovi uuesti",
     "Adding user..." : "Kasutaja lisamine...",
     "group" : "grupp",
+    "remote" : "kaug",
     "Resharing is not allowed" : "Edasijagamine pole lubatud",
     "Unshare" : "Lõpeta jagamine",
     "notify by email" : "teavita e-postiga",

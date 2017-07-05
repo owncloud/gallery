@@ -31,7 +31,7 @@ OC.L10N.register(
     "<strong>Error!</strong> Could not generate a preview of this file.<br>Please go to the next slide while we remove this image from the slideshow" : "<strong>Gabim!</strong> S’u prodhua dot një paraparje e kësaj kartele.<br>Ju lutemi, kaloni te diapozitiva pasuese, teksa heqim këtë figurë nga paraqitja",
     "Next" : "Pasuesja",
     "Play" : "Luaje",
-    "Pause" : "Pauzë",
+    "Pause" : "Ndalesë",
     "Previous" : "E mëparshmja",
     "Close" : "Mbylle",
     "Download" : "Shkarko",
