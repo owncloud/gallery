@@ -84,7 +84,7 @@ OC.L10N.register(
     "Sending ..." : "Po dërgohet …",
     "Email sent" : "Email-i u dërgua",
     "Warning" : "Kujdes",
-    "This share is password-protected" : "Kjo pjesë është e mbrojtur me fjalëkalim",
+    "This share is password-protected" : "Kjo ndarje është e mbrojtur me fjalëkalim",
     "The password is wrong. Try again." : "Fjalëkalimi është i gabuar. Riprovoni.",
     "Sort by date" : "Renditi sipas datash",
     "Sort by name" : "Renditi sipas emrash",
