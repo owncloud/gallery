@@ -2,7 +2,7 @@ OC.L10N.register(
     "gallery",
     {
     "Gallery" : "갤러리",
-    "There was a problem reading files from this album" : "앨범에서 파일을 읽는데에 문제가 있습니다.",
+    "There was a problem reading files from this album" : "앨범에서 파일을 읽는 중 문제 발생",
     "Aborting preview. Could not find the file" : "미리 보기를 중단합니다. 파일을 찾을 수 없음",
     "Could not move \"{file}\", target exists" : "\"{file}\"을(를) 이동할 수 없음, 대상이 존재함",
     "Could not move \"{file}\"" : "\"{file}\"을(를) 이동할 수 없음",
