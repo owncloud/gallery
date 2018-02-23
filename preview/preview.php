@@ -12,6 +12,7 @@
 
 namespace OCA\Gallery\Preview;
 
+use OCP\Files\Folder;
 use OCP\IConfig;
 use OCP\Image;
 use OCP\Files\File;
@@ -97,7 +98,14 @@ class Preview {
 		$this->userId = $userId;
 		$this->file = $file;
 		$imagePathFromFolder = ltrim($imagePathFromFolder, '/');
-		$this->preview = new \OC\Preview($userId, 'files', $imagePathFromFolder);
+		if (version_compare(implode('.', \OCP\Util::getVersion()), '10.0', '>=')) {
+			/** @var Folder $userFolder */
+			$userFolder = \OC::$server->getUserFolder($userId);
+			$node = $userFolder->get($imagePathFromFolder);
+			$this->preview = new \OC\Preview($userId, 'files', $node);
+		} else {
+			$this->preview = new \OC\Preview($userId, 'files', $imagePathFromFolder);
+		}
 	}
 
 	/**
