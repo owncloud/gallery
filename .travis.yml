@@ -15,7 +15,7 @@ addons:
 
 env:
   global:
-    - CORE_BRANCH=master
+    - CORE_BRANCH=stable10
     - APP_NAME=gallery
     - GH_REF: github.com/owncloud/gallery.git
     - secure: "cLmMqrbVZrvn2GAoVs6JWa5h70tzrAISjPZUfENjl0KYT6B84z3B94W/dGU+I2mxwvyBqEP+x83Bih2CxEflqc7tJmdqC+MM/ZZiigPX7RCjq5XHbzUpPpMbC8MFxT2K3jcFXUitfwZvNaZXJIiK3ZQJU4ayKaegLvI91x1SqH0="
@@ -143,4 +143,6 @@ matrix:
       env: DB=sqlite
     - php: 7.0
       env: DB=mysql
+    - php: 7.1
+      env: DB=sqlite CORE_BRANCH=master
   fast_finish: true
