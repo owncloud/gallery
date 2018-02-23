@@ -43,8 +43,7 @@
 	<bugs>https://github.com/owncloud/gallery/issues</bugs>
 	<repository type="git">https://github.com/owncloud/gallery.git</repository>
 	<dependencies>
-		<php min-version="5.4" max-version="7"/>
-		<owncloud min-version="10.0" max-version="10.0"/>
+		<owncloud min-version="10.0" max-version="10.1"/>
 	</dependencies>
 	<default_enable />
 </info>
