@@ -40,12 +40,6 @@ class AppTest extends GalleryIntegrationTest {
 		$this->assertSame('AGPL', $appData['licence']);
 	}
 
-	public function testAppMaxPhpVersion() {
-		$appData = App::getAppInfo('gallery');
-
-		$this->assertSame('7', $appData['dependencies']['php']['@attributes']['max-version']);
-	}
-
 	public function testNavigationEntry() {
 		$navigationManager = \OC::$server->getNavigationManager();
 		$navigationManager->clear();
