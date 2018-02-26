@@ -19,8 +19,9 @@ env:
     - APP_NAME=gallery
     - GH_REF: github.com/owncloud/gallery.git
     - secure: "cLmMqrbVZrvn2GAoVs6JWa5h70tzrAISjPZUfENjl0KYT6B84z3B94W/dGU+I2mxwvyBqEP+x83Bih2CxEflqc7tJmdqC+MM/ZZiigPX7RCjq5XHbzUpPpMbC8MFxT2K3jcFXUitfwZvNaZXJIiK3ZQJU4ayKaegLvI91x1SqH0="
+    - COVERAGE: ''
   matrix:
-    - DB=sqlite
+    - DB=sqlite COVERAGE="--coverage --coverage-xml --coverage-html"
     - DB=mysql
 
 branches:
@@ -85,12 +86,6 @@ before_script:
   # Install the Imagick PHP extension
   - sh -c "pecl config-set preferred_state beta; echo yes | printf "\n" | pecl install imagick;"
 
-  # Disable xdebug when we don't need coverage to speed up testing
-  - sh -c "if [ '$TRAVIS_PHP_VERSION' != '7.0' ]; then phpenv config-rm xdebug.ini; fi;"
-  - sh -c "if [ '$TRAVIS_PHP_VERSION' = '7.0' ] && [ '$DB' != 'mysql' ]; then phpenv config-rm xdebug.ini; fi;"
-  # Always install the latest version of the xdebug PHP extension
-  - sh -c "if [ '$TRAVIS_PHP_VERSION' = '7.0' ] && [ '$DB' = 'mysql' ]; then cd build; bash xdebug_install.sh; cd ${TRAVIS_BUILD_DIR}/../core/apps/$APP_NAME; fi"
-
   # Sets up the PHP composer cache
   - sh -c "if [ ! -d ${TRAVIS_BUILD_DIR}/travis/php-cache/`php-config --vernum` ]; then mkdir -p ${TRAVIS_BUILD_DIR}/travis/php-cache/`php-config --vernum`; fi;"
   - rm -rf ${TRAVIS_BUILD_DIR}/../core/apps/$APP_NAME/vendor
@@ -109,13 +104,9 @@ script:
   # Acceptance tests, using Firefox, without code coverage
   - php vendor/bin/codecept run acceptance --env firefox
   # Unit, integration and api tests, without code coverage
-  - sh -c "if [ '$TRAVIS_PHP_VERSION' != '7.0' ]; then php vendor/bin/codecept run unit,integration,api; fi;"
-  - sh -c "if [ '$TRAVIS_PHP_VERSION' = '7.0' ] && [ '$DB' != 'mysql' ]; then php vendor/bin/codecept run unit,integration,api; fi;"
-
-  # PHP 5.6 ONLY: Unit, integration and api tests with code coverage
-  - sh -c "if [ '$TRAVIS_PHP_VERSION' = '7.0' ] && [ '$DB' = 'mysql' ]; then php vendor/bin/codecept run unit,integration,api --coverage --coverage-xml --coverage-html; fi;"
-  # We can't use phpdbg only as it doesn't work with the webdriver and we can't use it for some tests only as we can't merge html reports
-  # - sh -c "if [ '$TRAVIS_PHP_VERSION' = '7.0' ] && [ '$DB' = 'mysql' ]; then phpenv config-rm xdebug.ini; phpdbg -qrr vendor/bin/codecept run unit,integration,api --coverage --coverage-xml --coverage-html; fi;"
+  - php vendor/bin/codecept run unit $COVERAGE
+  - php vendor/bin/codecept run integration $COVERAGE
+#  - php vendor/bin/codecept run api $COVERAGE
 
 after_success:
   # Send coverage report to Scrutinizer
