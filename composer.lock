@@ -235,16 +235,16 @@
         },
         {
             "name": "codeception/c3",
-            "version": "2.0.6",
+            "version": "2.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Codeception/c3.git",
-                "reference": "dc4d39b36d585c2eda58129407e78855ea67b1ca"
+                "reference": "c7348bbc82da82834fe237c5fb754003ac0fe782"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Codeception/c3/zipball/dc4d39b36d585c2eda58129407e78855ea67b1ca",
-                "reference": "dc4d39b36d585c2eda58129407e78855ea67b1ca",
+                "url": "https://api.github.com/repos/Codeception/c3/zipball/c7348bbc82da82834fe237c5fb754003ac0fe782",
+                "reference": "c7348bbc82da82834fe237c5fb754003ac0fe782",
                 "shasum": ""
             },
             "require": {
@@ -281,7 +281,7 @@
                 "code coverage",
                 "codecoverage"
             ],
-            "time": "2016-02-09T23:31:08+00:00"
+            "time": "2018-02-19T11:27:45+00:00"
         },
         {
             "name": "codeception/codeception",
