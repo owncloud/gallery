@@ -11,15 +11,18 @@ addons:
     packages:
       - graphviz
       - gdb
+  firefox: latest
+
 env:
   global:
-    - CORE_BRANCH=master
+    - CORE_BRANCH=stable10
     - APP_NAME=gallery
     - GH_REF: github.com/owncloud/gallery.git
     - secure: "cLmMqrbVZrvn2GAoVs6JWa5h70tzrAISjPZUfENjl0KYT6B84z3B94W/dGU+I2mxwvyBqEP+x83Bih2CxEflqc7tJmdqC+MM/ZZiigPX7RCjq5XHbzUpPpMbC8MFxT2K3jcFXUitfwZvNaZXJIiK3ZQJU4ayKaegLvI91x1SqH0="
+    - COVERAGE: ''
   matrix:
-    - DB=sqlite;CLOUD=owncloud
-    - DB=mysql;CLOUD=owncloud
+    - DB=sqlite COVERAGE="--coverage --coverage-xml --coverage-html"
+    - DB=mysql
 
 branches:
   only:
@@ -38,14 +41,16 @@ before_cache:
   - cp -r ${TRAVIS_BUILD_DIR}/../core/apps/$APP_NAME/vendor ${TRAVIS_BUILD_DIR}/travis/php-cache/`php-config --vernum`
 
 before_install:
-  # Disable opcache on PHP 7.0 as it crashes too easily
-  - sh -c "if [ '$TRAVIS_PHP_VERSION' = '7.0' ]; then sed -i '/opcache.so/d' ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini; fi;"
   - php --modules
 
   # Setup Selenium
   - export DISPLAY=:99.0
   - sh -e /etc/init.d/xvfb start
   - sleep 3
+  - wget https://github.com/mozilla/geckodriver/releases/download/v0.19.1/geckodriver-v0.19.1-linux64.tar.gz
+  - mkdir geckodriver
+  - tar -xzf geckodriver-v0.19.1-linux64.tar.gz -C geckodriver
+  - export PATH=$PATH:$PWD/geckodriver
   - sh -c "if [ ! -e ${TRAVIS_BUILD_DIR}/travis/lib-cache/selenium.jar ]; then wget -O ${TRAVIS_BUILD_DIR}/travis/lib-cache/selenium.jar https://selenium-release.storage.googleapis.com/2.47/selenium-server-standalone-2.47.0.jar; fi;"
   - java -jar ${TRAVIS_BUILD_DIR}/travis/lib-cache/selenium.jar -port 4444 >/dev/null 2>&1 & # WARNING - Takes a long time to start up. Keep here
 
@@ -68,7 +73,7 @@ before_install:
   #- cat /proc/sys/kernel/core_pattern
 
   # Installing the server
-  - sh -c "if [ '$CLOUD' = 'owncloud' ]; then wget https://raw.githubusercontent.com/owncloud/administration/master/travis-ci/before_install.sh; fi;"
+  - wget https://raw.githubusercontent.com/owncloud/administration/master/travis-ci/before_install.sh
   - bash ./before_install.sh $APP_NAME $CORE_BRANCH $DB
   - cd ../core
   - php occ app:enable $APP_NAME
@@ -80,12 +85,6 @@ before_script:
 
   # Install the Imagick PHP extension
   - sh -c "pecl config-set preferred_state beta; echo yes | printf "\n" | pecl install imagick;"
-
-  # Disable xdebug when we don't need coverage to speed up testing
-  - sh -c "if [ '$TRAVIS_PHP_VERSION' != '7.0' ]; then phpenv config-rm xdebug.ini; fi;"
-  - sh -c "if [ '$TRAVIS_PHP_VERSION' = '7.0' ] && [ '$DB' != 'mysql' ]; then phpenv config-rm xdebug.ini; fi;"
-  # Always install the latest version of the xdebug PHP extension
-  - sh -c "if [ '$TRAVIS_PHP_VERSION' = '7.0' ] && [ '$DB' = 'mysql' ]; then cd build; bash xdebug_install.sh; cd ${TRAVIS_BUILD_DIR}/../core/apps/$APP_NAME; fi"
 
   # Sets up the PHP composer cache
   - sh -c "if [ ! -d ${TRAVIS_BUILD_DIR}/travis/php-cache/`php-config --vernum` ]; then mkdir -p ${TRAVIS_BUILD_DIR}/travis/php-cache/`php-config --vernum`; fi;"
@@ -105,18 +104,16 @@ script:
   # Acceptance tests, using Firefox, without code coverage
   - php vendor/bin/codecept run acceptance --env firefox
   # Unit, integration and api tests, without code coverage
-  - sh -c "if [ '$TRAVIS_PHP_VERSION' != '7.0' ]; then php vendor/bin/codecept run unit,integration,api; fi;"
-  - sh -c "if [ '$TRAVIS_PHP_VERSION' = '7.0' ] && [ '$DB' != 'mysql' ]; then php vendor/bin/codecept run unit,integration,api; fi;"
-
-  # PHP 5.6 ONLY: Unit, integration and api tests with code coverage
-  - sh -c "if [ '$TRAVIS_PHP_VERSION' = '7.0' ] && [ '$DB' = 'mysql' ]; then php vendor/bin/codecept run unit,integration,api --coverage --coverage-xml --coverage-html; fi;"
-  # We can't use phpdbg only as it doesn't work with the webdriver and we can't use it for some tests only as we can't merge html reports
-  # - sh -c "if [ '$TRAVIS_PHP_VERSION' = '7.0' ] && [ '$DB' = 'mysql' ]; then phpenv config-rm xdebug.ini; phpdbg -qrr vendor/bin/codecept run unit,integration,api --coverage --coverage-xml --coverage-html; fi;"
+  - php vendor/bin/codecept run unit $COVERAGE
+  - php vendor/bin/codecept run integration $COVERAGE
+#  - php vendor/bin/codecept run api $COVERAGE
 
 after_success:
   # Send coverage report to Scrutinizer
   - sh -c "if [ '$TRAVIS_PHP_VERSION' = '7.0' ] && [ '$DB' = 'mysql' ]; then wget https://scrutinizer-ci.com/ocular.phar; fi"
   - sh -c "if [ '$TRAVIS_PHP_VERSION' = '7.0' ] && [ '$DB' = 'mysql' ]; then php ocular.phar code-coverage:upload --format=php-clover tests/_output/coverage.xml; fi"
+  # coverage goes to codecov
+  - bash <(curl -s https://codecov.io/bash) -f tests/_output/coverage.xml
 
   # Generate API documentation
   - sh -c "if [ '$TRAVIS_PHP_VERSION' = '7.0' ] && [ '$DB' = 'mysql' ]; then php vendor/bin/phpdoc run; fi"
@@ -132,9 +129,11 @@ after_failure:
 matrix:
   include:
     - php: 5.6
-      env: DB=pgsql;CLOUD=owncloud
+      env: DB=pgsql
     - php: 7.0
-      env: DB=sqlite;CLOUD=owncloud
+      env: DB=sqlite
     - php: 7.0
-      env: DB=mysql;CLOUD=owncloud
+      env: DB=mysql
+    - php: 7.1
+      env: DB=sqlite CORE_BRANCH=master
   fast_finish: true

@@ -40,18 +40,12 @@ class AppTest extends GalleryIntegrationTest {
 		$this->assertSame('AGPL', $appData['licence']);
 	}
 
-	public function testAppMaxPhpVersion() {
-		$appData = App::getAppInfo('gallery');
-
-		$this->assertSame('7', $appData['dependencies']['php']['@attributes']['max-version']);
-	}
-
 	public function testNavigationEntry() {
 		$navigationManager = \OC::$server->getNavigationManager();
 		$navigationManager->clear();
-		$this->assertEmpty($navigationManager->getAll());
+		$countBefore = count($navigationManager->getAll());
 		require __DIR__ . '/../../../appinfo/app.php';
 		// Test whether the navigation entry got added
-		$this->assertCount(1, $navigationManager->getAll());
+		$this->assertCount($countBefore + 1, $navigationManager->getAll());
 	}
 }
