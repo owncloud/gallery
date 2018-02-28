@@ -24,7 +24,7 @@
     "source": "https://github.com/owncloud/gallery"
   },
   "require": {
-    "symfony/yaml": "~2.6"
+    "symfony/yaml": "~3.3"
   },
   "require-dev": {
     "guzzlehttp/guzzle": "^5.0|^6.2",
