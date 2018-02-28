@@ -21,8 +21,9 @@ env:
     - secure: "cLmMqrbVZrvn2GAoVs6JWa5h70tzrAISjPZUfENjl0KYT6B84z3B94W/dGU+I2mxwvyBqEP+x83Bih2CxEflqc7tJmdqC+MM/ZZiigPX7RCjq5XHbzUpPpMbC8MFxT2K3jcFXUitfwZvNaZXJIiK3ZQJU4ayKaegLvI91x1SqH0="
     - COVERAGE: ''
   matrix:
-    - DB=sqlite COVERAGE="--coverage --coverage-xml --coverage-html"
+#    - DB=sqlite COVERAGE="--coverage --coverage-xml --coverage-html"
     - DB=mysql
+    - DB=sqlite
 
 branches:
   only:
@@ -136,4 +137,6 @@ matrix:
       env: DB=mysql
     - php: 7.1
       env: DB=sqlite CORE_BRANCH=master
+  allow_failures:
+    - php: nightly
   fast_finish: true
