@@ -379,20 +379,20 @@
         },
         {
             "name": "codeception/phpbuiltinserver",
-            "version": "v1.2.2",
+            "version": "v1.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tiger-seo/PhpBuiltinServer.git",
-                "reference": "53cd8fc4b1134e9e2c1a6d7478490db11160e323"
+                "reference": "e0509bb9e9b55ae841b5c46aca1b0db858f4c652"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tiger-seo/PhpBuiltinServer/zipball/53cd8fc4b1134e9e2c1a6d7478490db11160e323",
-                "reference": "53cd8fc4b1134e9e2c1a6d7478490db11160e323",
+                "url": "https://api.github.com/repos/tiger-seo/PhpBuiltinServer/zipball/e0509bb9e9b55ae841b5c46aca1b0db858f4c652",
+                "reference": "e0509bb9e9b55ae841b5c46aca1b0db858f4c652",
                 "shasum": ""
             },
             "require": {
-                "codeception/codeception": "~2.0",
+                "codeception/codeception": "^2.1",
                 "php": ">=5.4.0"
             },
             "type": "library",
@@ -415,7 +415,7 @@
             "keywords": [
                 "codeception"
             ],
-            "time": "2016-01-14T00:29:41+00:00"
+            "time": "2016-12-20T01:05:21+00:00"
         },
         {
             "name": "doctrine/annotations",
