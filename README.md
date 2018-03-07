@@ -29,10 +29,12 @@ Checkout the [full changelog](CHANGELOG.md) for more.
 ## Maintainers
 
 ### Current
-* [Olivier Paroz](https://github.com/oparoz)
-* [Jan-Christoph Borchardt](https://github.com/jancborchardt) (Design)
+
 
 ### Alumni
+
+* [Olivier Paroz](https://github.com/oparoz)
+* [Jan-Christoph Borchardt](https://github.com/jancborchardt) (Design)
 * [Robin Appelman](https://github.com/icewind1991)
 
 ## Contributors
