@@ -41,6 +41,10 @@ var FileList = {
 		}
 	},
 
+	inList: function(file) {
+		return this.findFile(file);
+	},
+
 	/**
 	 * Create an empty file inside the current album.
 	 *
