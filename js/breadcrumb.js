@@ -112,6 +112,9 @@
 		 * Shows the dark spinner on the crumb
 		 */
 		showLoader: function () {
+			if ($(this).hasClass('home') && $(this).hasClass('last')) {
+				return;
+			}
 			$(this).children('a').addClass("icon-loading-dark small");
 		},
 
