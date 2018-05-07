@@ -415,7 +415,7 @@
             },
             "require": {
                 "doctrine/lexer": "1.*",
-                "php": "^7.1"
+                "php": ">=5.6"
             },
             "require-dev": {
                 "doctrine/cache": "1.*",
@@ -482,7 +482,7 @@
                 "shasum": ""
             },
             "require": {
-                "php": "^7.1"
+                "php": ">=5.6"
             },
             "require-dev": {
                 "athletic/athletic": "~0.1.8",
