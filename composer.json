@@ -18,13 +18,17 @@
       "homepage": "https://github.com/icewind1991"
     }
   ],
+  "config" : {
+    "platform": {
+      "php": "5.6"
+    }
+  },
   "support": {
     "issues": "https://github.com/owncloud/gallery/issues",
     "wiki": "https://github.com/owncloud/gallery/wiki",
     "source": "https://github.com/owncloud/gallery"
   },
   "require": {
-    "symfony/yaml": "~2.6"
   },
   "require-dev": {
     "guzzlehttp/guzzle": "^5.0|^6.2",
