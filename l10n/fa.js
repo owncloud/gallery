@@ -112,4 +112,4 @@ OC.L10N.register(
     "Add to your ownCloud" : "افزودن به ownCloud شما",
     "Picture view" : "نمایش تصویر"
 },
-"nplurals=1; plural=0;");
+"nplurals=2; plural=((n<=1 && n>= 0) ? 1);");

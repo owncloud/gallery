@@ -112,4 +112,4 @@ OC.L10N.register(
     "Add to your ownCloud" : "הוספה ל- ownCloud שלך",
     "Picture view" : "תצוגת תמונה"
 },
-"nplurals=2; plural=(n != 1);");
+"nplurals=4; plural=(n==1 ? 1: n == 2 ? 2 : (n % 10 == 0 and n > 10) ? 4);");
