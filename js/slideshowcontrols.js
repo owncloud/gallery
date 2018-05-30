@@ -21,7 +21,7 @@
 			this.backgroundToggle = true;
 		}
 	};
-
+	var value = 0;
 	Controls.prototype = {
 		current: 0,
 		errorLoadingImage: false,
@@ -129,6 +129,7 @@
 			var canDelete = ((permissions & OC.PERMISSION_DELETE) !== 0);
 			if (!isPublic && canDelete) {
 				this.showButton('.deleteImage');
+				this.showButton('.rotationCup');
 			}
 		},
 
@@ -139,6 +140,7 @@
 			this.hideButton('.changeBackground');
 			this.hideButton('.downloadImage');
 			this.hideButton('.deleteImage');
+			this.showButton('.rotationCup');
 		},
 
 		/**
@@ -194,6 +196,7 @@
 		_specialButtonSetup: function (makeCallBack) {
 			this.container.find('.downloadImage').click(makeCallBack(this._getImageDownload));
 			this.container.find('.deleteImage').click(makeCallBack(this._deleteImage));
+			this.container.find('.rotationCup').click(makeCallBack(this._rotationCup));
 			this.container.find('.menu').width = 52;
 			if (this.backgroundToggle) {
 				this.container.find('.changeBackground').click(
@@ -317,6 +320,7 @@
 		 * @private
 		 */
 		_next: function () {
+			value = 0;
 			this._setName('');
 			this.slideshow.hideErrorNotification();
 			this.zoomablePreview.reset();
@@ -335,6 +339,7 @@
 		 * @private
 		 */
 		_previous: function () {
+			value = 0;
 			this._setName('');
 			this.slideshow.hideErrorNotification();
 			this.zoomablePreview.reset();
@@ -351,6 +356,8 @@
 		 * @private
 		 */
 		_updateSlideshow: function (imageId) {
+			value = 0;
+			this._rotationCupClean();
 			this.slideshow.next(this.current, this.images[imageId]);
 		},
 
@@ -360,7 +367,8 @@
 		 * @private
 		 */
 		_exit: function () {
-
+			value = 0;
+			this._rotationCupClean();
 			// Only modern browsers can manipulate history
 			if (history && history.replaceState) {
 				// We simulate a click on the back button in order to be consistent
@@ -428,7 +436,31 @@
 			var nameElement = this.container.find('.title');
 			nameElement.text(imageName);
 		},
-
+		//Rotation Cup
+		/**
+		 * Rotate Picture
+		 * @private
+		 */
+		_rotationCup: function () {
+				value +=90;
+				console.log(value);
+			$('.bigshotContainer img:first').rotate({
+				
+				animateTo: value
+				});
+		},
+		//Rotation Cup Clean
+		/**
+		 * Rotate Picture
+		 * @private
+		 */
+		_rotationCupClean: function () {
+			
+		$('.bigshotContainer img:first').rotate({
+			
+			animateTo: 0,
+			});
+		},
 		/**
 		 * Delete the image from the slideshow
 		 * @private

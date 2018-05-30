@@ -11,6 +11,8 @@ script(
 		'app',
 		'vendor/jquery-touch-events/src/1.0.1/jquery.mobile-events.min',
 		'vendor/jquery.ui.touch-punch-custom',
+		'rotate',
+		'rotacion_cup',
 		'gallery',
 		'galleryutility',
 		'galleryconfig',
@@ -33,6 +35,7 @@ script(
 		'upload-helper',
 		'vendor/owncloud/newfilemenu',
 		'newfilemenuplugins'
+		
 	]
 );
 script(

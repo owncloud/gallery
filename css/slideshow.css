@@ -63,6 +63,10 @@
 	background-image: url("../img/view-delete.svg");
 	background-size: 28px 28px;
 }
+#slideshow input.icon-rotate {
+	background-image: url("../img/rotate.svg");
+	background-size: 28px 28px;
+}
 
 #slideshow > * {
 	-webkit-transition: opacity 300ms;

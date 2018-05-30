@@ -3,7 +3,6 @@
  * @var $_ array
  */
 ?>
-
 <div id="app">
 	<?php
 	if (isset($_['code'])) {

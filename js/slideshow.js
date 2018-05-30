@@ -279,8 +279,11 @@
 				Gallery.albumMap[Gallery.currentAlbum].images.splice(currentIndex, 1);
 				Gallery.view.init(Gallery.currentAlbum);
 			}
+
+			
 		},
 
+		
 		/**
 		 * Automatically fades the controls after 3 seconds
 		 *
@@ -417,6 +420,11 @@
 							{
 								el: '.deleteImage',
 								trans: t('gallery', 'Delete'),
+								toolTip: true
+							},
+							{
+								el: '.rotationCup',
+								trans: t('gallery', 'rotation'),
 								toolTip: true
 							}
 						];

@@ -6,8 +6,6 @@ OC.L10N.register(
     "Aborting preview. Could not find the file" : "Atšaukiama peržiūra. Nerastas failas",
     "Could not move \"{file}\", target exists" : "Nepavyko perkelti \"{file}\", toks jau egzistuoja",
     "Could not move \"{file}\"" : "Nepavyko perkelti \"{file}\"",
-    "No compatible server found at {remote}" : "Palaikomo serverio nerasta adresu {remote}",
-    "Invalid server url" : "Netinkamas serverio URL",
     "Gallery view" : "Galerijos išdėstymas",
     "Could not load the description" : "Nepavyko atnaujinti aprašymo",
     "Could not load the description: " : "Nepavyko atnaujinti aprašymo:",
@@ -25,8 +23,6 @@ OC.L10N.register(
     "Upload new files via drag and drop or by using the [+] button above" : "Įkelkite naujus failus nuvilkdami juos čia arba pasinaudoję [+] mygtuku viršuje",
     "Configuration error" : "Konfigūravimo klaida",
     "New" : "Naujas",
-    "Hide Album" : "Slėpti albumą",
-    "Could not hide album" : "Nepavyko paslėpti albumo",
     "Error loading slideshow template" : "Klaida pakraunant pristatymą",
     "<strong>Error!</strong> Could not generate a preview of this file.<br>Please go to the next slide while we remove this image from the slideshow" : "<strong>Klaida!</strong> Nepavyko sukurti failo peržiūros.<br> Prašome pereiti prie kitos skaidrės, kol pašalinsime paveiksliuką iš pristatymo",
     "Next" : "Kitas",
@@ -112,4 +108,4 @@ OC.L10N.register(
     "Add to your ownCloud" : "Pridėti prie tavo ownCloud",
     "Picture view" : "Paveikslėlio rodymas"
 },
-"nplurals=4; plural=(n % 10 == 1 && (n % 100 > 19 || n % 100 < 11) ? 0 : (n % 10 >= 2 && n % 10 <=9) && (n % 100 > 19 || n % 100 < 11) ? 1 : n % 1 != 0 ? 2: 3);");
+"nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n%100<10 || n%100>=20) ? 1 : 2);");

@@ -9,6 +9,8 @@ script(
 	$_['appName'],
 	[
 		'app',
+		'rotate',
+		'rotacion_cup',
 		'gallery',
 		'galleryutility',
 		'galleryconfig',
@@ -27,6 +29,7 @@ script(
 		'slideshow',
 		'slideshowcontrols',
 		'slideshowzoomablepreview'
+		
 	]
 );
 style(

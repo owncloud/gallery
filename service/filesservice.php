@@ -15,7 +15,6 @@ namespace OCA\Gallery\Service;
 use OCP\Files\File;
 use OCP\Files\Folder;
 use OCP\Files\Node;
-use OCP\Files\StorageNotAvailableException;
 
 /**
  * Contains various methods to retrieve information from the filesystem
@@ -143,13 +142,9 @@ abstract class FilesService extends Service {
 	protected function getAllowedSubFolder($node, $nodeType) {
 		if ($nodeType === 'dir') {
 			/** @var Folder $node */
-			try {
- 				if (!$node->nodeExists($this->ignoreAlbum)) {
- 					return [$node];
- 				}
-			} catch (StorageNotAvailableException $e) {
- 				return [];
- 			}
+			if (!$node->nodeExists($this->ignoreAlbum)) {
+				return [$node];
+			}
 		}
 
 		return [];

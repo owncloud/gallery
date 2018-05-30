@@ -148,7 +148,7 @@ class Preview {
 		$this->preview->setMaxY($maxY);
 		$this->preview->setScalingUp(false);
 		$this->preview->setKeepAspect($keepAspect);
-
+		
 		//$this->logger->debug("[PreviewService] preview {preview}", ['preview' => $this->preview]);
 
 		$previewData = $this->preview->getPreview();

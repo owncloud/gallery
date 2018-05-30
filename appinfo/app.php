@@ -78,6 +78,8 @@ if (isset($request->server['REQUEST_URI'])) {
 		Util::addScript($appName, 'slideshowcontrols');
 		Util::addScript($appName, 'slideshowzoomablepreview');
 		Util::addScript($appName, 'gallerybutton');
+		Util::addScript($appName, 'rotate');
+		Util::addScript($appName, 'rotacion_cup');
 
 		/**
 		 * Styles for the Files app
