@@ -3,6 +3,8 @@ OC.L10N.register(
     {
     "Gallery" : "Galeri",
     "Aborting preview. Could not find the file" : "Membatalkan pratinjau. Tidak dapat menemukan berkas.",
+    "Could not move \"{file}\", target exists" : "Tidak dapat memindahkan \"{file}\", berkas tujuan sudah ada",
+    "Could not move \"{file}\"" : "Tidak dapat memindahkan \"{file}\"",
     "Gallery view" : "Tampilan galeri",
     "Could not load the description" : "Tidak dapat memuat deskripsi",
     "Could not load the description: " : "Tidak dapat memuat deskripsi:",
@@ -26,6 +28,8 @@ OC.L10N.register(
     "Download" : "Unduh",
     "Toggle background" : "Ubah latar belakang",
     "Delete" : "Hapus",
+    "Could not create file \"{file}\" because it already exists" : "Tidak dapat membuat berkas \"{file}\" karena sudah ada",
+    "Could not create file \"{file}\"" : "Tidak dapat membuat berkas \"{file}\"",
     "\"{name}\" is an invalid file name." : "\"{name}\" adalah nama berkas yang tidak sah.",
     "File name cannot be empty." : "Nama berkas tidak boleh kosong.",
     "Upload" : "Unggah",
