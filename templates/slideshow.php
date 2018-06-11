@@ -13,6 +13,8 @@
 			   class="menuItem svg changeBackground icon-view-toggle-background hidden"/>
 		<input type="button"
 			   class="menuItem svg deleteImage icon-view-delete hidden">
+			   <input id="rot" type="button"
+			   class="menuItem svg rotationCup icon-rotate hidden">
 	</div>
 	<div class="progress icon-view-pause"/>
 	<div class="name">
@@ -20,3 +22,4 @@
 	</div>
 	<div class="bigshotContainer"></div>
 </div>
+
