@@ -37,6 +37,7 @@ OC.L10N.register(
     "Download" : "Baixar",
     "Toggle background" : "Alternância de fundo",
     "Delete" : "Excluir",
+    "rotation" : "rotação",
     "Could not create file \"{file}\" because it already exists" : "Não foi possível criar o arquivo \"{file}\" porque ele já existe",
     "Could not create file \"{file}\"" : "Não foi possível criar o arquivo \"{file}\"",
     "\"{name}\" is an invalid file name." : "\"{name}\" é um nome de arquivo inválido.",

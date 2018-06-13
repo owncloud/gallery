@@ -37,6 +37,7 @@ OC.L10N.register(
     "Download" : "Shkarko",
     "Toggle background" : "Ndërroni sfondin",
     "Delete" : "Fshije",
+    "rotation" : "rrotullim",
     "Could not create file \"{file}\" because it already exists" : "S’u krijua dot kartela \"{file}\" ngaqë ka një të tillë",
     "Could not create file \"{file}\"" : "S’u krijua dot kartela \"{file}\"",
     "\"{name}\" is an invalid file name." : "\"{name}\" është emër i pavlefshëm kartele.",
