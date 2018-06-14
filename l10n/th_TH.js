@@ -37,6 +37,7 @@ OC.L10N.register(
     "Download" : "ดาวน์โหลด",
     "Toggle background" : "สลับพื้นหลัง",
     "Delete" : "ลบ",
+    "rotation" : "หมุน",
     "Could not create file \"{file}\" because it already exists" : "ไม่สามารถสร้างไฟล์ \"{file}\" เพราะมันมีอยู่แล้ว",
     "Could not create file \"{file}\"" : "ไม่สามารถสร้างไฟล์ \"{file}\"",
     "\"{name}\" is an invalid file name." : "\"{name}\" เป็นชื่อไฟล์ที่ไม่ถูกต้อง",
