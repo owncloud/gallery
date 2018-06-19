@@ -104,5 +104,4 @@ abstract class Service {
 			throw new NotFoundServiceException("Can't access the file");
 		}
 	}
-
 }

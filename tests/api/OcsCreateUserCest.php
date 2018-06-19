@@ -21,7 +21,6 @@ use Codeception\Util\Xml as XmlUtils;
  * or the Actor class
  */
 class OcsCreateUserCest {
-
 	private $apiUrl;
 	private $userId = 'BlueDragon';
 
@@ -63,7 +62,6 @@ class OcsCreateUserCest {
 				['status' => 'ok']
 			)
 		);
-
 	}
 
 	public function deleteUser(ApiTester $I, \Codeception\Scenario $scenario) {
@@ -81,4 +79,3 @@ class OcsCreateUserCest {
 		);
 	}
 }
-

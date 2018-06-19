@@ -68,7 +68,7 @@ class SearchFolderService extends FilesService {
 			}
 		} catch (NotFoundEnvException $exception) {
 			// There might be a typo in the file or folder name
-			$folder = pathinfo($location, PATHINFO_DIRNAME);
+			$folder = \pathinfo($location, PATHINFO_DIRNAME);
 			$depth++;
 
 			return $this->findFolder($folder, $depth);
@@ -106,7 +106,7 @@ class SearchFolderService extends FilesService {
 	 * @throws ForbiddenServiceException|NotFoundServiceException
 	 */
 	private function sendFolder($path, $node) {
-		if (is_null($node)) {
+		if ($node === null) {
 			// Something very wrong has just happened
 			throw new NotFoundServiceException('Oh Nooooes!');
 		} elseif (!$this->isAllowedAndAvailable($node)) {
@@ -117,5 +117,4 @@ class SearchFolderService extends FilesService {
 
 		return [$path, $node];
 	}
-
 }

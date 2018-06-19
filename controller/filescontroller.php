@@ -33,7 +33,6 @@ use OCA\Gallery\Service\ServiceException;
  * @package OCA\Gallery\Controller
  */
 class FilesController extends Controller {
-
 	use Files;
 	use HttpError;
 
@@ -92,8 +91,8 @@ class FilesController extends Controller {
 	 * @return array <string,array<string,string|int>>|Http\JSONResponse
 	 */
 	public function getList($location, $features, $etag, $mediatypes) {
-		$featuresArray = explode(';', $features);
-		$mediaTypesArray = explode(';', $mediatypes);
+		$featuresArray = \explode(';', $features);
+		$mediaTypesArray = \explode(';', $mediatypes);
 		try {
 			return $this->getFilesAndAlbums($location, $featuresArray, $etag, $mediaTypesArray);
 		} catch (\Exception $exception) {
@@ -133,5 +132,4 @@ class FilesController extends Controller {
 
 		return new ImageResponse($download);
 	}
-
 }

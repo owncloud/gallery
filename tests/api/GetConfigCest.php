@@ -18,7 +18,6 @@ use Page\Gallery as GalleryApp;
  * @todo Inject config items and compare the result
  */
 class GetConfigCest {
-
 	private $apiUrl;
 	private $params = [
 		'extramediatypes' => false

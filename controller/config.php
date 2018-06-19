@@ -64,7 +64,7 @@ trait Config {
 	 */
 	private function isNativeSvgActivated($features) {
 		$nativeSvgSupport = false;
-		if (!empty($features) && in_array('native_svg', $features)) {
+		if (!empty($features) && \in_array('native_svg', $features)) {
 			$nativeSvgSupport = true;
 		}
 

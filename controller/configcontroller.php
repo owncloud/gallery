@@ -26,7 +26,6 @@ use OCA\Gallery\Service\ConfigService;
  * @package OCA\Gallery\Controller
  */
 class ConfigController extends Controller {
-
 	use Config;
 	use HttpError;
 
@@ -66,5 +65,4 @@ class ConfigController extends Controller {
 			return $this->jsonError($exception, $this->request, $this->logger);
 		}
 	}
-
 }

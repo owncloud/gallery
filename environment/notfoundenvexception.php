@@ -15,4 +15,5 @@ namespace OCA\Gallery\Environment;
 /**
  * Thrown when the Environment cannot find or access a node
  */
-class NotFoundEnvException extends EnvironmentException {}
+class NotFoundEnvException extends EnvironmentException {
+}

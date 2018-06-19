@@ -19,9 +19,8 @@ use OCP\AppFramework\Http;
  * @package OCA\Gallery\Controller
  */
 class ImageResponseTest extends \Test\TestCase {
-
 	public function testRenderWithOcImageInstance() {
-		$resource = file_get_contents(\OC::$SERVERROOT . '/tests/data/testimage.jpg');
+		$resource = \file_get_contents(\OC::$SERVERROOT . '/tests/data/testimage.jpg');
 		$preview = new \OC_Image($resource);
 
 		$data = [
@@ -30,14 +29,14 @@ class ImageResponseTest extends \Test\TestCase {
 			'preview'  => $preview,
 		];
 
-		$imageResponse = new ImageResponse ($data);
+		$imageResponse = new ImageResponse($data);
 		$response = $imageResponse->render();
 
 		$this->assertSame($preview->data(), $response);
 	}
 
 	public function testRenderWithString() {
-		$preview = file_get_contents(\OC::$SERVERROOT . '/tests/data/testimage.jpg');
+		$preview = \file_get_contents(\OC::$SERVERROOT . '/tests/data/testimage.jpg');
 
 		$data = [
 			'name'     => 'testimage.jpg',
@@ -45,10 +44,9 @@ class ImageResponseTest extends \Test\TestCase {
 			'preview'  => $preview,
 		];
 
-		$imageResponse = new ImageResponse ($data);
+		$imageResponse = new ImageResponse($data);
 		$response = $imageResponse->render();
 
 		$this->assertSame($preview, $response);
 	}
-
 }

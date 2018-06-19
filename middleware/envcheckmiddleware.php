@@ -199,7 +199,6 @@ class EnvCheckMiddleware extends CheckMiddleware {
 		}
 	}
 
-
 	/**
 	 * Checks if a password is required or if the one supplied is working
 	 *
@@ -294,5 +293,4 @@ class EnvCheckMiddleware extends CheckMiddleware {
 			throw new CheckException("Missing password", Http::STATUS_UNAUTHORIZED);
 		}
 	}
-
 }

@@ -30,7 +30,7 @@ class SearchMediaServiceTest extends \Test\GalleryUnitTest {
 	public function setUp() {
 		parent::setUp();
 
-		$this->service = new SearchMediaService (
+		$this->service = new SearchMediaService(
 			$this->appName,
 			$this->environment,
 			$this->logger
@@ -308,8 +308,8 @@ class SearchMediaServiceTest extends \Test\GalleryUnitTest {
 		$this->mockNodePath($map);
 		$response = $this->service->getMediaFiles($topFolder, $supportedMediaTypes, $features);
 
-		$this->assertSame($images, sizeof($response[0]));
-		$this->assertSame($albums, sizeof($response[1]));
+		$this->assertSame($images, \sizeof($response[0]));
+		$this->assertSame($albums, \sizeof($response[1]));
 	}
 
 	public function providesFolderWithFilesData() {
@@ -558,5 +558,4 @@ class SearchMediaServiceTest extends \Test\GalleryUnitTest {
 							  $this->returnValueMap($map)
 						  );
 	}
-
 }

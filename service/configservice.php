@@ -124,7 +124,7 @@ class ConfigService extends FilesService {
 		$supportedMimes = [];
 		$wantedMimes = $this->baseMimeTypes;
 		if ($extraMediaTypes) {
-			$wantedMimes = array_merge($wantedMimes, $this->slideshowMimeTypes);
+			$wantedMimes = \array_merge($wantedMimes, $this->slideshowMimeTypes);
 		}
 		foreach ($wantedMimes as $wantedMime) {
 			// Let's see if a preview of files of that media type can be generated
@@ -156,7 +156,7 @@ class ConfigService extends FilesService {
 	 */
 	public function getConfig($folderNode, $features) {
 		$this->features = $features;
-		list ($albumConfig, $ignored) =
+		list($albumConfig, $ignored) =
 			$this->collectConfig($folderNode, $this->ignoreAlbum, $this->configName);
 		if ($ignored) {
 			throw new ForbiddenServiceException(
@@ -175,7 +175,7 @@ class ConfigService extends FilesService {
 	 * @throws ForbiddenServiceException
 	 */
 	public function validateMimeType($mimeType) {
-		if (!in_array($mimeType, $this->getSupportedMediaTypes(true, true))) {
+		if (!\in_array($mimeType, $this->getSupportedMediaTypes(true, true))) {
 			throw new ForbiddenServiceException('Media type not allowed');
 		}
 	}
@@ -203,7 +203,7 @@ class ConfigService extends FilesService {
 	 * @return string[]
 	 */
 	private function addSvgSupport($supportedMimes, $nativeSvgSupport) {
-		if (!in_array('image/svg+xml', $supportedMimes) && $nativeSvgSupport) {
+		if (!\in_array('image/svg+xml', $supportedMimes) && $nativeSvgSupport) {
 			$supportedMimes[] = 'image/svg+xml';
 		}
 
@@ -323,9 +323,9 @@ class ConfigService extends FilesService {
 	 */
 	private function validatesInfoConfig($albumConfig) {
 		$this->virtualRootLevel;
-		if (array_key_exists('information', $albumConfig)) {
+		if (\array_key_exists('information', $albumConfig)) {
 			$info = $albumConfig['information'];
-			if (array_key_exists('level', $info)) {
+			if (\array_key_exists('level', $info)) {
 				$level = $info['level'];
 				if ($level > $this->virtualRootLevel) {
 					$albumConfig['information']['description_link'] = null;
@@ -359,5 +359,4 @@ class ConfigService extends FilesService {
 			$parentFolder, $privacyChecker, $configName, $level, $collectedConfig
 		);
 	}
-
 }

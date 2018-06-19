@@ -45,13 +45,13 @@ class EventSource implements \OCP\IEventSource {
 		$this->started = true;
 
 		// prevent php output buffering, caching and nginx buffering
-		while (ob_get_level()) {
-			ob_end_clean();
+		while (\ob_get_level()) {
+			\ob_end_clean();
 		}
-		header('Cache-Control: no-cache');
-		header('X-Accel-Buffering: no');
-		header("Content-Type: text/event-stream");
-		flush();
+		\header('Cache-Control: no-cache');
+		\header('X-Accel-Buffering: no');
+		\header("Content-Type: text/event-stream");
+		\flush();
 	}
 
 	/**
@@ -67,7 +67,7 @@ class EventSource implements \OCP\IEventSource {
 	public function send($type, $data = null) {
 		$this->validateMessage($type, $data);
 		$this->init();
-		if (is_null($data)) {
+		if ($data === null) {
 			$data = $type;
 			$type = null;
 		}
@@ -75,10 +75,10 @@ class EventSource implements \OCP\IEventSource {
 		if (!empty($type)) {
 			echo 'event: ' . $type . PHP_EOL;
 		}
-		echo 'data: ' . json_encode($data) . PHP_EOL;
+		echo 'data: ' . \json_encode($data) . PHP_EOL;
 
 		echo PHP_EOL;
-		flush();
+		\flush();
 	}
 
 	/**
@@ -99,7 +99,7 @@ class EventSource implements \OCP\IEventSource {
 	 * @param mixed $data
 	 */
 	private function validateMessage($type, $data) {
-		if ($data && !preg_match('/^[A-Za-z0-9_]+$/', $type)) {
+		if ($data && !\preg_match('/^[A-Za-z0-9_]+$/', $type)) {
 			throw new \BadMethodCallException('Type needs to be alphanumeric (' . $type . ')');
 		}
 	}

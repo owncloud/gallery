@@ -20,7 +20,6 @@ use OCP\Files\File;
  * @package OCA\Gallery\Controller
  */
 class DownloadServiceTest extends \Test\GalleryUnitTest {
-
 	use Base64Encode;
 
 	/** @var DownloadService */
@@ -32,7 +31,7 @@ class DownloadServiceTest extends \Test\GalleryUnitTest {
 	public function setUp() {
 		parent::setUp();
 
-		$this->service = new DownloadService (
+		$this->service = new DownloadService(
 			$this->appName,
 			$this->environment,
 			$this->logger
@@ -77,5 +76,4 @@ class DownloadServiceTest extends \Test\GalleryUnitTest {
 
 		$this->service->downloadFile($file);
 	}
-
 }

@@ -85,5 +85,4 @@ class PreviewApiControllerTest extends PreviewControllerTest {
 			$expectedMimeType . '; charset=utf-8', $response->getHeaders()['Content-type']
 		);
 	}
-
 }

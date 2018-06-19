@@ -33,6 +33,4 @@ class Login {
 	public static function route($param) {
 		return static::$URL . $param;
 	}
-
-
 }

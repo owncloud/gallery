@@ -158,5 +158,4 @@ class SharingCheckMiddlewareTest extends \Test\TestCase {
 					 )
 					 ->willReturn($state);
 	}
-
 }

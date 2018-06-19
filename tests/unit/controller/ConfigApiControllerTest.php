@@ -20,7 +20,6 @@ require_once __DIR__ . '/ConfigControllerTest.php';
  * @package OCA\Gallery\Controller
  */
 class ConfigApiControllerTest extends ConfigControllerTest {
-
 	public function setUp() {
 		parent::setUp();
 		$this->controller = new ConfigApiController(
@@ -30,5 +29,4 @@ class ConfigApiControllerTest extends ConfigControllerTest {
 			$this->logger
 		);
 	}
-
 }

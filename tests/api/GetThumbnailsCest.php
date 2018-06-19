@@ -16,7 +16,6 @@ use Page\Gallery as GalleryApp;
  * Class GetThumbnailsCest
  */
 class GetThumbnailsCest {
-
 	private $apiUrl;
 	private $params = [
 		'square' => false,
@@ -117,5 +116,4 @@ class GetThumbnailsCest {
 		$I->seeResponseContains('"fileid":"' . $id1 . '","status":200');
 		$I->seeResponseContains('"fileid":"' . $id2 . '","status":200');
 	}
-
 }

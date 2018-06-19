@@ -67,7 +67,6 @@ class PageControllerTest extends \Test\TestCase {
 		);
 	}
 
-
 	public function testIndex() {
 		$url = 'http://server.cloud/ajax/upload.php';
 		$this->mockUrlToUploadEndpoint($url);

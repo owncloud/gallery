@@ -16,7 +16,6 @@ use Page\Gallery as GalleryApp;
  * Class ConnectWithTokenCest
  */
 class ConnectWithTokenCest {
-
 	private $folderMetaData;
 	private $browserHeader = 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8';
 
@@ -48,7 +47,6 @@ class ConnectWithTokenCest {
 	public function connectToThumbnails(\Step\Api\TokenUser $I) {
 		$I->am('a guest with a token');
 		$I->wantTo('make sure I can get the thumbails');
-
 
 		$data = $I->getFilesDataForFolder('shared1');
 		$id1 = $data['testimage.eps']['id'];
@@ -90,14 +88,14 @@ class ConnectWithTokenCest {
 		$I->sendGET('/');
 
 		$html = $I->grabResponse();
-		$tidy = tidy_parse_string($html);
+		$tidy = \tidy_parse_string($html);
 		$head = $tidy->head();
 		$requestToken = $head->attribute['data-requesttoken'];
 
 		$I->haveHttpHeader('Accept', $acceptHeaders);
 		$I->haveHttpHeader('requesttoken', $requestToken);
 
-		$params = array_merge(
+		$params = \array_merge(
 			$params, [
 					   'token'    => $this->folderMetaData['token'],
 					   'password' => $this->folderMetaData['password']
@@ -106,5 +104,4 @@ class ConnectWithTokenCest {
 
 		$I->sendGET($url, $params);
 	}
-
 }

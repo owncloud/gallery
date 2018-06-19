@@ -15,4 +15,5 @@ namespace OCA\Gallery\Service;
 /**
  * Thrown when the service ran into an internal server error
  */
-class InternalServerErrorServiceException extends ServiceException {}
+class InternalServerErrorServiceException extends ServiceException {
+}

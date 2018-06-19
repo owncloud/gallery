@@ -22,7 +22,6 @@ use OCA\Gallery\Tests\Integration\GalleryIntegrationTest;
  * @package OCA\Gallery\Tests\Integration
  */
 class AppTest extends GalleryIntegrationTest {
-
 	public function testAppInstalled() {
 		$appManager = $this->container->query('OCP\App\IAppManager');
 		$this->assertTrue($appManager->isInstalled('gallery'));
@@ -43,7 +42,7 @@ class AppTest extends GalleryIntegrationTest {
 	public function testNavigationEntry() {
 		$navigationManager = \OC::$server->getNavigationManager();
 		$navigationManager->clear();
-		$countBefore = count($navigationManager->getAll());
+		$countBefore = \count($navigationManager->getAll());
 		require __DIR__ . '/../../../appinfo/app.php';
 		// Test whether the navigation entry got added
 		$this->assertCount($countBefore + 1, $navigationManager->getAll());

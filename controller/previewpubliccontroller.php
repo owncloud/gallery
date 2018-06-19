@@ -59,5 +59,4 @@ class PreviewPublicController extends PreviewController {
 	public function getPreview($fileId, $width, $height) {
 		return parent::getPreview($fileId, $width, $height);
 	}
-
 }

@@ -13,7 +13,6 @@
 namespace Step\Api;
 
 class Anonymous extends \ApiTester {
-
 	public function connectToTheApi($apiUrl, $description) {
 		$I = $this;
 		$I->am('an app');
@@ -22,5 +21,4 @@ class Anonymous extends \ApiTester {
 		$I->seeResponseCodeIs(401);
 		$I->seeResponseIsJson();
 	}
-
 }

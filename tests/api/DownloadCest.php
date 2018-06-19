@@ -16,7 +16,6 @@ use Page\Gallery as GalleryApp;
  * Class DownloadCest
  */
 class DownloadCest {
-
 	private $apiUrl;
 
 	/**

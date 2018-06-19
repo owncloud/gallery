@@ -89,7 +89,7 @@ abstract class CheckMiddleware extends Middleware {
 	 * @return JSONResponse|RedirectResponse|TemplateResponse
 	 */
 	private function computeResponse($message, $code) {
-		$acceptHtml = stripos($this->request->getHeader('Accept'), 'html');
+		$acceptHtml = \stripos($this->request->getHeader('Accept'), 'html');
 		if ($acceptHtml === false) {
 			$response = $this->sendJsonResponse($message, $code);
 		} else {
@@ -176,5 +176,4 @@ abstract class CheckMiddleware extends Middleware {
 
 		return new JSONResponse($jsonData, $code);
 	}
-
 }

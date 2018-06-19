@@ -77,7 +77,7 @@ class HttpErrorTest extends \Test\TestCase {
 		$request = $this->createMock(IRequest::class);
 		$logger = $this->createMock(ILogger::class);
 
-		if($exception instanceof ForbiddenServiceException) {
+		if ($exception instanceof ForbiddenServiceException) {
 			$amount = 0;
 			$message = $message . ' (' . $status . ')';
 		} else {
@@ -143,5 +143,4 @@ class HttpErrorTest extends \Test\TestCase {
 					 ->with($this->appName . '.page.error_page', ['code' => $code])
 					 ->willReturn($url);
 	}
-
 }

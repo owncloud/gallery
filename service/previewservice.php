@@ -24,7 +24,6 @@ use OCA\Gallery\Preview\Preview;
  * @package OCA\Gallery\Service
  */
 class PreviewService extends Service {
-
 	use Base64Encode;
 
 	/** @var Preview */
@@ -187,13 +186,13 @@ class PreviewService extends Service {
 		$count = 0;
 		$fileHandle = $this->isFileReadable($file);
 		if ($fileHandle) {
-			while (!feof($fileHandle) && $count < 2) {
-				$chunk = fread($fileHandle, 1024 * 100); //read 100kb at a time
-				$count += preg_match_all(
+			while (!\feof($fileHandle) && $count < 2) {
+				$chunk = \fread($fileHandle, 1024 * 100); //read 100kb at a time
+				$count += \preg_match_all(
 					'#\x00\x21\xF9\x04.{4}\x00(\x2C|\x21)#s', $chunk, $matches
 				);
 			}
-			fclose($fileHandle);
+			\fclose($fileHandle);
 		}
 
 		return $count > 1;
@@ -224,5 +223,4 @@ class PreviewService extends Service {
 
 		return $fileHandle;
 	}
-
 }

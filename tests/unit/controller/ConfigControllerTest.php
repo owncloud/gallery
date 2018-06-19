@@ -92,14 +92,14 @@ class ConfigControllerTest extends \Test\TestCase {
 			'background_colour_toggle',
 		];
 
-		$featuresWithSvg = array_merge(
+		$featuresWithSvg = \array_merge(
 			$features,
 			[
 				'native_svg'
 			]
 		);
 
-		$slideshowMimes = array_merge(
+		$slideshowMimes = \array_merge(
 			$this->baseMimeTypes,
 			[
 				'application/font-sfnt',
@@ -107,14 +107,14 @@ class ConfigControllerTest extends \Test\TestCase {
 			]
 		);
 
-		$baseMimeTypesWithSvg = array_merge(
+		$baseMimeTypesWithSvg = \array_merge(
 			$this->baseMimeTypes,
 			[
 				'image/svg+xml',
 			]
 		);
 
-		$slideshowMimesWithSvg = array_merge(
+		$slideshowMimesWithSvg = \array_merge(
 			$slideshowMimes,
 			[
 				'image/svg+xml',
@@ -226,5 +226,4 @@ class ConfigControllerTest extends \Test\TestCase {
 
 		return $features;
 	}
-
 }

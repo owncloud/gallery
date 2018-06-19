@@ -114,10 +114,8 @@ class ConfigValidatorTest extends \Test\GalleryUnitTest {
 	 * @param array $expectedResult
 	 */
 	public function testIsConfigSafe($key, $parsedConfigItem, $expectedResult) {
-
 		$response = $this->configValidator->isConfigSafe($key, $parsedConfigItem);
 
 		$this->assertEquals($expectedResult, $response);
 	}
-
 }

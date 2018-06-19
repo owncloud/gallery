@@ -46,7 +46,7 @@ class ConfigParser {
 		$featuresList = [];
 		$parsedConfig = $this->parseConfig($folder, $configName);
 		$key = 'features';
-		if (array_key_exists($key, $parsedConfig)) {
+		if (\array_key_exists($key, $parsedConfig)) {
 			$featuresList = $this->parseFeatures($parsedConfig[$key]);
 		}
 
@@ -114,7 +114,7 @@ class ConfigParser {
 	private function parseFeatures($featuresList) {
 		$parsedFeatures = $featuresList;
 		if (!empty($parsedFeatures)) {
-			$parsedFeatures = array_keys($featuresList, 'yes');
+			$parsedFeatures = \array_keys($featuresList, 'yes');
 		}
 
 		return $parsedFeatures;
@@ -130,9 +130,9 @@ class ConfigParser {
 	 * @return string
 	 */
 	private function bomFixer($file) {
-		$bom = pack("CCC", 0xef, 0xbb, 0xbf);
-		if (strncmp($file, $bom, 3) === 0) {
-			$file = substr($file, 3);
+		$bom = \pack("CCC", 0xef, 0xbb, 0xbf);
+		if (\strncmp($file, $bom, 3) === 0) {
+			$file = \substr($file, 3);
 		}
 
 		return $file;
@@ -156,7 +156,7 @@ class ConfigParser {
 				if ($this->isConfigUsable($key, $parsedConfigItem, $level)) {
 					list($configItem, $itemComplete) =
 						$this->addConfigItem($key, $parsedConfigItem, $level);
-					$currentConfig = array_merge($currentConfig, $configItem);
+					$currentConfig = \array_merge($currentConfig, $configItem);
 					$completionStatus[$key] = $itemComplete;
 				}
 			}
@@ -176,7 +176,7 @@ class ConfigParser {
 	 */
 	private function isConfigItemComplete($key, $parsedConfig, $complete) {
 		return !(!$complete
-				 && array_key_exists($key, $parsedConfig)
+				 && \array_key_exists($key, $parsedConfig)
 				 && !empty($parsedConfig[$key]));
 	}
 
@@ -215,8 +215,7 @@ class ConfigParser {
 	 * @return array<null|array<string,string>,bool>
 	 */
 	private function addConfigItem($key, $parsedConfigItem, $level) {
-		if ($key === 'sorting' && !array_key_exists('type', $parsedConfigItem)) {
-
+		if ($key === 'sorting' && !\array_key_exists('type', $parsedConfigItem)) {
 			return [[], false];
 		} else {
 			$parsedConfigItem['level'] = $level;
@@ -236,7 +235,7 @@ class ConfigParser {
 	 */
 	private function isConfigInheritable($parsedConfigItem) {
 		$inherit = false;
-		if (array_key_exists('inherit', $parsedConfigItem)) {
+		if (\array_key_exists('inherit', $parsedConfigItem)) {
 			$inherit = $parsedConfigItem['inherit'];
 		}
 
@@ -246,5 +245,4 @@ class ConfigParser {
 
 		return $inherit;
 	}
-
 }

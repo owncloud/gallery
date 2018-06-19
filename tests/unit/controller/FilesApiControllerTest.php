@@ -25,7 +25,6 @@ use OCA\Gallery\Service\NotFoundServiceException;
  * @package OCA\Gallery\Controller
  */
 class FilesApiControllerTest extends FilesControllerTest {
-
 	public function setUp() {
 		parent::setUp();
 		$this->controller = new FilesApiController(
@@ -56,7 +55,6 @@ class FilesApiControllerTest extends FilesControllerTest {
 
 		$this->assertEquals($redirectUrl, $response->getRedirectURL());
 		$this->assertEquals(Http::STATUS_SEE_OTHER, $response->getStatus());
-		$this->assertFalse(array_key_exists('galleryErrorMessage',$response->getCookies()));
+		$this->assertFalse(\array_key_exists('galleryErrorMessage', $response->getCookies()));
 	}
-
 }

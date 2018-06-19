@@ -27,7 +27,6 @@ use OCP\AppFramework\IAppContainer;
 use OCA\Gallery\AppInfo\Application as Gallery;
 use OCA\Gallery\Environment\Environment;
 
-
 /**
  * Class GalleryIntegrationTest
  *
@@ -145,19 +144,18 @@ abstract class GalleryIntegrationTest extends \Codeception\TestCase\Test {
 	private function instantiateEnvironment() {
 		$this->container->registerService(
 			'UserId', function ($c) {
-			return $this->userId;
-		}
+				return $this->userId;
+			}
 		);
 
 		$this->container->registerService(
 			'userFolder', function ($c) {
-			return $this->userFolder;
-		}
+				return $this->userFolder;
+			}
 		);
 
 		return $this->container->query(
 			'OCA\Gallery\Environment\Environment'
 		);
 	}
-
 }

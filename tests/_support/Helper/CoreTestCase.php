@@ -68,5 +68,4 @@ class CoreTestCase extends \Test\TestCase {
 	public static function invokePrivate($object, $methodName, array $parameters = []) {
 		return parent::invokePrivate($object, $methodName, $parameters);
 	}
-
 }

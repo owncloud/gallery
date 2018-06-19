@@ -34,7 +34,7 @@ trait Base64Encode {
 		if ($previewData instanceof \OC_Image) {
 			$previewData = (string)$previewData;
 		} else {
-			$previewData = base64_encode($previewData);
+			$previewData = \base64_encode($previewData);
 		}
 
 		return $previewData;
