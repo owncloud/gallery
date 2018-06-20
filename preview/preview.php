@@ -98,7 +98,7 @@ class Preview {
 		$this->userId = $userId;
 		$this->file = $file;
 		$imagePathFromFolder = ltrim($imagePathFromFolder, '/');
-		if (version_compare(implode('.', \OCP\Util::getVersion()), '10.1', '>=')) {
+		if (version_compare(implode('.', \OCP\Util::getVersion()), '10.0.9', '>=')) {
 			/** @var Folder $userFolder */
 			$userFolder = \OC::$server->getUserFolder($userId);
 			$node = $userFolder->get($imagePathFromFolder);
