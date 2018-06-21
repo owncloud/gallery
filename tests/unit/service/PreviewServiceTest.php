@@ -22,7 +22,6 @@ use OCA\Gallery\Preview\Preview;
  * @package OCA\Gallery\Controller
  */
 class PreviewServiceTest extends \Test\GalleryUnitTest {
-
 	use Base64Encode;
 
 	/** @var PreviewService */
@@ -40,7 +39,7 @@ class PreviewServiceTest extends \Test\GalleryUnitTest {
 									 ->disableOriginalConstructor()
 									 ->getMock();
 
-		$this->service = new PreviewService (
+		$this->service = new PreviewService(
 			$this->appName,
 			$this->environment,
 			$this->previewManager,
@@ -70,7 +69,6 @@ class PreviewServiceTest extends \Test\GalleryUnitTest {
 		$response = $this->service->isPreviewRequired($file, $animatedPreview);
 
 		$this->assertSame($isMimeSupported, $response);
-
 	}
 
 	public function providesIsPreviewRequiredWithAnimatedGifData() {

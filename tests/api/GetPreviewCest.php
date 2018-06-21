@@ -16,7 +16,6 @@ use Page\Gallery as GalleryApp;
  * Class GetPreviewCest
  */
 class GetPreviewCest {
-
 	private $apiUrl;
 
 	/**

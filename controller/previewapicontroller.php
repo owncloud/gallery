@@ -34,7 +34,6 @@ use OCA\Gallery\Utility\EventSource;
  * @package OCA\Gallery\Controller
  */
 class PreviewApiController extends ApiController {
-
 	use Preview;
 
 	/**  @var EventSource */
@@ -91,7 +90,7 @@ class PreviewApiController extends ApiController {
 	 * @return array<string,array|string|null>
 	 */
 	public function getThumbnails($ids, $square, $scale) {
-		$idsArray = explode(';', $ids);
+		$idsArray = \explode(';', $ids);
 
 		foreach ($idsArray as $id) {
 			// Casting to integer here instead of using array_map to extract IDs from the URL
@@ -142,5 +141,4 @@ class PreviewApiController extends ApiController {
 
 		return new ImageResponse($preview, $status);
 	}
-
 }

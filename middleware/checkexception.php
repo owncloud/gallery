@@ -32,5 +32,4 @@ class CheckException extends \Exception {
 		Util::writeLog('gallery', 'Exception: ' . $msg . ' (' . $code . ')', Util::ERROR);
 		parent::__construct($msg, $code);
 	}
-
 }

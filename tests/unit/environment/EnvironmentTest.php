@@ -67,7 +67,6 @@ class EnvironmentTest extends \Test\TestCase {
 		$userFolder = null;
 		$this->mockSetEnvironment($userId, $userFolder);
 		$this->environment->getNodeFromUserFolder('anypath');
-
 	}
 
 	/**
@@ -94,5 +93,4 @@ class EnvironmentTest extends \Test\TestCase {
 			$this->logger
 		);
 	}
-
 }

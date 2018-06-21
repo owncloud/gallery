@@ -64,7 +64,7 @@ class SearchMediaService extends FilesService {
 				continue;
 			}
 			$nodeType = $this->getNodeType($node);
-			$subFolders = array_merge($subFolders, $this->getAllowedSubFolder($node, $nodeType));
+			$subFolders = \array_merge($subFolders, $this->getAllowedSubFolder($node, $nodeType));
 			$albumImageCounter = $this->addMediaFile($node, $nodeType, $albumImageCounter);
 			if ($this->haveEnoughPictures($albumImageCounter, $subDepth)) {
 				break;
@@ -177,7 +177,7 @@ class SearchMediaService extends FilesService {
 	private function isPreviewAvailable($file) {
 		try {
 			$mimeType = $file->getMimeType();
-			if (in_array($mimeType, $this->supportedMediaTypes)) {
+			if (\in_array($mimeType, $this->supportedMediaTypes)) {
 				$this->addFileToImagesArray($mimeType, $file);
 
 				return true;
@@ -210,5 +210,4 @@ class SearchMediaService extends FilesService {
 		$imageData['mimetype'] = $mimeType;
 		$this->images[] = $imageData;
 	}
-
 }

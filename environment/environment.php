@@ -286,7 +286,7 @@ class Environment {
 	 * @return string
 	 */
 	public function getSharedFolderName() {
-		return trim($this->folderName, '//');
+		return \trim($this->folderName, '//');
 	}
 
 	/**
@@ -339,8 +339,8 @@ class Environment {
 			$path .= '/';
 		}
 
-		$path = str_replace($this->fromRootToFolder, '', $path);
-		$path = rtrim($path, '/');
+		$path = \str_replace($this->fromRootToFolder, '', $path);
+		$path = \rtrim($path, '/');
 
 		return $path;
 	}
@@ -397,9 +397,8 @@ class Environment {
 	 */
 	private function getRelativePath($fullPath) {
 		$folderPath = $this->userFolder->getPath() . '/';
-		$origShareRelPath = str_replace($folderPath, '', $fullPath);
+		$origShareRelPath = \str_replace($folderPath, '', $fullPath);
 
 		return $origShareRelPath;
 	}
-
 }

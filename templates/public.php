@@ -88,7 +88,8 @@ style(
 												class="icon-confirm svg" disabled></button>
 									</form>
 								</span>
-				<?php } ?>
+				<?php
+				} ?>
 				<a id="download" class="button">
 					<img class="svg" src="<?php print_unescaped(
 						image_path('core', 'actions/download.svg')

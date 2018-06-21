@@ -18,7 +18,6 @@ use Page\Gallery as GalleryApp;
  * @todo Match the original structure
  */
 class GetFilesCest {
-
 	private $apiUrl;
 	private $params;
 
@@ -34,7 +33,7 @@ class GetFilesCest {
 		$this->apiUrl = GalleryApp::$URL . 'api/files/list';
 		list($mediaTypes) = $I->getMediaTypes();
 		$this->params = [
-			'mediatypes' => implode(';', $mediaTypes)
+			'mediatypes' => \implode(';', $mediaTypes)
 		];
 	}
 
@@ -210,5 +209,4 @@ class GetFilesCest {
 			]
 		);
 	}
-
 }

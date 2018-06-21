@@ -122,7 +122,7 @@ class ConfigParserTest extends \Test\GalleryUnitTest {
 		];
 
 		// The standard config, including an information and sorting sub-section
-		$standardConfig = array_merge($informationConfig, $sortingConfig);
+		$standardConfig = \array_merge($informationConfig, $sortingConfig);
 
 		// The level for the current folder is always 0
 		$folderLevel = 0;
@@ -164,7 +164,7 @@ class ConfigParserTest extends \Test\GalleryUnitTest {
 			]
 		];
 
-		$dateSortingConfigResult = array_merge($standardConfig, $dateSortingConfig);
+		$dateSortingConfigResult = \array_merge($standardConfig, $dateSortingConfig);
 		$dateSortingConfigResult['information']['level'] = $parentLevel;
 
 		// Case 4: Evil sorting type = unusable
@@ -190,7 +190,7 @@ class ConfigParserTest extends \Test\GalleryUnitTest {
 			]
 		];
 
-		$designConfigResult = array_merge($emptyConfig, $designColourConfig);
+		$designConfigResult = \array_merge($emptyConfig, $designColourConfig);
 		$designConfigResult['design']['level'] = $folderLevel;
 
 		// Case 7: Evil background colour = unusable
@@ -208,7 +208,7 @@ class ConfigParserTest extends \Test\GalleryUnitTest {
 		];
 
 		// Full information is inherited from root
-		$infoConfigResult = array_merge($standardConfig, $infoConfig);
+		$infoConfigResult = \array_merge($standardConfig, $infoConfig);
 		$infoConfigResult['sorting']['level'] = $parentLevel;
 
 		/**
@@ -279,7 +279,7 @@ class ConfigParserTest extends \Test\GalleryUnitTest {
 		$file = $this->mockFile(212121);
 		$yaml = new Dumper();
 		$content = $yaml->dump($config);
-		$content = $bom ? chr(239) . chr(187) . chr(191) . $content : $content;
+		$content = $bom ? \chr(239) . \chr(187) . \chr(191) . $content : $content;
 		$file->method('getContent')
 			 ->willReturn($content);
 		$folder = $this->mockFolder('home::user', 121212, [$file]);
@@ -289,5 +289,4 @@ class ConfigParserTest extends \Test\GalleryUnitTest {
 
 		return $folder;
 	}
-
 }

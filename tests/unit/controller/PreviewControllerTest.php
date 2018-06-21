@@ -130,7 +130,7 @@ class PreviewControllerTest extends \Test\GalleryUnitTest {
 
 		$event = 'preview';
 		$message = 'event: ' . $event . PHP_EOL .
-				   'data: ' . json_encode($preview) . PHP_EOL .
+				   'data: ' . \json_encode($preview) . PHP_EOL .
 				   PHP_EOL;
 		$this->mockEventSourceSend($event, $preview, $message);
 
@@ -375,7 +375,6 @@ class PreviewControllerTest extends \Test\GalleryUnitTest {
 		return $file;
 	}
 
-
 	/**
 	 * @param object|\PHPUnit_Framework_MockObject_MockObject $file
 	 * @param bool $animatedPreview
@@ -430,7 +429,7 @@ class PreviewControllerTest extends \Test\GalleryUnitTest {
 	 */
 	private function mockBase64PreviewData($file) {
 		$preview = [
-			'preview'  => base64_encode($file->getContent()),
+			'preview'  => \base64_encode($file->getContent()),
 			// Not a real preview, but it's not important
 			'mimetype' => 'image/png', //Most previews are PNGs
 		];
@@ -511,7 +510,6 @@ class PreviewControllerTest extends \Test\GalleryUnitTest {
 							  $data
 						  )
 						  ->willReturn($message);
-
 	}
 
 	/**
@@ -527,7 +525,6 @@ class PreviewControllerTest extends \Test\GalleryUnitTest {
 								   $scale
 							   )
 							   ->willReturn($array);
-
 	}
 
 	private function jsonErrorMessage($code) {
@@ -538,5 +535,4 @@ class PreviewControllerTest extends \Test\GalleryUnitTest {
 			], $code
 		);
 	}
-
 }

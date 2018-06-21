@@ -38,7 +38,6 @@ use OCA\Gallery\Service\NotFoundServiceException;
  * @package OCA\Gallery\Controller
  */
 class FilesControllerTest extends \Test\GalleryUnitTest {
-
 	use PathManipulation;
 
 	/** @var IAppContainer */
@@ -164,7 +163,6 @@ class FilesControllerTest extends \Test\GalleryUnitTest {
 		$folderPathFromRoot = 'user/files/' . $location;
 		$etag = 1111222233334444;
 
-
 		$folderId = 9876;
 		$folderPermissions = 31;
 		$folderEtag = 9999888877776666;
@@ -185,8 +183,8 @@ class FilesControllerTest extends \Test\GalleryUnitTest {
 		$folderData = ['home::user', $folderId, $files, true, false, null, '', false, $folderIsShared,
 					$folderEtag, 4096, 'some/path', null, $folderPermissions];
 
-		$folder = call_user_func_array([$this,'mockFolder'], $folderData);
-		$folder2 = call_user_func_array([$this, 'mockFolder'], $folderData);
+		$folder = \call_user_func_array([$this,'mockFolder'], $folderData);
+		$folder2 = \call_user_func_array([$this, 'mockFolder'], $folderData);
 
 		return [
 			[
@@ -357,7 +355,7 @@ class FilesControllerTest extends \Test\GalleryUnitTest {
 		];
 
 		if ($download) {
-			if (is_null($filename)) {
+			if ($filename === null) {
 				$filename = $file->getName();
 			}
 			$download['name'] = $filename;
@@ -436,5 +434,4 @@ class FilesControllerTest extends \Test\GalleryUnitTest {
 								 )
 								 ->willReturn($answer);
 	}
-
 }

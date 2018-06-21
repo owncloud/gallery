@@ -43,7 +43,7 @@ class ConfigServiceTest extends \Test\GalleryUnitTest {
 		$this->previewManager = $this->getMockBuilder('\OCA\Gallery\Preview\Preview')
 									 ->disableOriginalConstructor()
 									 ->getMock();
-		$this->service = new ConfigService (
+		$this->service = new ConfigService(
 			$this->appName,
 			$this->environment,
 			$this->configParser,
@@ -57,7 +57,7 @@ class ConfigServiceTest extends \Test\GalleryUnitTest {
 			'image/jpeg',
 		];
 
-		$slideshowMimes = array_merge(
+		$slideshowMimes = \array_merge(
 			$baseMimeTypes,
 			[
 				'application/font-sfnt',
@@ -65,14 +65,14 @@ class ConfigServiceTest extends \Test\GalleryUnitTest {
 			]
 		);
 
-		$baseMimeTypesWithSvg = array_merge(
+		$baseMimeTypesWithSvg = \array_merge(
 			$baseMimeTypes,
 			[
 				'image/svg+xml',
 			]
 		);
 
-		$slideshowMimesWithSvg = array_merge(
+		$slideshowMimesWithSvg = \array_merge(
 			$slideshowMimes,
 			[
 				'image/svg+xml',
@@ -98,7 +98,6 @@ class ConfigServiceTest extends \Test\GalleryUnitTest {
 	public function testGetSupportedMediaTypes(
 		$baseMimeTypes, $extraMediaTypes, $nativeSvgSupport, $expectedResult
 	) {
-
 		$this->assertSame(
 			$baseMimeTypes, self::invokePrivate($this->service, 'baseMimeTypes', [$baseMimeTypes])
 		);
@@ -202,7 +201,7 @@ class ConfigServiceTest extends \Test\GalleryUnitTest {
 			'image/gif'
 		];
 
-		$supportedMimesWithSvg = array_merge($supportedMimes, ['image/svg+xml']);
+		$supportedMimesWithSvg = \array_merge($supportedMimes, ['image/svg+xml']);
 
 		return [
 			[$supportedMimes, true, $supportedMimesWithSvg],
@@ -289,7 +288,6 @@ class ConfigServiceTest extends \Test\GalleryUnitTest {
 	public function testValidatesInfoConfig(
 		$level, $virtualRootLevel, $albumConfig, $modifiedAlbumConfig
 	) {
-
 		self::invokePrivate($this->service, 'virtualRootLevel', [$virtualRootLevel]);
 		$albumConfig['information']['level'] = $level;
 		$modifiedAlbumConfig['information']['level'] = $level;
@@ -332,6 +330,4 @@ class ConfigServiceTest extends \Test\GalleryUnitTest {
 						   )
 						   ->willThrowException($exception);
 	}
-
-
 }

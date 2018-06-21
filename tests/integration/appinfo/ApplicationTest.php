@@ -20,7 +20,6 @@ use OCA\Gallery\Tests\Integration\GalleryIntegrationTest;
  * @package OCA\Gallery\Tests\Integration
  */
 class ApplicationTest extends GalleryIntegrationTest {
-
 	public function providesServiceData() {
 		return [
 			['ConfigController', 'OCA\Gallery\Controller\ConfigController'],
@@ -48,15 +47,15 @@ class ApplicationTest extends GalleryIntegrationTest {
 	public function testToken() {
 		$this->container->registerService(
 			'Request', function ($c) {
-			$request = $this->getMockBuilder('\OCP\IRequest')
+				$request = $this->getMockBuilder('\OCP\IRequest')
 							->disableOriginalConstructor()
 							->getMock();
-			$request->method('getParam')
+				$request->method('getParam')
 					->with('token')
 					->willReturn('some string');
 
-			return $request;
-		}
+				return $request;
+			}
 		);
 
 		$token = $this->container->query(
@@ -65,5 +64,4 @@ class ApplicationTest extends GalleryIntegrationTest {
 
 		$this->assertSame('some string', $token);
 	}
-
 }

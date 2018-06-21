@@ -97,8 +97,8 @@ class Preview {
 	public function setupView($userId, $file, $imagePathFromFolder) {
 		$this->userId = $userId;
 		$this->file = $file;
-		$imagePathFromFolder = ltrim($imagePathFromFolder, '/');
-		if (version_compare(implode('.', \OCP\Util::getVersion()), '10.1', '>=')) {
+		$imagePathFromFolder = \ltrim($imagePathFromFolder, '/');
+		if (\version_compare(\implode('.', \OCP\Util::getVersion()), '10.1', '>=')) {
 			/** @var Folder $userFolder */
 			$userFolder = \OC::$server->getUserFolder($userId);
 			$node = $userFolder->get($imagePathFromFolder);
@@ -163,5 +163,4 @@ class Preview {
 
 		return $previewData;
 	}
-
 }

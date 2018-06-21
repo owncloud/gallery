@@ -22,7 +22,6 @@ $loginPage = new Login($I);
 $loginPage->login('admin', 'admin');
 $loginPage->confirmLogin();
 
-
 $I->click('.menutoggle');
 $I->click('Gallery', '#navigation');
 $I->seeCurrentUrlEquals(GalleryPage::$URL);

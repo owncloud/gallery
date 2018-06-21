@@ -28,13 +28,12 @@ class SearchFolderServiceTest extends \Test\GalleryUnitTest {
 	public function setUp() {
 		parent::setUp();
 
-		$this->service = new SearchFolderService (
+		$this->service = new SearchFolderService(
 			$this->appName,
 			$this->environment,
 			$this->logger
 		);
 	}
-
 
 	public function testGetNodeTypeWithBrokenFolder() {
 		$node = $this->mockBadFile();
@@ -320,7 +319,6 @@ class SearchFolderServiceTest extends \Test\GalleryUnitTest {
 		$this->environment->expects($this->once())
 						  ->method('getVirtualRootFolder')
 						  ->willReturn($sharedRoot);
-
 	}
 
 	private function mockMountPoint($previewsAllowed) {
@@ -336,5 +334,4 @@ class SearchFolderServiceTest extends \Test\GalleryUnitTest {
 
 		return $mountPoint;
 	}
-
 }

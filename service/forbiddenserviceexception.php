@@ -15,4 +15,5 @@ namespace OCA\Gallery\Service;
 /**
  * Thrown when the service does not have access to a node
  */
-class ForbiddenServiceException extends ServiceException {}
+class ForbiddenServiceException extends ServiceException {
+}

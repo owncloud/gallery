@@ -34,20 +34,19 @@ trait PathManipulation {
 		// Adding a slash to make sure we don't cut a folder in half
 		if ($currFolderPath) {
 			$currFolderPath .= '/';
-			$relativePath = str_replace($currFolderPath, '', $path);
+			$relativePath = \str_replace($currFolderPath, '', $path);
 		} else {
 			$relativePath = $path;
 		}
 
-		$subFolders = explode('/', $relativePath);
+		$subFolders = \explode('/', $relativePath);
 
-		if (count($subFolders) > 2) {
-			$reducedPath = $currFolderPath . $subFolders[0] . '/' . array_pop($subFolders);
+		if (\count($subFolders) > 2) {
+			$reducedPath = $currFolderPath . $subFolders[0] . '/' . \array_pop($subFolders);
 		} else {
 			$reducedPath = $path;
 		}
 
 		return $reducedPath;
 	}
-
 }

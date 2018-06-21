@@ -34,5 +34,4 @@ class ConfigPublicController extends ConfigController {
 	public function get($extramediatypes = false) {
 		return parent::get($extramediatypes);
 	}
-
 }

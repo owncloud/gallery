@@ -12,7 +12,7 @@
 
 use Codeception\Util\Autoload;
 
-define('PHPUNIT_RUN', 1);
+\define('PHPUNIT_RUN', 1);
 
 // Add core
 require_once __DIR__ . '/../../../lib/base.php';

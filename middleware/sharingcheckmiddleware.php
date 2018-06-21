@@ -100,5 +100,4 @@ class SharingCheckMiddleware extends CheckMiddleware {
 
 		return true;
 	}
-
 }

@@ -636,5 +636,4 @@ class EnvCheckMiddlewareTest extends \Test\GalleryUnitTest {
 						   ->with($share, $password)
 						   ->willReturn($result);
 	}
-
 }
