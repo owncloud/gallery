@@ -30,7 +30,7 @@ class ApiTester extends \Codeception\Actor {
 		if (!$filename) {
 			$filename = $file['name'];
 		}
-		$filename = urlencode($filename);
+		$filename = \urlencode($filename);
 		$I->seeResponseCodeIs(200);
 		$I->seeHttpHeader('Content-type', $file['mediatype'] . '; charset=utf-8');
 		$I->seeHttpHeader(
@@ -47,8 +47,8 @@ class ApiTester extends \Codeception\Actor {
 	 */
 	public function checkImageSize($width, $height) {
 		$I = $this;
-		$image = imagecreatefromstring($I->grabResponse());
-		$I->assertEquals($width, imagesx($image));
-		$I->assertEquals($height, imagesy($image));
+		$image = \imagecreatefromstring($I->grabResponse());
+		$I->assertEquals($width, \imagesx($image));
+		$I->assertEquals($height, \imagesy($image));
 	}
 }

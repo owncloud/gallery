@@ -18,7 +18,6 @@ use OCP\ILogger;
 
 use OCA\Gallery\AppInfo\Application;
 
-
 /**
  * Class PreviewTest
  *
@@ -77,7 +76,7 @@ class PreviewTest extends \Test\GalleryUnitTest {
 	 * @return object|\PHPUnit_Framework_MockObject_MockObject
 	 */
 	private function mockGetPreview($fileId, $width, $height) {
-		$image = new \OC_Image(file_get_contents(\OC::$SERVERROOT . '/tests/data/testimage.jpg'));
+		$image = new \OC_Image(\file_get_contents(\OC::$SERVERROOT . '/tests/data/testimage.jpg'));
 		$image->preciseResize($width, $height);
 
 		$preview = $this->getMockBuilder('\OC\Preview')
@@ -108,5 +107,4 @@ class PreviewTest extends \Test\GalleryUnitTest {
 
 		return $preview;
 	}
-
 }

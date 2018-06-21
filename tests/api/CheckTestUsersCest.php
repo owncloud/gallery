@@ -17,12 +17,10 @@ use Codeception\Util\Xml as XmlUtils;
  * Class CheckTestUsersCest
  */
 class CheckTestUsersCest {
-
 	private $setupData;
 	private $userId;
 	private $sharerUserId;
 	private $baseUrl = '/ocs/v1.php/cloud';
-
 
 	/**
 	 * Injects objects we need

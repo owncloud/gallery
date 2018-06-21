@@ -144,12 +144,12 @@ abstract class FilesService extends Service {
 		if ($nodeType === 'dir') {
 			/** @var Folder $node */
 			try {
- 				if (!$node->nodeExists($this->ignoreAlbum)) {
- 					return [$node];
- 				}
+				if (!$node->nodeExists($this->ignoreAlbum)) {
+					return [$node];
+				}
 			} catch (StorageNotAvailableException $e) {
- 				return [];
- 			}
+				return [];
+			}
 		}
 
 		return [];
@@ -239,7 +239,7 @@ abstract class FilesService extends Service {
 		$rootFolder = $this->environment->getVirtualRootFolder();
 
 		return ($this->isExternalShare($rootFolder)
-				|| in_array('external_shares', $this->features));
+				|| \in_array('external_shares', $this->features));
 	}
 
 	/**
@@ -251,7 +251,7 @@ abstract class FilesService extends Service {
 	 * @return bool
 	 */
 	private function isExternalShare($node) {
-		$sid = explode(
+		$sid = \explode(
 			':',
 			$node->getStorage()
 				 ->getId()
@@ -308,5 +308,4 @@ abstract class FilesService extends Service {
 			'permissions'    => $permissions
 		];
 	}
-
 }

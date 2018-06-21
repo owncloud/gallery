@@ -14,14 +14,12 @@ namespace OCA\Gallery\Service;
 
 use OCP\Files\File;
 
-
 /**
  * Prepares the file to download
  *
  * @package OCA\Gallery\Service
  */
 class DownloadService extends Service {
-
 	use Base64Encode;
 
 	/**
@@ -51,7 +49,5 @@ class DownloadService extends Service {
 		} catch (\Exception $exception) {
 			throw new NotFoundServiceException('There was a problem accessing the file');
 		}
-
 	}
-
 }

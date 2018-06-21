@@ -21,7 +21,7 @@ class User extends \ApiTester {
 	 */
 	public function getUserCredentialsAndUseHttpAuthentication() {
 		$I = $this;
-		list ($userId, $password) = $I->getUserCredentials();
+		list($userId, $password) = $I->getUserCredentials();
 		$I->amHttpAuthenticated($userId, $password);
 	}
 
@@ -44,5 +44,4 @@ class User extends \ApiTester {
 		$I = $this;
 		$I->restoreValidConfig();
 	}
-
 }

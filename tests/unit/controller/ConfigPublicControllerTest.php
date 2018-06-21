@@ -20,7 +20,6 @@ require_once __DIR__ . '/ConfigControllerTest.php';
  * @package OCA\Gallery\Controller
  */
 class ConfigPublicControllerTest extends ConfigControllerTest {
-
 	public function setUp() {
 		parent::setUp();
 		$this->controller = new ConfigPublicController(
@@ -30,5 +29,4 @@ class ConfigPublicControllerTest extends ConfigControllerTest {
 			$this->logger
 		);
 	}
-
 }

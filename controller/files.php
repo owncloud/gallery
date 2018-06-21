@@ -31,7 +31,6 @@ use OCA\Gallery\Service\DownloadService;
  * @package OCA\Gallery\Controller
  */
 trait Files {
-
 	use PathManipulation;
 
 	/** @var SearchFolderService */
@@ -70,7 +69,7 @@ trait Files {
 		$updated = true;
 		/** @var Folder $folderNode */
 		list($folderPathFromRoot, $folderNode) =
-			$this->searchFolderService->getCurrentFolder(rawurldecode($location), $features);
+			$this->searchFolderService->getCurrentFolder(\rawurldecode($location), $features);
 		$albumConfig = $this->configService->getConfig($folderNode, $features);
 		if ($folderNode->getEtag() !== $etag) {
 			list($files, $albums) = $this->searchMediaService->getMediaFiles(
@@ -143,12 +142,11 @@ trait Files {
 		$file = $this->downloadService->getFile($fileId);
 		$this->configService->validateMimeType($file->getMimeType());
 		$download = $this->downloadService->downloadFile($file);
-		if (is_null($filename)) {
+		if ($filename === null) {
 			$filename = $file->getName();
 		}
 		$download['name'] = $filename;
 
 		return $download;
 	}
-
 }

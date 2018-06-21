@@ -50,9 +50,9 @@ trait HttpError {
 
 		// If the exception is not of type ForbiddenServiceException only show a
 		// generic error message to avoid leaking information.
-		if(!($exception instanceof ForbiddenServiceException)) {
+		if (!($exception instanceof ForbiddenServiceException)) {
 			$logger->logException($exception, ['app' => 'gallery']);
-			$message = sprintf('An error occurred. Request ID: %s', $request->getId());
+			$message = \sprintf('An error occurred. Request ID: %s', $request->getId());
 		} else {
 			$message = $exception->getMessage() . ' (' . $code . ')';
 		}

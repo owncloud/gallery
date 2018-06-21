@@ -32,8 +32,8 @@ class ConfigValidator {
 
 		switch ($key) {
 			case 'sorting':
-				$safe = $this->isSortingSafe('type',$parsedConfigItem, $safe);
-				$safe = $this->isSortingSafe('order',$parsedConfigItem, $safe);
+				$safe = $this->isSortingSafe('type', $parsedConfigItem, $safe);
+				$safe = $this->isSortingSafe('order', $parsedConfigItem, $safe);
 				break;
 			case 'design':
 				$safe = $this->isDesignColourSafe($parsedConfigItem, $safe);
@@ -50,8 +50,8 @@ class ConfigValidator {
 	 * @param bool $safe whether the current config has been deemed safe to use so far
 	 * @return bool
 	 */
-	private function isSortingSafe($key,$parsedConfigItem, $safe) {
-		if ($safe && array_key_exists($key, $parsedConfigItem)) {
+	private function isSortingSafe($key, $parsedConfigItem, $safe) {
+		if ($safe && \array_key_exists($key, $parsedConfigItem)) {
 			$safe = $safe && $this->sortingValidator($key, $parsedConfigItem[ $key ]);
 		}
 
@@ -67,9 +67,9 @@ class ConfigValidator {
 	 * @return bool
 	 */
 	private function isDesignColourSafe($parsedConfigItem, $safe) {
-		if (array_key_exists('background', $parsedConfigItem)) {
+		if (\array_key_exists('background', $parsedConfigItem)) {
 			$background = $parsedConfigItem['background'];
-			$safe = $safe && ctype_xdigit(substr($background, 1));
+			$safe = $safe && \ctype_xdigit(\substr($background, 1));
 		}
 
 		return $safe;
@@ -90,7 +90,6 @@ class ConfigValidator {
 			$validValues = ['des', 'asc'];
 		}
 
-		return in_array($value, $validValues);
+		return \in_array($value, $validValues);
 	}
-
 }

@@ -180,7 +180,7 @@ abstract class GalleryUnitTest extends \Test\TestCase {
 	private function mockJpgFileMethods($file) {
 		$filename = 'testimage.jpg';
 		$file->method('getContent')
-			 ->willReturn(file_get_contents(__DIR__ . '/../_data/' . $filename));
+			 ->willReturn(\file_get_contents(__DIR__ . '/../_data/' . $filename));
 		$file->method('getName')
 			 ->willReturn($filename);
 		$file->method('getMimeType')
@@ -190,7 +190,7 @@ abstract class GalleryUnitTest extends \Test\TestCase {
 	private function mockSvgFileMethods($file) {
 		$filename = 'testimagelarge.svg';
 		$file->method('getContent')
-			 ->willReturn(file_get_contents(__DIR__ . '/../_data/' . $filename));
+			 ->willReturn(\file_get_contents(__DIR__ . '/../_data/' . $filename));
 		$file->method('getName')
 			 ->willReturn($filename);
 		$file->method('getMimeType')
@@ -200,20 +200,21 @@ abstract class GalleryUnitTest extends \Test\TestCase {
 	private function mockAnimatedGifFileMethods($file) {
 		$filename = 'animated.gif';
 		$file->method('getContent')
-			 ->willReturn(file_get_contents(__DIR__ . '/../_data/' . $filename));
+			 ->willReturn(\file_get_contents(__DIR__ . '/../_data/' . $filename));
 		$file->method('getName')
 			 ->willReturn($filename);
 		$file->method('getMimeType')
 			 ->willReturn('image/gif');
 		$file->method('fopen')
 			 ->with('rb')
-			 ->willReturn(fopen(__DIR__ . '/../_data/' . $filename, 'rb'));;
+			 ->willReturn(\fopen(__DIR__ . '/../_data/' . $filename, 'rb'));
+		;
 	}
 
 	private function mockNoMediaFileMethods($file) {
 		$filename = '.nomedia';
 		$file->method('getContent')
-			 ->willReturn(file_get_contents(__DIR__ . '/../_data/' . $filename));
+			 ->willReturn(\file_get_contents(__DIR__ . '/../_data/' . $filename));
 		$file->method('getName')
 			 ->willReturn($filename);
 		$file->method('getMimeType')
@@ -342,5 +343,4 @@ abstract class GalleryUnitTest extends \Test\TestCase {
 						  ->with($nodeId)
 						  ->willReturn($node);
 	}
-
 }

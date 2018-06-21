@@ -26,10 +26,10 @@ $appName = $c->query('AppName');
 $c->query('OCP\INavigationManager')
   ->add(
 	  function () use ($c, $appName) {
-		  $urlGenerator = $c->query('OCP\IURLGenerator');
-		  $l10n = $c->query('OCP\IL10N');
+	  	$urlGenerator = $c->query('OCP\IURLGenerator');
+	  	$l10n = $c->query('OCP\IL10N');
 
-		  return [
+	  	return [
 			  'id'    => $appName,
 
 			  // Sorting weight for the navigation. The higher the number, the higher
@@ -62,9 +62,9 @@ Util::addTranslations('gallery');
 $request = $c->query('Request');
 if (isset($request->server['REQUEST_URI'])) {
 	$url = $request->server['REQUEST_URI'];
-	if (preg_match('/apps\/files(_sharing)?$/', $url)
-		|| preg_match('%apps/files(_sharing)?[/?]%', $url)
-		|| preg_match('%^((?!/apps/).)*/s/\b(.*)\b(?<!/authenticate)$%', $url)
+	if (\preg_match('/apps\/files(_sharing)?$/', $url)
+		|| \preg_match('%apps/files(_sharing)?[/?]%', $url)
+		|| \preg_match('%^((?!/apps/).)*/s/\b(.*)\b(?<!/authenticate)$%', $url)
 	) {
 		// @codeCoverageIgnoreStart
 		/**

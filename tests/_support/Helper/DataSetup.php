@@ -176,7 +176,6 @@ class DataSetup extends \Codeception\Module {
 	 * @param $fail
 	 */
 	public function _failed(\Codeception\TestCase $test, $fail) {
-
 	}
 
 	/**
@@ -196,7 +195,7 @@ class DataSetup extends \Codeception\Module {
 		foreach ($content as $node) {
 			$nodeType = $node->getType();
 			$mimeType = $node->getMimetype();
-			if ($nodeType === 'file' && in_array($mimeType, $this->mediaTypes)) {
+			if ($nodeType === 'file' && \in_array($mimeType, $this->mediaTypes)) {
 				$name = $node->getName();
 				$data[$name] = [
 					'id'        => $node->getId(),
@@ -218,7 +217,6 @@ class DataSetup extends \Codeception\Module {
 		$userFolder = $this->server->getUserFolder($this->userId);
 		$this->addFile($userFolder, 'bom-gallery.cnf', 'gallery.cnf');
 	}
-
 
 	public function emptyConfig() {
 		$userFolder = $this->server->getUserFolder($this->userId);
@@ -337,7 +335,7 @@ class DataSetup extends \Codeception\Module {
 	 */
 	private function createStructure($baseFolder, $structure) {
 		foreach ($structure as $key => $value) {
-			if (is_array($value)) {
+			if (\is_array($value)) {
 				$subFolder = $baseFolder->newFolder($key);
 
 				if ($key === $this->sharedFolderName) {
@@ -371,7 +369,7 @@ class DataSetup extends \Codeception\Module {
 	 */
 	private function addFile($folder, $sourceName, $destinationName) {
 		$file = $folder->newFile($destinationName);
-		$fileData = file_get_contents(__DIR__ . '/../../_data/' . $sourceName);
+		$fileData = \file_get_contents(__DIR__ . '/../../_data/' . $sourceName);
 		$file->putContent($fileData);
 
 		return $file;
@@ -443,7 +441,5 @@ class DataSetup extends \Codeception\Module {
 		$this->shareManager->createShare($share);
 
 		return $share->getToken();
-
 	}
-
 }

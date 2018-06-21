@@ -33,7 +33,6 @@ use OCA\Gallery\Service\DownloadService;
  * @package OCA\Gallery\Controller
  */
 trait Preview {
-
 	use HttpError;
 
 	/** @var IURLGenerator */
@@ -55,9 +54,9 @@ trait Preview {
 	 * Exits the controller in a live environment and throws an exception when testing
 	 */
 	protected function exitController() {
-		if (defined('PHPUNIT_RUN')) {
+		if (\defined('PHPUNIT_RUN')) {
 			throw new \Exception();
-			// @codeCoverageIgnoreStart
+		// @codeCoverageIgnoreStart
 		} else {
 			exit();
 		}
@@ -112,7 +111,7 @@ trait Preview {
 		/** @type File $file */
 		list($file, $status) = $this->getFile($fileId);
 		try {
-			if (!is_null($file)) {
+			if ($file !== null) {
 				$data = $this->getPreviewData(
 					$file, $animatedPreview, $width, $height, $keepAspect, $base64Encode
 				);
@@ -122,7 +121,7 @@ trait Preview {
 		} catch (ServiceException $exception) {
 			$data = $this->getExceptionData($exception);
 		}
-		array_unshift($data, $file);
+		\array_unshift($data, $file);
 
 		return $data;
 	}
@@ -222,5 +221,4 @@ trait Preview {
 
 		return $thumbnail;
 	}
-
 }
