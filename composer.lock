@@ -209,21 +209,24 @@
         },
         {
             "name": "codeception/phpbuiltinserver",
-            "version": "v1.3.0",
+            "version": "v1.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tiger-seo/PhpBuiltinServer.git",
-                "reference": "e0509bb9e9b55ae841b5c46aca1b0db858f4c652"
+                "reference": "a79b3e459717e82b6c4393548ab10da71c596ed9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tiger-seo/PhpBuiltinServer/zipball/e0509bb9e9b55ae841b5c46aca1b0db858f4c652",
-                "reference": "e0509bb9e9b55ae841b5c46aca1b0db858f4c652",
+                "url": "https://api.github.com/repos/tiger-seo/PhpBuiltinServer/zipball/a79b3e459717e82b6c4393548ab10da71c596ed9",
+                "reference": "a79b3e459717e82b6c4393548ab10da71c596ed9",
                 "shasum": ""
             },
             "require": {
-                "codeception/codeception": "^2.1",
-                "php": ">=5.4.0"
+                "codeception/codeception": "^2.3",
+                "php": ">=5.5.9"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "5.*"
             },
             "type": "library",
             "autoload": {
@@ -245,7 +248,7 @@
             "keywords": [
                 "codeception"
             ],
-            "time": "2016-12-20T01:05:21+00:00"
+            "time": "2017-12-03T12:48:00+00:00"
         },
         {
             "name": "codeception/phpunit-wrapper",
