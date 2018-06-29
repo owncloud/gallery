@@ -29,8 +29,8 @@
 		Compatible with Firefox, Chrome and Internet Explorer 9+
 	</description>
 	<licence>AGPL</licence>
-	<author>Olivier Paroz, Robin Appelman</author>
-	<version>16.0.2</version>
+	<author>Olivier Paroz, Robin Appelman, Thomas Müller</author>
+	<version>16.1.0</version>
 	<namespace>Gallery</namespace>
 	<documentation>
 		<user>https://github.com/owncloud/gallery/blob/master/README.md</user>
