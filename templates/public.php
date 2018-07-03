@@ -10,7 +10,7 @@ script(
 	[
 		'app',
 		'rotate',
-		'rotacion_cup',
+		'rotation_cup',
 		'gallery',
 		'galleryutility',
 		'galleryconfig',
