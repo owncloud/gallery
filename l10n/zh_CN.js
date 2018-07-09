@@ -37,6 +37,7 @@ OC.L10N.register(
     "Download" : "下载",
     "Toggle background" : "切换背景",
     "Delete" : "删除",
+    "rotation" : "旋转",
     "Could not create file \"{file}\" because it already exists" : "不能创建文件 \"{file}\" ，因为它已经存在",
     "Could not create file \"{file}\"" : "不能创建文件 \"{file}\"",
     "\"{name}\" is an invalid file name." : "“{name}”是一个无效的文件名。",
