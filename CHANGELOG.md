@@ -10,7 +10,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 - Do not break if mount is not available [#739](https://github.com/owncloud/gallery/pull/739)
 - Fix to work properly with 10.0.9 [738](https://github.com/owncloud/gallery/pull/738)
 
-[Unreleased]: https://github.com/owncloud/gallery/compare/v16.0.2...HEAD
+[Unreleased]: https://github.com/owncloud/gallery/compare/v16.1.0...HEAD
 [16.1.0]: https://github.com/owncloud/gallery/compare/v16.0.2...v16.1.0
 
 
