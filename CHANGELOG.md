@@ -1,7 +1,20 @@
-gallery (16.1.0)
-* Rotate images in the browser [#764](https://github.com/owncloud/gallery/pull/764)
-* Do not break if mount is not available [#739](https://github.com/owncloud/gallery/pull/739)
-* Fix to work properly with 10.0.9 [738](https://github.com/owncloud/gallery/pull/738)
+# Changelog
+
+All notable changes to this project will be documented in this file.
+
+The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
+
+## [16.1.0] - 2018-07-11
+### Fixed
+- Rotate images in the browser [#764](https://github.com/owncloud/gallery/pull/764)
+- Do not break if mount is not available [#739](https://github.com/owncloud/gallery/pull/739)
+- Fix to work properly with 10.0.9 [738](https://github.com/owncloud/gallery/pull/738)
+
+[Unreleased]: https://github.com/owncloud/gallery/compare/v16.0.2...HEAD
+[16.1.0]: https://github.com/owncloud/gallery/compare/v16.0.2...v16.1.0
+
+
+# Archived entries
 
 gallery (15.0.0)
 * Drag and drop files and folders owncloud/gallery#405 (@oparoz)
