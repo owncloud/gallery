@@ -37,6 +37,7 @@ OC.L10N.register(
     "Download" : "Last ned",
     "Toggle background" : "Bytt bakgrunn",
     "Delete" : "Slett",
+    "rotation" : "rotasjon",
     "Could not create file \"{file}\" because it already exists" : "Klarte ikke å opprette fil \"{file}\" fordi den finnes allerede",
     "Could not create file \"{file}\"" : "Klarte ikke å opprette fil \"{file}\"",
     "\"{name}\" is an invalid file name." : "\"{name}\" er et uglydig filnavn.",
