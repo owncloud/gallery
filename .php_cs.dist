@@ -1,12 +1,13 @@
 <?php
 
-$config = new OC\CodingStandard\Config();
-
-$config
-    ->setUsingCache(true)
-    ->getFinder()
+$finder = PhpCsFixer\Finder::create()
 	->exclude('l10n')
 	->exclude('c3.php')
-    ->in(__DIR__);
+	->in(__DIR__);
+
+$config = new OC\CodingStandard\Config();
+$config
+    ->setUsingCache(true)
+    ->setFinder($finder);
 
 return $config;
