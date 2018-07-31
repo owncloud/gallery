@@ -23,6 +23,7 @@ Provides a dedicated view of all images in a grid, adds image viewing capabiliti
 * Ignore folders containing a ".nomedia" file
 * Browser rendering of SVG images (disabled by default)
 * Mobile support
+* Change readme to trigger CI
 
 Checkout the [full changelog](CHANGELOG.md) for more.
 
