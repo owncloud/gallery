@@ -12,7 +12,7 @@ script(
 		'vendor/jquery-touch-events/src/1.0.1/jquery.mobile-events.min',
 		'vendor/jquery.ui.touch-punch-custom',
 		'rotate',
-		'rotacion_cup',
+		'rotation_cup',
 		'gallery',
 		'galleryutility',
 		'galleryconfig',
