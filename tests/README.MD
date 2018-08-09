@@ -2,6 +2,8 @@
 
 Read more about automated testing in [the wiki](https://github.com/owncloud/gallery/wiki/Behavioural%2C-functional-and-unit-testing-suite/)
 
+Just triggering CI to check that it passes.
+
 ## Requirements
 
 * PHP tidy enabled
