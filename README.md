@@ -6,6 +6,8 @@
 
 Media gallery for ownCloud which includes previews for all media types supported by your installation.
 
+Trigger CI.
+
 Provides a dedicated view of all images in a grid, adds image viewing capabilities to the files app and adds a gallery view to public links.
 
 **This version is for ownCloud 10.0. If you need the same app for older versions of ownCloud. Use [Gallery+](https://github.com/interfasys/galleryplus) from their respective app stores.**
