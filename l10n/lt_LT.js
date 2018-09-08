@@ -37,6 +37,7 @@ OC.L10N.register(
     "Download" : "Atsisiųsti",
     "Toggle background" : "Fono perjungimas",
     "Delete" : "Ištrinti",
+    "rotation" : "pasukimtas",
     "Could not create file \"{file}\" because it already exists" : "Nepavyko sukurti failo \"{file}\" - failas su tokiu pavadinimu jau egzistuoja",
     "Could not create file \"{file}\"" : "Nepavyko sukurti failo \"{file}\"",
     "\"{name}\" is an invalid file name." : "„{name}“ yra netinkamas failo pavadinime.",
