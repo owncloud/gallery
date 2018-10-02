@@ -35,6 +35,7 @@
     "Download" : "Download",
     "Toggle background" : "Toggle background",
     "Delete" : "Delete",
+    "rotation" : "rotation",
     "Could not create file \"{file}\" because it already exists" : "Could not create file \"{file}\" because it already exists",
     "Could not create file \"{file}\"" : "Could not create file \"{file}\"",
     "\"{name}\" is an invalid file name." : "\"{name}\" is an invalid file name.",
