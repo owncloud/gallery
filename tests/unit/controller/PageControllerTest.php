@@ -169,6 +169,39 @@ class PageControllerTest extends \Test\TestCase {
 		$this->assertEquals($template->getRedirectURL(), $response->getRedirectURL());
 	}
 
+	/**
+	 * @return array
+	 */
+	public function getServer2ServerPropertiesDataProvider() {
+		return [
+			['I am a password', 'yes', true, 'true'],
+			['', 'yes', true, 'false'],
+			[null, 'yes', true, 'false'],
+		];
+	}
+
+	/**
+	 * @throws \ReflectionException
+	 * @dataProvider getServer2ServerPropertiesDataProvider
+	 */
+	public function testGetServer2ServerProperties(
+		$password,
+		$server2ServerSharingEnabled,
+		$expectedSharing,
+		$expectedPasswordProtected
+	) {
+		$this->mockGetSharePassword($password);
+		$this->mockGetAppValue($server2ServerSharingEnabled);
+
+		$reflection = new \ReflectionClass(\get_class($this->controller));
+		$method = $reflection->getMethod('getServer2ServerProperties');
+		$method->setAccessible(true);
+		list($server2ServerSharing, $passwordProtected) = $method->invokeArgs($this->controller, []);
+
+		$this->assertSame($expectedSharing, $server2ServerSharing, 'Incorrect server to server sharing result returned');
+		$this->assertSame($expectedPasswordProtected, $passwordProtected, 'Incorrect password protected result returned');
+	}
+
 	public function testErrorPage() {
 		$message = 'Not found!';
 		$code = Http::STATUS_NOT_FOUND;
