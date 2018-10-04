@@ -237,7 +237,9 @@ class PageController extends Controller {
 	 */
 	private function getServer2ServerProperties() {
 		$server2ServerSharing = $this->appConfig->getAppValue(
-			'files_sharing', 'outgoing_server2server_share_enabled', 'yes'
+			'files_sharing',
+			'outgoing_server2server_share_enabled',
+			'yes'
 		);
 
 		return [
