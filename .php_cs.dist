@@ -7,6 +7,8 @@ $config
 	->getFinder()
 	->exclude('l10n')
 	->notPath('/^c3.php/')
+	->exclude('vendor')
+	->exclude('vendor-bin')
 	->in(__DIR__);
 
 return $config;
