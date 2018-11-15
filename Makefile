@@ -2,6 +2,10 @@
 # later. See the COPYING file.
 # @author Ilja Neumann <ineumann@owncloud.com>
 
+COMPOSER_BIN := $(shell command -v composer 2> /dev/null)
+ifndef COMPOSER_BIN
+    $(error composer is not available on your system, please install composer)
+endif
 
 app_name=$(notdir $(CURDIR))
 project_directory=$(CURDIR)/../$(app_name)
@@ -11,8 +15,6 @@ source_build_directory=$(CURDIR)/build/artifacts/source
 source_package_name=$(source_build_directory)/$(app_name)
 appstore_build_directory=$(CURDIR)/build/artifacts/appstore
 appstore_package_name=$(appstore_build_directory)/$(app_name)
-npm=$(shell which npm 2> /dev/null)
-composer=$(shell which composer 2> /dev/null)
 
 occ=$(CURDIR)/../../occ
 private_key=$(HOME)/.owncloud/certificates/$(app_name).key
@@ -28,9 +30,8 @@ endif
 endif
 
 # composer
-composer_deps=vendor
-composer_dev_deps=vendor/php-cs-fixer
-COMPOSER_BIN=$(build_dir)/composer.phar
+composer_deps=
+composer_dev_deps=
 
 #
 # Basic required tools
