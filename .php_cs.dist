@@ -5,10 +5,10 @@ $config = new OC\CodingStandard\Config();
 $config
     ->setUsingCache(true)
 	->getFinder()
+	->in(__DIR__)
+	->exclude('c3.php')
 	->exclude('l10n')
 	->exclude('vendor')
-	->exclude('vendor-bin')
-	->exclude('c3.php')
-	->in(__DIR__);
+	->exclude('vendor-bin');
 
 return $config;
