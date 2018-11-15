@@ -101,7 +101,6 @@ before_script:
 script:
   # Test lint
   - php vendor/bin/parallel-lint --exclude vendor/composer/autoload_static.php --exclude travis --exclude vendor . vendor/composer vendor/symfony/yaml vendor/autoload.php
-  - vendor/bin/php-cs-fixer fix -v --diff --diff-format udiff --dry-run --allow-risky yes
 
   # Acceptance tests, using Firefox, without code coverage
   - php vendor/bin/codecept run acceptance --env firefox
