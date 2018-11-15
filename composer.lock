@@ -4,8 +4,9 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "c5454f320ec2d918031cde9cbc74934b",
-    "packages": [
+    "content-hash": "8e2d3f90f768bab5128bd07568d76719",
+    "packages": [],
+    "packages-dev": [
         {
             "name": "bamarni/composer-bin-plugin",
             "version": "v1.2.0",
@@ -44,9 +45,7 @@
                 "MIT"
             ],
             "time": "2017-09-11T13:13:58+00:00"
-        }
-    ],
-    "packages-dev": [
+        },
         {
             "name": "behat/gherkin",
             "version": "v4.5.1",
