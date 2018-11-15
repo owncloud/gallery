@@ -6,7 +6,7 @@ $config
     ->setUsingCache(true)
 	->getFinder()
 	->in(__DIR__)
-	->exclude('c3.php')
+	->notName('c3.php')
 	->exclude('l10n')
 	->exclude('vendor')
 	->exclude('vendor-bin');
