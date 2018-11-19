@@ -10,8 +10,10 @@ modules:
          - \Helper\Acceptance
          - \Helper\DataSetup
          - WebDriver:
-             url: 'http://localhost:8000'
-             browser: phantomjs
+             url: 'http://owncloud'
+             browser: chrome
+             host: selenium
+             port: 4444
              window_size: 960x1080
              capabilities:
                  unexpectedAlertBehaviour: 'accept'

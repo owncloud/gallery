@@ -126,7 +126,7 @@ test-php-integration: vendor/bin/codecept
 .PHONY: test-acceptance
 test-acceptance:
 test-acceptance: vendor/bin/codecept
-	php vendor/bin/codecept run acceptance --env chrome
+	php vendor/bin/codecept run acceptance
 
 .PHONY: test-php-style-fix
 test-php-style-fix:        ## Run php-cs-fixer and fix code style issues

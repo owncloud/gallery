@@ -92,7 +92,7 @@ pipeline:
     environment:
       - BROWSER=chrome
       - SELENIUM_HOST=selenium
-      - TEST_SERVER_URL=http://server
+      - TEST_SERVER_URL=http://owncloud
       - SELENIUM_PORT=4444
       - PLATFORM=Linux
       - MAILHOG_HOST=email
@@ -163,7 +163,7 @@ services:
     pull: true
     when:
       matrix:
-        TEST_SUITE: selenium
+        TEST_SUITE: acceptance
 
 matrix:
   include:
