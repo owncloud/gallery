@@ -26,6 +26,7 @@ pipeline:
       - php occ a:l
       - php occ a:e gallery
       - php occ a:e testing
+      - php occ a:d firstrunwizard
       - php occ a:l
       - php occ config:system:set trusted_domains 1 --value=owncloud
       - php occ log:manage --level 0
@@ -62,6 +63,15 @@ pipeline:
     when:
       matrix:
         TEST_SUITE: owncloud-coding-standard
+
+  php-lint-tests:
+    image: owncloudci/php:${PHP_VERSION}
+    pull: true
+    commands:
+      - make test-php-lint
+    when:
+      matrix:
+        TEST_SUITE: php-lint
 
   phpunit-tests:
     image: owncloudci/php:${PHP_VERSION}
@@ -170,6 +180,9 @@ matrix:
     # owncloud-coding-standard
     - PHP_VERSION: 7.2
       TEST_SUITE: owncloud-coding-standard
+
+    - PHP_VERSION: 7.2
+      TEST_SUITE: php-lint
 
     # Unit Tests
     - PHP_VERSION: 7.1

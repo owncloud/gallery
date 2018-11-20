@@ -144,6 +144,11 @@ test-php-unit-dbg:             ## Run php unit tests with php dbg
 test-php-unit-dbg: vendor/bin/phpunit
 	$(PHPUNITDBG) --configuration ./phpunit.xml --testsuite unit
 
+.PHONY: test-php-lint
+test-php-lint:
+test-php-lint: vendor/bin/parallel-lint
+	php vendor/bin/parallel-lint --exclude vendor/composer/autoload_static.php --exclude travis --exclude vendor --exclude vendor-bin . vendor/composer vendor/symfony/yaml vendor/autoload.php
+
 #
 # Dependency management
 #--------------------------------------
@@ -157,6 +162,9 @@ test-php-unit-dbg: vendor/bin/phpunit
 	composer install
 
  vendor/bin/codecept: composer.lock
+	composer install
+
+ vendor/bin/parallel-lint: composer.lock
 	composer install
 
  vendor/bamarni/composer-bin-plugin: composer.lock
