@@ -1,3 +1,8 @@
+build
 vendor
 .php_cs.cache
 c3.php
+
+vendor-bin/**/composer.lock
+tests/_output/
+tests/_support/_generated/

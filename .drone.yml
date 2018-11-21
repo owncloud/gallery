@@ -1,0 +1,374 @@
+workspace:
+  base: /var/www/owncloud
+  path: apps/gallery
+
+branches: [master, release*, release/*]
+
+pipeline:
+  install-server:
+    image: owncloudci/core
+    version: ${OC_VERSION}
+    pull: true
+    db_type: ${DB_TYPE}
+    db_name: ${DB_NAME}
+    db_host: ${DB_TYPE}
+    db_username: autotest
+    db_password: owncloud
+    when:
+      matrix:
+        NEED_SERVER: true
+
+  install-app:
+    image: owncloudci/php:${PHP_VERSION}
+    pull: true
+    commands:
+      - cd /var/www/owncloud/
+      - php occ a:l
+      - php occ a:e gallery
+      - php occ a:e testing
+      - php occ a:d firstrunwizard
+      - php occ a:l
+      - php occ config:system:set trusted_domains 1 --value=owncloud
+      - php occ log:manage --level 0
+    when:
+      matrix:
+        NEED_INSTALL_APP: true
+
+  fix-permissions:
+    image: owncloudci/php:${PHP_VERSION}
+    pull: true
+    commands:
+      - chown www-data /var/www/owncloud -R
+      - chmod 777 /var/www/owncloud/tests/acceptance/filesForUpload -R
+      - chmod +x /var/www/owncloud/tests/acceptance/run.sh
+    when:
+      matrix:
+        NEED_SERVER: true
+
+  owncloud-log:
+    image: owncloud/ubuntu:16.04
+    detach: true
+    pull: true
+    commands:
+      - tail -f /var/www/owncloud/data/owncloud.log
+    when:
+      matrix:
+        NEED_SERVER: true
+
+  owncloud-coding-standard:
+    image: owncloudci/php:${PHP_VERSION}
+    pull: true
+    commands:
+      - make test-php-style
+    when:
+      matrix:
+        TEST_SUITE: owncloud-coding-standard
+
+  php-lint-tests:
+    image: owncloudci/php:${PHP_VERSION}
+    pull: true
+    commands:
+      - make test-php-lint
+    when:
+      matrix:
+        TEST_SUITE: php-lint
+
+  phpunit-tests:
+    image: owncloudci/php:${PHP_VERSION}
+    pull: true
+    environment:
+      - COVERAGE=${COVERAGE}
+    commands:
+      - if [ -z "${COVERAGE}" ]; then make test-php-unit; fi
+      - if [ "${COVERAGE}" = "true" ]; then make test-php-unit-dbg; fi
+    when:
+      matrix:
+        TEST_SUITE: phpunit
+
+  integration-tests:
+    image: owncloudci/php:${PHP_VERSION}
+    pull: true
+    environment:
+      - PHP_VERSION=${PHP_VERSION}
+    commands:
+        make test-php-integration
+    when:
+      matrix:
+        TEST_SUITE: integration
+
+  acceptance-tests:
+    image: owncloudci/php:${PHP_VERSION}
+    pull: true
+    environment:
+      - BROWSER=chrome
+      - SELENIUM_HOST=selenium
+      - TEST_SERVER_URL=http://owncloud
+      - SELENIUM_PORT=4444
+      - PLATFORM=Linux
+      - MAILHOG_HOST=email
+      - PHP_VERSION=${PHP_VERSION}
+    commands:
+      - cd /var/www/owncloud/tests/acceptance/
+      - touch /var/www/owncloud/saved-settings.sh
+      - . /var/www/owncloud/saved-settings.sh
+      - cd /var/www/owncloud/apps/gallery/
+      - make test-acceptance
+    when:
+      matrix:
+        TEST_SUITE: acceptance
+
+  codecov:
+    image: plugins/codecov:2
+    secrets: [codecov_token]
+    pull: true
+    files:
+      - tests/_output/clover.xml
+    when:
+      matrix:
+        COVERAGE: true
+
+  notify:
+    image: plugins/slack:1
+    pull: true
+    secrets: [ slack_webhook ]
+    channel: builds
+    when:
+      status: [ failure, changed ]
+      event: [ push, tag ]
+
+services:
+  mysql:
+    image: mysql:5.5
+    environment:
+      - MYSQL_USER=autotest
+      - MYSQL_PASSWORD=owncloud
+      - MYSQL_DATABASE=${DB_NAME}
+      - MYSQL_ROOT_PASSWORD=owncloud
+    when:
+      matrix:
+        DB_TYPE: mysql
+
+  pgsql:
+    image: postgres:9.4
+    environment:
+      - POSTGRES_USER=autotest
+      - POSTGRES_PASSWORD=owncloud
+      - POSTGRES_DB=${DB_NAME}
+    when:
+      matrix:
+        DB_TYPE: pgsql
+
+  owncloud:
+    image: owncloudci/php:${PHP_VERSION}
+    pull: true
+    environment:
+      - APACHE_WEBROOT=/var/www/owncloud/
+    command: [ "/usr/local/bin/apachectl", "-e", "debug", "-D", "FOREGROUND" ]
+    when:
+      matrix:
+        NEED_SERVER: true
+
+  selenium:
+    image: selenium/standalone-chrome-debug:latest
+    pull: true
+    when:
+      matrix:
+        TEST_SUITE: acceptance
+
+matrix:
+  include:
+    # owncloud-coding-standard
+    - PHP_VERSION: 7.2
+      TEST_SUITE: owncloud-coding-standard
+
+    - PHP_VERSION: 7.2
+      TEST_SUITE: php-lint
+
+    # Unit Tests
+    - PHP_VERSION: 7.1
+      OC_VERSION: daily-master-qa
+      TEST_SUITE: phpunit
+      DB_TYPE: sqlite
+      DB_NAME: owncloud
+      NEED_SERVER: true
+      NEED_INSTALL_APP: true
+
+    - PHP_VERSION: 7.1
+      OC_VERSION: daily-master-qa
+      TEST_SUITE: phpunit
+      DB_TYPE: mysql
+      DB_NAME: owncloud
+      NEED_SERVER: true
+      NEED_INSTALL_APP: true
+
+    - PHP_VERSION: 7.1
+      OC_VERSION: daily-master-qa
+      TEST_SUITE: phpunit
+      DB_TYPE: pgsql
+      DB_NAME: owncloud
+      NEED_SERVER: true
+      NEED_INSTALL_APP: true
+
+    - PHP_VERSION: 7.2
+      OC_VERSION: daily-master-qa
+      TEST_SUITE: phpunit
+      DB_TYPE: mysql
+      DB_NAME: owncloud
+      NEED_SERVER: true
+      NEED_INSTALL_APP: true
+
+    - PHP_VERSION: 5.6
+      OC_VERSION: daily-stable10-qa
+      TEST_SUITE: phpunit
+      DB_TYPE: sqlite
+      DB_NAME: owncloud
+      NEED_SERVER: true
+      NEED_INSTALL_APP: true
+
+    - PHP_VERSION: 5.6
+      OC_VERSION: daily-stable10-qa
+      TEST_SUITE: phpunit
+      DB_TYPE: mysql
+      DB_NAME: owncloud
+      NEED_SERVER: true
+      NEED_INSTALL_APP: true
+
+    - PHP_VERSION: 7.0
+      OC_VERSION: daily-stable10-qa
+      TEST_SUITE: phpunit
+      DB_TYPE: mysql
+      DB_NAME: owncloud
+      NEED_SERVER: true
+      NEED_INSTALL_APP: true
+
+    - PHP_VERSION: 7.0
+      OC_VERSION: daily-stable10-qa
+      TEST_SUITE: phpunit
+      DB_TYPE: pgsql
+      DB_NAME: owncloud
+      NEED_SERVER: true
+      NEED_INSTALL_APP: true
+      COVERAGE: true
+
+    - PHP_VERSION: 7.1
+      OC_VERSION: daily-stable10-qa
+      TEST_SUITE: phpunit
+      DB_TYPE: mysql
+      DB_NAME: owncloud
+      NEED_SERVER: true
+      NEED_INSTALL_APP: true
+
+    - PHP_VERSION: 7.2
+      OC_VERSION: daily-stable10-qa
+      TEST_SUITE: phpunit
+      DB_TYPE: mysql
+      DB_NAME: owncloud
+      NEED_SERVER: true
+      NEED_INSTALL_APP: true
+
+    # integration testing
+    - PHP_VERSION: 5.6
+      OC_VERSION: daily-stable10-qa
+      TEST_SUITE: integration
+      DB_TYPE: mysql
+      DB_NAME: owncloud
+      NEED_SERVER: true
+      NEED_INSTALL_APP: true
+
+    - PHP_VERSION: 7.0
+      OC_VERSION: daily-stable10-qa
+      TEST_SUITE: integration
+      DB_TYPE: mysql
+      DB_NAME: owncloud
+      NEED_SERVER: true
+      NEED_INSTALL_APP: true
+
+    - PHP_VERSION: 7.1
+      OC_VERSION: daily-stable10-qa
+      TEST_SUITE: integration
+      DB_TYPE: mysql
+      DB_NAME: owncloud
+      NEED_SERVER: true
+      NEED_INSTALL_APP: true
+
+    - PHP_VERSION: 7.2
+      OC_VERSION: daily-stable10-qa
+      TEST_SUITE: integration
+      DB_TYPE: mysql
+      DB_NAME: owncloud
+      NEED_SERVER: true
+      NEED_INSTALL_APP: true
+
+    - PHP_VERSION: 7.1
+      OC_VERSION: daily-master-qa
+      TEST_SUITE: integration
+      DB_TYPE: mysql
+      DB_NAME: owncloud
+      NEED_SERVER: true
+      NEED_INSTALL_APP: true
+
+    - PHP_VERSION: 7.2
+      OC_VERSION: daily-master-qa
+      TEST_SUITE: integration
+      DB_TYPE: mysql
+      DB_NAME: owncloud
+      NEED_SERVER: true
+      NEED_INSTALL_APP: true
+
+    - PHP_VERSION: 7.1
+      OC_VERSION: daily-master-qa
+      TEST_SUITE: integration
+      DB_TYPE: pgsql
+      DB_NAME: owncloud
+      NEED_SERVER: true
+      NEED_INSTALL_APP: true
+
+    # acceptance tests
+    - PHP_VERSION: 7.1
+      OC_VERSION: daily-master-qa
+      TEST_SUITE: acceptance
+      DB_TYPE: mysql
+      DB_NAME: owncloud
+      NEED_SERVER: true
+      NEED_INSTALL_APP: true
+
+    - PHP_VERSION: 7.2
+      OC_VERSION: daily-master-qa
+      TEST_SUITE: acceptance
+      DB_TYPE: mysql
+      DB_NAME: owncloud
+      NEED_SERVER: true
+      NEED_INSTALL_APP: true
+
+    - PHP_VERSION: 5.6
+      OC_VERSION: daily-stable10-qa
+      TEST_SUITE: acceptance
+      DB_TYPE: mysql
+      DB_NAME: owncloud
+      NEED_SERVER: true
+      NEED_INSTALL_APP: true
+
+    - PHP_VERSION: 7.0
+      OC_VERSION: daily-stable10-qa
+      TEST_SUITE: acceptance
+      DB_TYPE: mysql
+      DB_NAME: owncloud
+      NEED_SERVER: true
+      NEED_INSTALL_APP: true
+
+    - PHP_VERSION: 7.1
+      OC_VERSION: daily-stable10-qa
+      TEST_SUITE: acceptance
+      DB_TYPE: mysql
+      DB_NAME: owncloud
+      NEED_SERVER: true
+      NEED_INSTALL_APP: true
+
+    - PHP_VERSION: 7.2
+      OC_VERSION: daily-stable10-qa
+      TEST_SUITE: acceptance
+      DB_TYPE: mysql
+      DB_NAME: owncloud
+      NEED_SERVER: true
+      NEED_INSTALL_APP: true
+
