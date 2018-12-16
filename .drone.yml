@@ -18,6 +18,12 @@ pipeline:
       matrix:
         NEED_SERVER: true
 
+  composer:
+    image: owncloudci/php:${PHP_VERSION}
+    pull: true
+    commands:
+      - composer install -n --no-progress
+
   install-app:
     image: owncloudci/php:${PHP_VERSION}
     pull: true
