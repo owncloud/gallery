@@ -3,6 +3,8 @@ OC.L10N.register(
     {
     "Gallery" : "Galería",
     "Aborting preview. Could not find the file" : "Cancelando a vista previa. Non foi posíbel atopar o ficheiro",
+    "Could not move \"{file}\", target exists" : "Non foi posíbel mover «{file}», o destino xa existe",
+    "Could not move \"{file}\"" : "Non foi posíbel mover «{file}»",
     "Could not load the description" : "Non foi posíbel cargar a descrición",
     "Could not load the description: " : "Non foi posíbel cargar a descrición:",
     "Copyright" : "Copyright",
@@ -24,6 +26,8 @@ OC.L10N.register(
     "Download" : "Descargar",
     "Toggle background" : "Alternar o fondo",
     "Delete" : "Eliminar",
+    "Could not create file \"{file}\" because it already exists" : "Non foi posíbel crear o ficheiro «{file}» por mor de que xa existe",
+    "Could not create file \"{file}\"" : "Non foi posíbel crear o ficheiro «{file}»",
     "\"{name}\" is an invalid file name." : "«{name}» é un nome incorrecto de ficheiro.",
     "File name cannot be empty." : "O nome de ficheiro non pode estar baleiro",
     "Upload" : "Enviar",
