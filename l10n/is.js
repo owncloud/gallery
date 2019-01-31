@@ -37,6 +37,7 @@ OC.L10N.register(
     "Download" : "Niðurhal",
     "Toggle background" : "Víxla bakgrunni",
     "Delete" : "Eyða",
+    "rotation" : "snúningur",
     "Could not create file \"{file}\" because it already exists" : "Gat ekki búið til skrána \"{file}\" vegna þess að hún er þegar til",
     "Could not create file \"{file}\"" : "Gat ekki búið til skrána \"{file}\"",
     "\"{name}\" is an invalid file name." : "\"{name}\" er ógilt skráarheiti.",
