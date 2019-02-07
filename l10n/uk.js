@@ -68,7 +68,7 @@ OC.L10N.register(
     "Error unsetting expiration date" : "Помилка при відміні терміну дії",
     "Error setting expiration date" : "Помилка при встановленні терміну дії",
     "Sending ..." : "Надсилання...",
-    "Email sent" : "Лист надіслано",
+    "Email sent" : "Листа відправлено",
     "Warning" : "Попередження",
     "This share is password-protected" : "Цей ресурс обміну захищений паролем",
     "The password is wrong. Try again." : "Невірний пароль. Спробуйте ще раз.",
