@@ -127,6 +127,22 @@ To update the app go inside you *apps/gallery/** directory and type:
 $ git pull --rebase
 ```
 
+### Uninstalling
+
+#### Redirect gallery link shares
+
+When disabling or uninstalling the app, all link shares created with the app will stop working.
+Instead of having to resend new links to all recipients, you can setup a redirection on the server to redirect gallery-style links to regular public links. This means that people with the original link will get redirected to the regular file view instead of getting a 404 page.
+
+For this, edit your `.htaccess` file in the ownCloud root folder and add a new rewrite rule among the existing ones or with a new block at the bottom of the file:
+
+```
+<IfModule mod_rewrite.c>
+  RewriteEngine on  
+  RewriteRule ^/apps/gallery/s/(.*)$ /s/$1 [L,R=301]
+</IfModule>
+```
+
 ## List of patches
 
 None so far
