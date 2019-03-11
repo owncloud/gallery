@@ -46,9 +46,6 @@ all: $(composer_dev_deps)
 clean:
 	rm -rf ./build/artifacts
 
-$(COMPOSER_BIN):
-	mkdir -p $(build_dir)
-	cd $(build_dir) && curl -sS https://getcomposer.org/installer | php
 #
 # ownCloud core PHP dependencies
 #
