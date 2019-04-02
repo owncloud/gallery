@@ -107,7 +107,9 @@ class EnvCheckMiddlewareTest extends \Test\GalleryUnitTest {
 	 */
 	public function testBeforeControllerWithoutNotation() {
 		$this->reflector->reflect(__CLASS__, __FUNCTION__);
-		$this->middleware->beforeController(__CLASS__, __FUNCTION__);
+		$this->assertNull(
+			$this->middleware->beforeController(__CLASS__, __FUNCTION__)
+		);
 	}
 
 	/**
@@ -208,7 +210,9 @@ class EnvCheckMiddlewareTest extends \Test\GalleryUnitTest {
 	public function testBeforeControllerWithGuestNotation() {
 		$this->reflector->reflect(__CLASS__, __FUNCTION__);
 
-		$this->middleware->beforeController(__CLASS__, __FUNCTION__);
+		$this->assertNull(
+			$this->middleware->beforeController(__CLASS__, __FUNCTION__)
+		);
 	}
 
 	public function testCheckSessionAfterPasswordEntry() {
@@ -373,7 +377,9 @@ class EnvCheckMiddlewareTest extends \Test\GalleryUnitTest {
 	public function testCheckItemTypeWithItemTypeSet() {
 		$share = $this->mockShare('folder', 'tester', 'folder1');
 
-		parent::invokePrivate($this->middleware, 'checkItemType', [$share]);
+		$this->assertNull(
+			parent::invokePrivate($this->middleware, 'checkItemType', [$share])
+		);
 	}
 
 	/**
@@ -390,7 +396,9 @@ class EnvCheckMiddlewareTest extends \Test\GalleryUnitTest {
 
 		$token = 'aaaabbbbccccdddd';
 
-		parent::invokePrivate($this->middleware, 'checkShareIsValid', [$share, $token]);
+		$this->assertNull(
+			parent::invokePrivate($this->middleware, 'checkShareIsValid', [$share, $token])
+		);
 	}
 
 	/**

@@ -105,7 +105,9 @@ class SharingCheckMiddlewareTest extends \Test\TestCase {
 	 */
 	public function testBeforeControllerWithGuestNotation() {
 		$this->reflector->reflect(__CLASS__, __FUNCTION__);
-		$this->middleware->beforeController(__CLASS__, __FUNCTION__);
+		$this->assertNull(
+			$this->middleware->beforeController(__CLASS__, __FUNCTION__)
+		);
 	}
 
 	/**
