@@ -73,7 +73,7 @@ class PreviewTest extends \Test\GalleryUnitTest {
 	 * @param $width
 	 * @param $height
 	 *
-	 * @return object|\PHPUnit_Framework_MockObject_MockObject
+	 * @return object|\PHPUnit\Framework\MockObject\MockObject
 	 */
 	private function mockGetPreview($fileId, $width, $height) {
 		$image = new \OC_Image(\file_get_contents(\OC::$SERVERROOT . '/tests/data/testimage.jpg'));

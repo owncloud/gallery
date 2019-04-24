@@ -68,7 +68,7 @@ abstract class GalleryUnitTest extends \Test\TestCase {
 	 *
 	 * Needs to pass a mock of a File or Folder
 	 *
-	 * @param \PHPUnit_Framework_MockObject_MockObject $mockedObject
+	 * @param \PHPUnit\Framework\MockObject\MockObject $mockedObject
 	 * @param int $fileId
 	 * @param \Exception $exception
 	 */
@@ -96,7 +96,7 @@ abstract class GalleryUnitTest extends \Test\TestCase {
 	 * @param null|object $owner
 	 * @param int $permissions
 	 *
-	 * @return \PHPUnit_Framework_MockObject_MockObject
+	 * @return \PHPUnit\Framework\MockObject\MockObject
 	 */
 	protected function mockFile(
 		$fileId,
@@ -255,7 +255,7 @@ abstract class GalleryUnitTest extends \Test\TestCase {
 	 * @param int $permissions
 	 * @param int $freeSpace
 	 *
-	 * @return mixed|object|\PHPUnit_Framework_MockObject_MockObject
+	 * @return mixed|object|\PHPUnit\Framework\MockObject\MockObject
 	 */
 	protected function mockFolder(
 		$storageId,

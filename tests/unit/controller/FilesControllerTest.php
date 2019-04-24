@@ -343,7 +343,7 @@ class FilesControllerTest extends \Test\GalleryUnitTest {
 	}
 
 	/**
-	 * @param object|\PHPUnit_Framework_MockObject_MockObject $file
+	 * @param object|\PHPUnit\Framework\MockObject\MockObject $file
 	 * @param $filename
 	 *
 	 * @return array
@@ -367,7 +367,7 @@ class FilesControllerTest extends \Test\GalleryUnitTest {
 	/**
 	 * Mocks DownloadService->downloadFile
 	 *
-	 * @param object|\PHPUnit_Framework_MockObject_MockObject $file
+	 * @param object|\PHPUnit\Framework\MockObject\MockObject $file
 	 * @param array $download
 	 */
 	private function mockDownloadFile($file, $download) {

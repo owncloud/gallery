@@ -530,7 +530,7 @@ class SearchMediaServiceTest extends \Test\GalleryUnitTest {
 	 * @param int $uid
 	 * @param string $displayName
 	 *
-	 * @return mixed|object|\PHPUnit_Framework_MockObject_MockObject
+	 * @return mixed|object|\PHPUnit\Framework\MockObject\MockObject
 	 */
 	private function mockOwner($uid, $displayName) {
 		$owner = $this->getMockBuilder('OCP\IUser')
