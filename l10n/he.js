@@ -37,6 +37,7 @@ OC.L10N.register(
     "Download" : "הורדה",
     "Toggle background" : "מעבר בין רקעים",
     "Delete" : "מחיקה",
+    "rotation" : "סיבוב",
     "Could not create file \"{file}\" because it already exists" : "לא ניתן ליצור את הקובץ \"{file}\" כיוון שהוא כבר קיים",
     "Could not create file \"{file}\"" : "לא ניתן ליצור את הקובץ \"{file}\"",
     "\"{name}\" is an invalid file name." : "\"{name}\" הנו שם קובץ לא חוקי.",
