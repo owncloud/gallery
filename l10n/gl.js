@@ -81,7 +81,7 @@ OC.L10N.register(
     "delete" : "eliminar",
     "Password protected" : "Protexido con contrasinal",
     "Error unsetting expiration date" : "Produciuse un erro ao retirar a data de caducidade",
-    "Error setting expiration date" : "Produciuse un erro ao definir a data de caducidade",
+    "Error setting expiration date" : "Produciuse un erro ao axustar a data de caducidade",
     "Sending ..." : "Enviando...",
     "Email sent" : "Correo enviado",
     "Warning" : "Aviso",
