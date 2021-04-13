@@ -500,9 +500,10 @@ class SearchMediaServiceTest extends \Test\GalleryUnitTest {
 	}
 
 	/**
-	 * @expectedException \OCA\Gallery\Service\NotFoundServiceException
 	 */
 	public function testGetFileWithBadMediaType() {
+		$this->expectException(\OCA\Gallery\Service\NotFoundServiceException::class);
+
 		$fileId = 99999;
 		$storageId = 'home::user';
 		$file = $this->mockFile($fileId, $storageId);
@@ -513,9 +514,10 @@ class SearchMediaServiceTest extends \Test\GalleryUnitTest {
 	}
 
 	/**
-	 * @expectedException \OCA\Gallery\Service\NotFoundServiceException
 	 */
 	public function testGetFileWithFolderId() {
+		$this->expectException(\OCA\Gallery\Service\NotFoundServiceException::class);
+
 		$fileId = 99999;
 		$storageId = 'home::user';
 		$file = $this->mockJpgFile($fileId, $storageId);

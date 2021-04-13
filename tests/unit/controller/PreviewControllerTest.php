@@ -110,9 +110,10 @@ class PreviewControllerTest extends \Test\GalleryUnitTest {
 	}
 
 	/**
-	 * @expectedException \Exception
 	 */
 	public function testGetThumbnailsWillDie() {
+		$this->expectException(\Exception::class);
+
 		$square = true;
 		$scale = 2.5;
 		$thumbnailId = 1234;

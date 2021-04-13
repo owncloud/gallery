@@ -77,9 +77,10 @@ class EnvironmentSetupTest extends GalleryIntegrationTest {
 	/**
 	 * We can't get the virtual root if we're given a file token
 	 *
-	 * @expectedException \OCA\Gallery\Environment\NotFoundEnvException
 	 */
 	public function testGetVirtualRootFolderAsATokenUserWhenGivenFileToken() {
+		$this->expectException(\OCA\Gallery\Environment\NotFoundEnvException::class);
+
 		$environment = $this->setTokenBasedEnv($this->sharedFileToken);
 
 		$environment->getVirtualRootFolder();

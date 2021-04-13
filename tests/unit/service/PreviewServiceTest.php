@@ -113,9 +113,10 @@ class PreviewServiceTest extends \Test\GalleryUnitTest {
 	}
 
 	/**
-	 * @expectedException \OCA\Gallery\Service\InternalServerErrorServiceException
 	 */
 	public function testIsPreviewRequiredWithBrokenGif() {
+		$this->expectException(\OCA\Gallery\Service\InternalServerErrorServiceException::class);
+
 		/** @type File $file */
 		$file = $this->mockAnimatedGifFile(12345);
 		$file = $this->mockBrokenAnimatedGifFileMethods($file);
@@ -126,9 +127,10 @@ class PreviewServiceTest extends \Test\GalleryUnitTest {
 	}
 
 	/**
-	 * @expectedException \OCA\Gallery\Service\InternalServerErrorServiceException
 	 */
 	public function testCreatePreviewWithBrokenSystem() {
+		$this->expectException(\OCA\Gallery\Service\InternalServerErrorServiceException::class);
+
 		/** @type File $file */
 		$file = $this->mockJpgFile(12345);
 		$this->mockGetUserIdFails();

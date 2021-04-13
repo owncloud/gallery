@@ -57,9 +57,10 @@ class PreviewTest extends \Test\GalleryUnitTest {
 	}
 
 	/**
-	 * @expectedException \Exception
 	 */
 	public function testGetPreviewFromCoreWithBrokenSystem() {
+		$this->expectException(\Exception::class);
+
 		$keepAspect = true; // Doesn't matter
 		$exception = new \Exception('Encryption ate your file');
 		$preview = $this->mockGetPreviewWithBrokenSetup($exception);

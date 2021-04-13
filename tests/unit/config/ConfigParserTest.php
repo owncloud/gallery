@@ -84,9 +84,10 @@ class ConfigParserTest extends \Test\GalleryUnitTest {
 	}
 
 	/**
-	 * @expectedException \OCA\Gallery\Config\ConfigException
 	 */
 	public function testGetFeaturesListWithBrokenConfig() {
+		$this->expectException(\OCA\Gallery\Config\ConfigException::class);
+
 		$folder = $this->mockFolder('home::user', 121212, []);
 		$folder->method('get')
 			   ->with($this->configName)
