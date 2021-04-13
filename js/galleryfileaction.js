@@ -48,9 +48,16 @@
 			for (i = 0; i < mediaTypesLength; i++) {
 				// Each click handler gets the same function and images array and
 				// is responsible to load the slideshow
-				OCA.Files.fileActions.register(mediaTypes[i], 'View', OC.PERMISSION_READ, '',
-					galleryFileAction.onView);
-				OCA.Files.fileActions.setDefault(mediaTypes[i], 'View');
+				OCA.Files.fileActions.registerAction({
+					mime: mediaTypes[i],
+					name: 'Gallery',
+					permissions: OC.PERMISSION_READ,
+					icon: OC.imagePath('gallery', 'gallery-dark'),
+					actionHandler: galleryFileAction.onView,
+					displayName: t('gallery', 'Open in Gallery')
+				})
+				;
+				OCA.Files.fileActions.setDefault(mediaTypes[i], 'Gallery');
 			}
 		},
 
