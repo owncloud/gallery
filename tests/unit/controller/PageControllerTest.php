@@ -43,7 +43,7 @@ class PageControllerTest extends \Test\TestCase {
 	/**
 	 * Test set up
 	 */
-	protected function setUp() {
+	protected function setUp(): void {
 		parent::setUp();
 
 		$this->request = $this->getMockBuilder('\OCP\IRequest')

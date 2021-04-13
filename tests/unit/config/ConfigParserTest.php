@@ -31,7 +31,7 @@ class ConfigParserTest extends \Test\GalleryUnitTest {
 	/**
 	 * Test set up
 	 */
-	protected function setUp() {
+	protected function setUp(): void {
 		parent::setUp();
 
 		$this->configParser = new ConfigParser();

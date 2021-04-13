@@ -20,7 +20,7 @@ require_once __DIR__ . '/FilesControllerTest.php';
  * @package OCA\Gallery\Controller
  */
 class FilesPublicControllerTest extends FilesControllerTest {
-	public function setUp() {
+	public function setUp(): void {
 		parent::setUp();
 		$this->controller = new FilesPublicController(
 			$this->appName,

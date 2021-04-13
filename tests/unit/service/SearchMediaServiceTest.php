@@ -27,7 +27,7 @@ class SearchMediaServiceTest extends \Test\GalleryUnitTest {
 	/**
 	 * Test set up
 	 */
-	public function setUp() {
+	public function setUp(): void {
 		parent::setUp();
 
 		$this->service = new SearchMediaService(

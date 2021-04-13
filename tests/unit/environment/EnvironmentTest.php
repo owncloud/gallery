@@ -43,7 +43,7 @@ class EnvironmentTest extends \Test\TestCase {
 	/**
 	 * Test set up
 	 */
-	public function setUp() {
+	public function setUp(): void {
 		parent::setUp();
 
 		$app = new Application();

@@ -20,7 +20,7 @@ require_once __DIR__ . '/ConfigControllerTest.php';
  * @package OCA\Gallery\Controller
  */
 class ConfigApiControllerTest extends ConfigControllerTest {
-	public function setUp() {
+	public function setUp(): void {
 		parent::setUp();
 		$this->controller = new ConfigApiController(
 			$this->appName,

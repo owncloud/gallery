@@ -34,7 +34,7 @@ class ConfigServiceTest extends \Test\GalleryUnitTest {
 	/**
 	 * Test set up
 	 */
-	public function setUp() {
+	public function setUp(): void {
 		parent::setUp();
 
 		$this->configParser = $this->getMockBuilder('\OCA\Gallery\Config\ConfigParser')

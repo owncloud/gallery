@@ -25,7 +25,7 @@ class ConfigValidatorTest extends \Test\GalleryUnitTest {
 	/**
 	 * Test set up
 	 */
-	protected function setUp() {
+	protected function setUp(): void {
 		parent::setUp();
 
 		$this->configValidator = new ConfigValidator();
