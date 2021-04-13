@@ -37,7 +37,7 @@ class PreviewTest extends \Test\GalleryUnitTest {
 	/**
 	 * Test set up
 	 */
-	public function setUp() {
+	public function setUp(): void {
 		parent::setUp();
 
 		$this->config = $this->getMockBuilder('\OCP\IConfig')
@@ -57,9 +57,10 @@ class PreviewTest extends \Test\GalleryUnitTest {
 	}
 
 	/**
-	 * @expectedException \Exception
 	 */
 	public function testGetPreviewFromCoreWithBrokenSystem() {
+		$this->expectException(\Exception::class);
+
 		$keepAspect = true; // Doesn't matter
 		$exception = new \Exception('Encryption ate your file');
 		$preview = $this->mockGetPreviewWithBrokenSetup($exception);

@@ -59,7 +59,7 @@ class EnvCheckMiddlewareTest extends \Test\GalleryUnitTest {
 	/**
 	 * Test set up
 	 */
-	protected function setUp() {
+	protected function setUp(): void {
 		parent::setUp();
 
 		$this->request = $this->getMockBuilder('\OCP\IRequest')
@@ -115,9 +115,10 @@ class EnvCheckMiddlewareTest extends \Test\GalleryUnitTest {
 	/**
 	 * @PublicPage
 	 *
-	 * @expectedException \OCA\Gallery\Middleware\CheckException
 	 */
 	public function testBeforeControllerWithPublicNotationAndInvalidToken() {
+		$this->expectException(\OCA\Gallery\Middleware\CheckException::class);
+
 		$this->reflector->reflect(__CLASS__, __FUNCTION__);
 
 		$token = 'aaaabbbbccccdddd';
@@ -171,9 +172,10 @@ class EnvCheckMiddlewareTest extends \Test\GalleryUnitTest {
 	/**
 	 * @PublicPage
 	 *
-	 * @expectedException \OCA\Gallery\Middleware\CheckException
 	 */
 	public function testBeforeControllerWithPublicNotationAndTokenAndInvalidPassword() {
+		$this->expectException(\OCA\Gallery\Middleware\CheckException::class);
+
 		$this->reflector->reflect(__CLASS__, __FUNCTION__);
 
 		$token = 'aaaabbbbccccdddd';
@@ -194,9 +196,10 @@ class EnvCheckMiddlewareTest extends \Test\GalleryUnitTest {
 	/**
 	 * @PublicPage
 	 *
-	 * @expectedException \OCA\Gallery\Middleware\CheckException
 	 */
 	public function testBeforeControllerWithPublicNotationAndNoToken() {
+		$this->expectException(\OCA\Gallery\Middleware\CheckException::class);
+
 		$this->reflector->reflect(__CLASS__, __FUNCTION__);
 
 		$token = null;
@@ -225,9 +228,10 @@ class EnvCheckMiddlewareTest extends \Test\GalleryUnitTest {
 	}
 
 	/**
-	 * @expectedException \OCA\Gallery\Middleware\CheckException
 	 */
 	public function testCheckSessionBeforePasswordEntry() {
+		$this->expectException(\OCA\Gallery\Middleware\CheckException::class);
+
 		$share = $this->mockShare('file', 'tester', 'image.png');
 
 		$this->mockSessionExists(false);
@@ -238,9 +242,10 @@ class EnvCheckMiddlewareTest extends \Test\GalleryUnitTest {
 	/**
 	 * Ids of shares do not match
 	 *
-	 * @expectedException \OCA\Gallery\Middleware\CheckException
 	 */
 	public function testCheckSessionWithWrongSession() {
+		$this->expectException(\OCA\Gallery\Middleware\CheckException::class);
+
 		$share = $this->mockShare('file', 'tester', 'image.png');
 
 		$this->mockSessionExists(true);
@@ -264,9 +269,10 @@ class EnvCheckMiddlewareTest extends \Test\GalleryUnitTest {
 	/**
 	 * Given password and token password don't match
 	 *
-	 * @expectedException \OCA\Gallery\Middleware\CheckException
 	 */
 	public function testCheckPasswordAfterInvalidPasswordEntry() {
+		$this->expectException(\OCA\Gallery\Middleware\CheckException::class);
+
 		$password = 'Je suis une pipe';
 		$wrongPassword = 'Empyrion Galactic Survival';
 		$share = $this->mockShare(
@@ -297,9 +303,10 @@ class EnvCheckMiddlewareTest extends \Test\GalleryUnitTest {
 	/**
 	 * Given password and token password don't match
 	 *
-	 * @expectedException \OCA\Gallery\Middleware\CheckException
 	 */
 	public function testAuthenticateAfterInvalidPasswordEntry() {
+		$this->expectException(\OCA\Gallery\Middleware\CheckException::class);
+
 		$password = 'Je suis une pipe';
 		$wrongPassword = 'Empyrion Galactic Survival';
 		$share = $this->mockShare(
@@ -313,9 +320,10 @@ class EnvCheckMiddlewareTest extends \Test\GalleryUnitTest {
 	}
 
 	/**
-	 * @expectedException \OCA\Gallery\Middleware\CheckException
 	 */
 	public function testAuthenticateWithWrongLinkType() {
+		$this->expectException(\OCA\Gallery\Middleware\CheckException::class);
+
 		$password = 'Je suis une pipe';
 		$share = $this->mockShare(
 			'file', 'tester', 'image.png', Share::SHARE_TYPE_LINK, 'tester',
@@ -342,9 +350,10 @@ class EnvCheckMiddlewareTest extends \Test\GalleryUnitTest {
 	/**
 	 * Given password and token password don't match
 	 *
-	 * @expectedException \OCA\Gallery\Middleware\CheckException
 	 */
 	public function testCheckAuthorisationAfterInvalidPasswordEntry() {
+		$this->expectException(\OCA\Gallery\Middleware\CheckException::class);
+
 		$password = 'Je suis une pipe';
 		$wrongPassword = 'Empyrion Galactic Survival';
 		$share = $this->mockShare(
@@ -383,9 +392,10 @@ class EnvCheckMiddlewareTest extends \Test\GalleryUnitTest {
 	}
 
 	/**
-	 * @expectedException \OCA\Gallery\Middleware\CheckException
 	 */
 	public function testCheckItemTypeWithItemTypeNotSet() {
+		$this->expectException(\OCA\Gallery\Middleware\CheckException::class);
+
 		$share = $this->mockShare(null, 'tester', 'folder1');
 
 		parent::invokePrivate($this->middleware, 'checkItemType', [$share]);
@@ -402,9 +412,10 @@ class EnvCheckMiddlewareTest extends \Test\GalleryUnitTest {
 	}
 
 	/**
-	 * @expectedException \OCA\Gallery\Middleware\CheckException
 	 */
 	public function testCheckShareIsValidWithMissingOwner() {
+		$this->expectException(\OCA\Gallery\Middleware\CheckException::class);
+
 		$share = $this->mockShare('file', null, 'image.png');
 
 		$token = 'aaaabbbbccccdddd';
@@ -413,9 +424,10 @@ class EnvCheckMiddlewareTest extends \Test\GalleryUnitTest {
 	}
 
 	/**
-	 * @expectedException \OCA\Gallery\Middleware\CheckException
 	 */
 	public function testCheckShareIsValidWithMissingSource() {
+		$this->expectException(\OCA\Gallery\Middleware\CheckException::class);
+
 		$share = $this->mockShare('file', 'tester', null);
 
 		$token = 'aaaabbbbccccdddd';
@@ -468,9 +480,10 @@ class EnvCheckMiddlewareTest extends \Test\GalleryUnitTest {
 	}
 
 	/**
-	 * @expectedException \OCA\Gallery\Environment\EnvironmentException
 	 */
 	public function testAfterExceptionWithNonCheckException() {
+		$this->expectException(\OCA\Gallery\Environment\EnvironmentException::class);
+
 		$message = 'fail';
 		$code = Http::STATUS_NOT_FOUND;
 		$exception = new EnvironmentException($message, $code);

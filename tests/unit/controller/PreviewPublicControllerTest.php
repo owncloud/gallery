@@ -20,7 +20,7 @@ require_once __DIR__ . '/PreviewControllerTest.php';
  * @package OCA\Gallery\Controller
  */
 class PreviewPublicControllerTest extends PreviewControllerTest {
-	public function setUp() {
+	public function setUp(): void {
 		parent::setUp();
 		$this->controller = new PreviewPublicController(
 			$this->appName,

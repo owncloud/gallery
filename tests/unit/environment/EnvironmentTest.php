@@ -43,7 +43,7 @@ class EnvironmentTest extends \Test\TestCase {
 	/**
 	 * Test set up
 	 */
-	public function setUp() {
+	public function setUp(): void {
 		parent::setUp();
 
 		$app = new Application();
@@ -60,9 +60,10 @@ class EnvironmentTest extends \Test\TestCase {
 	}
 
 	/**
-	 * @expectedException \OCA\Gallery\Environment\NotFoundEnvException
 	 */
 	public function testGetNodeFromUserFolderWithNullUser() {
+		$this->expectException(\OCA\Gallery\Environment\NotFoundEnvException::class);
+
 		$userId = 'user';
 		$userFolder = null;
 		$this->mockSetEnvironment($userId, $userFolder);
@@ -70,9 +71,10 @@ class EnvironmentTest extends \Test\TestCase {
 	}
 
 	/**
-	 * @expectedException \OCA\Gallery\Environment\NotFoundEnvException
 	 */
 	public function testGetDisplayName() {
+		$this->expectException(\OCA\Gallery\Environment\NotFoundEnvException::class);
+
 		$userId = null;
 		$userFolder = null;
 		$this->mockSetEnvironment($userId, $userFolder);
