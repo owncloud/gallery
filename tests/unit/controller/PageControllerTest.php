@@ -105,7 +105,7 @@ class PageControllerTest extends \Test\TestCase {
 	public function testCspForFontsContainsData() {
 		$response = $this->controller->index();
 
-		$this->assertContains(
+		$this->assertStringContainsString(
 			"font-src 'self' data:", $response->getHeaders()['Content-Security-Policy']
 		);
 	}
