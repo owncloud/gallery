@@ -97,7 +97,7 @@ class PageControllerTest extends \Test\TestCase {
 	public function testCspForImgContainsData() {
 		$response = $this->controller->index();
 
-		$this->assertContains(
+		$this->assertStringContainsString(
 			"img-src 'self' data:", $response->getHeaders()['Content-Security-Policy']
 		);
 	}
@@ -180,7 +180,7 @@ class PageControllerTest extends \Test\TestCase {
 		$this->assertEquals('index', $response->getTemplateName());
 		$this->assertTrue($response instanceof TemplateResponse);
 		$this->assertEquals($code, $response->getStatus());
-		$this->assertContains($message, $response->getParams()['message']);
+		$this->assertStringContainsString($message, $response->getParams()['message']);
 	}
 
 	private function mockGetSharedNode($nodeType, $nodeId) {
