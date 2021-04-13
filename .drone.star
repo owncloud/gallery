@@ -88,7 +88,6 @@ def stagePipelines(ctx):
 
 def afterCoveragePipelines(ctx):
 	return [
-		sonarAnalysis(ctx)
 	]
 
 def afterPipelines(ctx):
