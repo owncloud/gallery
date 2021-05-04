@@ -31,6 +31,7 @@ use OCA\Gallery\Service\ConfigService;
 use OCA\Gallery\Service\SearchMediaService;
 use OCA\Gallery\Service\DownloadService;
 use OCA\Gallery\Service\NotFoundServiceException;
+use OCP\Share\IManager;
 
 /**
  * Class FilesControllerTest
@@ -60,6 +61,8 @@ class FilesControllerTest extends \Test\GalleryUnitTest {
 	protected $downloadService;
 	/** @var ILogger */
 	protected $logger;
+	/** @var IManager */
+	protected $shareManager;
 
 	/**
 	 * Test set up
@@ -94,6 +97,10 @@ class FilesControllerTest extends \Test\GalleryUnitTest {
 		$this->logger = $this->getMockBuilder('\OCP\ILogger')
 							 ->disableOriginalConstructor()
 							 ->getMock();
+		$this->shareManager = $this->getMockBuilder('\OCP\Share\IManager')
+			->disableOriginalConstructor()
+			->getMock();
+
 		$this->controller = new FilesController(
 			$this->appName,
 			$this->request,
@@ -102,7 +109,8 @@ class FilesControllerTest extends \Test\GalleryUnitTest {
 			$this->configService,
 			$this->searchMediaService,
 			$this->downloadService,
-			$this->logger
+			$this->logger,
+			$this->shareManager
 		);
 	}
 
