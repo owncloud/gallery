@@ -156,7 +156,8 @@ class Application extends App {
 				$c->query('ConfigService'),
 				$c->query('SearchMediaService'),
 				$c->query('DownloadService'),
-				$c->query('Logger')
+				$c->query('Logger'),
+				$c->query('OCP\Share\IManager')
 			);
 			}
 		);

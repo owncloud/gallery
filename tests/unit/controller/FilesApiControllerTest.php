@@ -35,7 +35,8 @@ class FilesApiControllerTest extends FilesControllerTest {
 			$this->configService,
 			$this->searchMediaService,
 			$this->downloadService,
-			$this->logger
+			$this->logger,
+			$this->shareManager
 		);
 	}
 
