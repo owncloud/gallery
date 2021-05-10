@@ -106,7 +106,7 @@ class FilesController extends Controller {
 			$share = $this->shareManager->getShareByToken($token);
 
 			// Prevent user to see directory content if share is a file drop
-			if ($share->getPermissions() === \OCP\Constants::PERMISSION_CREATE) {
+			if (($share->getPermissions() & \OCP\Constants::PERMISSION_READ) !== \OCP\Constants::PERMISSION_READ) {
 				return $this->formatResults([], [], [], "", "");
 			}
 		}
