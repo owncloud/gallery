@@ -31,6 +31,8 @@ use OCA\Gallery\Service\ConfigService;
 use OCA\Gallery\Service\SearchMediaService;
 use OCA\Gallery\Service\DownloadService;
 use OCA\Gallery\Service\NotFoundServiceException;
+use OCP\Share\IManager;
+use OCP\Share\IShare;
 
 /**
  * Class FilesControllerTest
@@ -60,6 +62,8 @@ class FilesControllerTest extends \Test\GalleryUnitTest {
 	protected $downloadService;
 	/** @var ILogger */
 	protected $logger;
+	/** @var IManager */
+	protected $shareManager;
 
 	/**
 	 * Test set up
@@ -94,6 +98,10 @@ class FilesControllerTest extends \Test\GalleryUnitTest {
 		$this->logger = $this->getMockBuilder('\OCP\ILogger')
 							 ->disableOriginalConstructor()
 							 ->getMock();
+		$this->shareManager = $this->getMockBuilder('\OCP\Share\IManager')
+			->disableOriginalConstructor()
+			->getMock();
+
 		$this->controller = new FilesController(
 			$this->appName,
 			$this->request,
@@ -102,7 +110,8 @@ class FilesControllerTest extends \Test\GalleryUnitTest {
 			$this->configService,
 			$this->searchMediaService,
 			$this->downloadService,
-			$this->logger
+			$this->logger,
+			$this->shareManager
 		);
 	}
 
@@ -308,6 +317,38 @@ class FilesControllerTest extends \Test\GalleryUnitTest {
 		$response = $this->getReducedPath($file['path'], $folderPathFromRoot);
 
 		$this->assertEquals($fixedPath, $response);
+	}
+
+	public function testGetFilesWithFileDropShare() {
+		$location = 'folder';
+		$etag = 1111222233334444;
+		$features = '';
+		$mediatypes = 'image/png';
+
+		$this->request->expects($this->once())
+			->method('getParam')
+			->willReturn('param');
+
+		$shareMock = $this->createMock(IShare::class);
+		$shareMock->expects($this->once())
+			->method('getPermissions')
+			->willReturn(\OCP\Constants::PERMISSION_CREATE);
+
+		$this->shareManager->expects($this->once())
+			->method('getShareByToken')
+			->willReturn($shareMock);
+
+		$response = $this->controller->getList($location, $features, $etag, $mediatypes);
+
+		$expectedResponse = [
+			'files'       => [],
+			'albums'      => [],
+			'albumconfig' => [],
+			'albumpath'   => "",
+			'updated'     => ""
+		];
+
+		$this->assertEquals($expectedResponse, $response);
 	}
 
 	/**
