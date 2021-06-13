@@ -94,6 +94,7 @@ appstore:
 	service \
 	utility \
 	templates \
+	vendor \
 	js \
 	README.md \
 	CHANGELOG.md \
