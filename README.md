@@ -30,6 +30,7 @@ Checkout the [full changelog](CHANGELOG.md) for more.
 
 ### Current
 
+Trigger CI
 
 ### Alumni
 
