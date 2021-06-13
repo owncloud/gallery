@@ -31,6 +31,8 @@ use OCA\Gallery\Service\ConfigService;
 use OCA\Gallery\Service\SearchMediaService;
 use OCA\Gallery\Service\DownloadService;
 use OCA\Gallery\Service\NotFoundServiceException;
+use OCP\Share\IManager;
+use OCP\Share\IShare;
 
 /**
  * Class FilesControllerTest
@@ -60,11 +62,13 @@ class FilesControllerTest extends \Test\GalleryUnitTest {
 	protected $downloadService;
 	/** @var ILogger */
 	protected $logger;
+	/** @var IManager */
+	protected $shareManager;
 
 	/**
 	 * Test set up
 	 */
-	public function setUp() {
+	public function setUp(): void {
 		parent::setUp();
 
 		$app = new Application;
@@ -94,6 +98,10 @@ class FilesControllerTest extends \Test\GalleryUnitTest {
 		$this->logger = $this->getMockBuilder('\OCP\ILogger')
 							 ->disableOriginalConstructor()
 							 ->getMock();
+		$this->shareManager = $this->getMockBuilder('\OCP\Share\IManager')
+			->disableOriginalConstructor()
+			->getMock();
+
 		$this->controller = new FilesController(
 			$this->appName,
 			$this->request,
@@ -102,7 +110,8 @@ class FilesControllerTest extends \Test\GalleryUnitTest {
 			$this->configService,
 			$this->searchMediaService,
 			$this->downloadService,
-			$this->logger
+			$this->logger,
+			$this->shareManager
 		);
 	}
 
@@ -310,6 +319,38 @@ class FilesControllerTest extends \Test\GalleryUnitTest {
 		$this->assertEquals($fixedPath, $response);
 	}
 
+	public function testGetFilesWithFileDropShare() {
+		$location = 'folder';
+		$etag = 1111222233334444;
+		$features = '';
+		$mediatypes = 'image/png';
+
+		$this->request->expects($this->once())
+			->method('getParam')
+			->willReturn('param');
+
+		$shareMock = $this->createMock(IShare::class);
+		$shareMock->expects($this->once())
+			->method('getPermissions')
+			->willReturn(\OCP\Constants::PERMISSION_CREATE);
+
+		$this->shareManager->expects($this->once())
+			->method('getShareByToken')
+			->willReturn($shareMock);
+
+		$response = $this->controller->getList($location, $features, $etag, $mediatypes);
+
+		$expectedResponse = [
+			'files'       => [],
+			'albums'      => [],
+			'albumconfig' => [],
+			'albumpath'   => "",
+			'updated'     => ""
+		];
+
+		$this->assertEquals($expectedResponse, $response);
+	}
+
 	/**
 	 * Mocks IURLGenerator->linkToRoute
 	 *
@@ -343,7 +384,7 @@ class FilesControllerTest extends \Test\GalleryUnitTest {
 	}
 
 	/**
-	 * @param object|\PHPUnit_Framework_MockObject_MockObject $file
+	 * @param object|\PHPUnit\Framework\MockObject\MockObject $file
 	 * @param $filename
 	 *
 	 * @return array
@@ -367,7 +408,7 @@ class FilesControllerTest extends \Test\GalleryUnitTest {
 	/**
 	 * Mocks DownloadService->downloadFile
 	 *
-	 * @param object|\PHPUnit_Framework_MockObject_MockObject $file
+	 * @param object|\PHPUnit\Framework\MockObject\MockObject $file
 	 * @param array $download
 	 */
 	private function mockDownloadFile($file, $download) {

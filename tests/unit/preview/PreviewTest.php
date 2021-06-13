@@ -37,7 +37,7 @@ class PreviewTest extends \Test\GalleryUnitTest {
 	/**
 	 * Test set up
 	 */
-	public function setUp() {
+	public function setUp(): void {
 		parent::setUp();
 
 		$this->config = $this->getMockBuilder('\OCP\IConfig')
@@ -57,9 +57,10 @@ class PreviewTest extends \Test\GalleryUnitTest {
 	}
 
 	/**
-	 * @expectedException \Exception
 	 */
 	public function testGetPreviewFromCoreWithBrokenSystem() {
+		$this->expectException(\Exception::class);
+
 		$keepAspect = true; // Doesn't matter
 		$exception = new \Exception('Encryption ate your file');
 		$preview = $this->mockGetPreviewWithBrokenSetup($exception);
@@ -73,7 +74,7 @@ class PreviewTest extends \Test\GalleryUnitTest {
 	 * @param $width
 	 * @param $height
 	 *
-	 * @return object|\PHPUnit_Framework_MockObject_MockObject
+	 * @return object|\PHPUnit\Framework\MockObject\MockObject
 	 */
 	private function mockGetPreview($fileId, $width, $height) {
 		$image = new \OC_Image(\file_get_contents(\OC::$SERVERROOT . '/tests/data/testimage.jpg'));

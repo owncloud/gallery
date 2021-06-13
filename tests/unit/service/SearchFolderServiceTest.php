@@ -25,7 +25,7 @@ class SearchFolderServiceTest extends \Test\GalleryUnitTest {
 	/**
 	 * Test set up
 	 */
-	public function setUp() {
+	public function setUp(): void {
 		parent::setUp();
 
 		$this->service = new SearchFolderService(
@@ -53,9 +53,10 @@ class SearchFolderServiceTest extends \Test\GalleryUnitTest {
 	}
 
 	/**
-	 * @expectedException \OCA\Gallery\Service\NotFoundServiceException
 	 */
 	public function testSendFolderWithNullFolder() {
+		$this->expectException(\OCA\Gallery\Service\NotFoundServiceException::class);
+
 		$path = '';
 		$node = null;
 
@@ -63,9 +64,10 @@ class SearchFolderServiceTest extends \Test\GalleryUnitTest {
 	}
 
 	/**
-	 * @expectedException \OCA\Gallery\Service\ForbiddenServiceException
 	 */
 	public function testSendFolderWithNonAvailableFolder() {
+		$this->expectException(\OCA\Gallery\Service\ForbiddenServiceException::class);
+
 		$path = '';
 		$nodeId = 94875;
 		$isReadable = false;

@@ -54,7 +54,7 @@ class SharingCheckMiddlewareTest extends \Test\TestCase {
 	/**
 	 * Test set up
 	 */
-	protected function setUp() {
+	protected function setUp(): void {
 		parent::setUp();
 
 		$this->request = $this->getMockBuilder('\OCP\IRequest')
@@ -105,7 +105,9 @@ class SharingCheckMiddlewareTest extends \Test\TestCase {
 	 */
 	public function testBeforeControllerWithGuestNotation() {
 		$this->reflector->reflect(__CLASS__, __FUNCTION__);
-		$this->middleware->beforeController(__CLASS__, __FUNCTION__);
+		$this->assertNull(
+			$this->middleware->beforeController(__CLASS__, __FUNCTION__)
+		);
 	}
 
 	/**
@@ -135,9 +137,10 @@ class SharingCheckMiddlewareTest extends \Test\TestCase {
 	 *
 	 * Sharing needs to be enabled on public pages
 	 *
-	 * @expectedException \OCA\Gallery\Middleware\CheckException
 	 */
 	public function testBeforeControllerWithSharingDisabled() {
+		$this->expectException(\OCA\Gallery\Middleware\CheckException::class);
+
 		$this->mockSharingConfigTo('no');
 		$this->reflector->reflect(__CLASS__, __FUNCTION__);
 		$this->middleware->beforeController(__CLASS__, __FUNCTION__);

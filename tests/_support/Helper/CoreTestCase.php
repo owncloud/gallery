@@ -27,14 +27,14 @@ class CoreTestCase extends \Test\TestCase {
 	/**
 	 * PHPUnit setUp
 	 */
-	public function setUp() {
+	public function setUp(): void {
 		parent::setUp();
 	}
 
 	/**
 	 * PHPUnit tearDown
 	 */
-	public function tearDown() {
+	public function tearDown(): void {
 		parent::logout();
 
 		parent::tearDown();

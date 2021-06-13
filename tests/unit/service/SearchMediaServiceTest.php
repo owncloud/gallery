@@ -27,7 +27,7 @@ class SearchMediaServiceTest extends \Test\GalleryUnitTest {
 	/**
 	 * Test set up
 	 */
-	public function setUp() {
+	public function setUp(): void {
 		parent::setUp();
 
 		$this->service = new SearchMediaService(
@@ -500,9 +500,10 @@ class SearchMediaServiceTest extends \Test\GalleryUnitTest {
 	}
 
 	/**
-	 * @expectedException \OCA\Gallery\Service\NotFoundServiceException
 	 */
 	public function testGetFileWithBadMediaType() {
+		$this->expectException(\OCA\Gallery\Service\NotFoundServiceException::class);
+
 		$fileId = 99999;
 		$storageId = 'home::user';
 		$file = $this->mockFile($fileId, $storageId);
@@ -513,9 +514,10 @@ class SearchMediaServiceTest extends \Test\GalleryUnitTest {
 	}
 
 	/**
-	 * @expectedException \OCA\Gallery\Service\NotFoundServiceException
 	 */
 	public function testGetFileWithFolderId() {
+		$this->expectException(\OCA\Gallery\Service\NotFoundServiceException::class);
+
 		$fileId = 99999;
 		$storageId = 'home::user';
 		$file = $this->mockJpgFile($fileId, $storageId);
@@ -530,7 +532,7 @@ class SearchMediaServiceTest extends \Test\GalleryUnitTest {
 	 * @param int $uid
 	 * @param string $displayName
 	 *
-	 * @return mixed|object|\PHPUnit_Framework_MockObject_MockObject
+	 * @return mixed|object|\PHPUnit\Framework\MockObject\MockObject
 	 */
 	private function mockOwner($uid, $displayName) {
 		$owner = $this->getMockBuilder('OCP\IUser')

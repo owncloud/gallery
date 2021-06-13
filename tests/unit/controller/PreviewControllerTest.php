@@ -64,7 +64,7 @@ class PreviewControllerTest extends \Test\GalleryUnitTest {
 	/**
 	 * Test set up
 	 */
-	public function setUp() {
+	public function setUp(): void {
 		parent::setUp();
 
 		$app = new Application;
@@ -110,9 +110,10 @@ class PreviewControllerTest extends \Test\GalleryUnitTest {
 	}
 
 	/**
-	 * @expectedException \Exception
 	 */
 	public function testGetThumbnailsWillDie() {
+		$this->expectException(\Exception::class);
+
 		$square = true;
 		$scale = 2.5;
 		$thumbnailId = 1234;
@@ -364,7 +365,7 @@ class PreviewControllerTest extends \Test\GalleryUnitTest {
 	 * @param int $fileId
 	 * @param bool $animatedPreview
 	 *
-	 * @return object|\PHPUnit_Framework_MockObject_MockObject
+	 * @return object|\PHPUnit\Framework\MockObject\MockObject
 	 */
 	private function mockGetDataWithBrokenSetup($fileId, $animatedPreview) {
 		$file = $this->mockJpgFile($fileId);
@@ -376,7 +377,7 @@ class PreviewControllerTest extends \Test\GalleryUnitTest {
 	}
 
 	/**
-	 * @param object|\PHPUnit_Framework_MockObject_MockObject $file
+	 * @param object|\PHPUnit\Framework\MockObject\MockObject $file
 	 * @param bool $animatedPreview
 	 * @param bool $response
 	 */
@@ -391,7 +392,7 @@ class PreviewControllerTest extends \Test\GalleryUnitTest {
 	}
 
 	/**
-	 * @param object|\PHPUnit_Framework_MockObject_MockObject $file
+	 * @param object|\PHPUnit\Framework\MockObject\MockObject $file
 	 * @param bool $animatedPreview
 	 */
 	private function mockIsPreviewRequiredThrowsException($file, $animatedPreview) {
@@ -423,7 +424,7 @@ class PreviewControllerTest extends \Test\GalleryUnitTest {
 	}
 
 	/**
-	 * @param object|\PHPUnit_Framework_MockObject_MockObject $file
+	 * @param object|\PHPUnit\Framework\MockObject\MockObject $file
 	 *
 	 * @return array<string,mixed>
 	 */

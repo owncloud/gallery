@@ -26,6 +26,7 @@ use OCA\Gallery\Service\ConfigService;
 use OCA\Gallery\Service\SearchMediaService;
 use OCA\Gallery\Service\DownloadService;
 use OCA\Gallery\Service\ServiceException;
+use OCP\Share\IManager;
 
 /**
  * Class FilesController
@@ -39,6 +40,9 @@ class FilesController extends Controller {
 	/** @var IURLGenerator */
 	private $urlGenerator;
 
+	/** @var IManager */
+	private $shareManager;
+
 	/**
 	 * Constructor
 	 *
@@ -50,6 +54,7 @@ class FilesController extends Controller {
 	 * @param SearchMediaService $searchMediaService
 	 * @param DownloadService $downloadService
 	 * @param ILogger $logger
+	 * @param IManager $shareManager
 	 */
 	public function __construct(
 		$appName,
@@ -59,7 +64,8 @@ class FilesController extends Controller {
 		ConfigService $configService,
 		SearchMediaService $searchMediaService,
 		DownloadService $downloadService,
-		ILogger $logger
+		ILogger $logger,
+		IManager $shareManager
 	) {
 		parent::__construct($appName, $request);
 
@@ -69,6 +75,7 @@ class FilesController extends Controller {
 		$this->searchMediaService = $searchMediaService;
 		$this->downloadService = $downloadService;
 		$this->logger = $logger;
+		$this->shareManager = $shareManager;
 	}
 
 	/**
@@ -93,6 +100,17 @@ class FilesController extends Controller {
 	public function getList($location, $features, $etag, $mediatypes) {
 		$featuresArray = \explode(';', $features);
 		$mediaTypesArray = \explode(';', $mediatypes);
+
+		$token = $this->request->getParam('token');
+		if ($token) {
+			$share = $this->shareManager->getShareByToken($token);
+
+			// Prevent user to see directory content if share is a file drop
+			if (($share->getPermissions() & \OCP\Constants::PERMISSION_READ) !== \OCP\Constants::PERMISSION_READ) {
+				return $this->formatResults([], [], [], "", "");
+			}
+		}
+
 		try {
 			return $this->getFilesAndAlbums($location, $featuresArray, $etag, $mediaTypesArray);
 		} catch (\Exception $exception) {

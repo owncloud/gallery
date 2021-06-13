@@ -34,7 +34,7 @@ class ConfigServiceTest extends \Test\GalleryUnitTest {
 	/**
 	 * Test set up
 	 */
-	public function setUp() {
+	public function setUp(): void {
 		parent::setUp();
 
 		$this->configParser = $this->getMockBuilder('\OCA\Gallery\Config\ConfigParser')
@@ -172,9 +172,10 @@ class ConfigServiceTest extends \Test\GalleryUnitTest {
 	 *
 	 * @param $mimeType
 	 *
-	 * @expectedException \OCA\Gallery\Service\ForbiddenServiceException
 	 */
 	public function testValidateMimeTypeWithForbiddenMime($mimeType) {
+		$this->expectException(\OCA\Gallery\Service\ForbiddenServiceException::class);
+
 		$supportedMimeTypes = [
 			'image/png',
 			'image/jpeg',
