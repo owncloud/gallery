@@ -43,17 +43,13 @@ all: $(composer_dev_deps)
 
 # Removes the appstore build
 .PHONY: clean
-clean:
+clean: clean-deps
 	rm -rf ./build/artifacts
 
-#
-# ownCloud core PHP dependencies
-#
-$(composer_deps): $(COMPOSER_BIN) composer.json composer.lock
-	php $(COMPOSER_BIN) install --no-dev
-
-$(composer_dev_deps): $(COMPOSER_BIN) composer.json composer.lock
-	php $(COMPOSER_BIN) install --dev
+.PHONY: clean-deps
+clean-deps:
+	rm -Rf vendor
+	rm -Rf vendor-bin/**/vendor vendor-bin/**/composer.lock
 
 # Builds the source and appstore package
 .PHONY: dist
