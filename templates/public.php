@@ -79,8 +79,8 @@ style(
 						  data-owner="<?php p($_['displayName']) ?>"
 						  data-name="<?php p($_['filename']) ?>">
 									<button id="save-button"><?php p(
-											$l->t('Add to your ownCloud')
-										) ?></button>
+						$l->t('Add to your ownCloud')
+					) ?></button>
 									<form class="save-form hidden" action="#">
 										<input type="text" id="remote_address"
 											   placeholder="example.com/owncloud"/>
@@ -112,21 +112,21 @@ style(
 					<div id="sort-date-button" class="button sorting right-switch-button">
 						<div class="flipper">
 							<img class="svg asc front" src="<?php print_unescaped(
-								image_path($_['appName'], 'dateasc.svg')
-							); ?>" alt="<?php p($l->t('Sort by date')); ?>"/>
+						image_path($_['appName'], 'dateasc.svg')
+					); ?>" alt="<?php p($l->t('Sort by date')); ?>"/>
 							<img class="svg des back" src="<?php print_unescaped(
-								image_path($_['appName'], 'datedes.svg')
-							); ?>" alt="<?php p($l->t('Sort by date')); ?>"/>
+						image_path($_['appName'], 'datedes.svg')
+					); ?>" alt="<?php p($l->t('Sort by date')); ?>"/>
 						</div>
 					</div>
 					<div id="sort-name-button" class="button sorting left-switch-button">
 						<div class="flipper">
 							<img class="svg asc front" src="<?php print_unescaped(
-								image_path($_['appName'], 'nameasc.svg')
-							); ?>" alt="<?php p($l->t('Sort by name')); ?>"/>
+						image_path($_['appName'], 'nameasc.svg')
+					); ?>" alt="<?php p($l->t('Sort by name')); ?>"/>
 							<img class="svg des back" src="<?php print_unescaped(
-								image_path($_['appName'], 'namedes.svg')
-							); ?>" alt="<?php p($l->t('Sort by name')); ?>"/>
+						image_path($_['appName'], 'namedes.svg')
+					); ?>" alt="<?php p($l->t('Sort by name')); ?>"/>
 						</div>
 					</div>
 				</div>
@@ -134,8 +134,8 @@ style(
 					<div id="album-info-button" class="button">
 						<span class="ribbon black"></span>
 						<img class="svg" src="<?php print_unescaped(
-							image_path('core', 'actions/info.svg')
-						); ?>" alt="<?php p($l->t('Album information')); ?>"/>
+						image_path('core', 'actions/info.svg')
+					); ?>" alt="<?php p($l->t('Album information')); ?>"/>
 					</div>
 					<div class="album-info-container">
 						<div class="album-info-loader"></div>
@@ -145,8 +145,8 @@ style(
 					<div id="filelist-button" class="button view-switcher gallery">
 						<div id="button-loading"></div>
 						<img class="svg" src="<?php print_unescaped(
-							image_path('core', 'actions/toggle-filelist.svg')
-						); ?>" alt="<?php p($l->t('Picture view')); ?>"/>
+						image_path('core', 'actions/toggle-filelist.svg')
+					); ?>" alt="<?php p($l->t('Picture view')); ?>"/>
 					</div>
 				</span>
 			</div>

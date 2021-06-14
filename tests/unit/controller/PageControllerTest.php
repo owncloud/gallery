@@ -81,7 +81,9 @@ class PageControllerTest extends \Test\TestCase {
 			'mailPublicNotificationEnabled' => $mailPublicNotificationEnabled
 		];
 		$this->mockGetTestAppValue(
-			$publicUploadEnabled, $mailNotificationEnabled, $mailPublicNotificationEnabled
+			$publicUploadEnabled,
+			$mailNotificationEnabled,
+			$mailPublicNotificationEnabled
 		);
 
 		$template = new TemplateResponse($this->appName, 'index', $params);
@@ -98,7 +100,8 @@ class PageControllerTest extends \Test\TestCase {
 		$response = $this->controller->index();
 
 		$this->assertStringContainsString(
-			"img-src 'self' data:", $response->getHeaders()['Content-Security-Policy']
+			"img-src 'self' data:",
+			$response->getHeaders()['Content-Security-Policy']
 		);
 	}
 
@@ -106,7 +109,8 @@ class PageControllerTest extends \Test\TestCase {
 		$response = $this->controller->index();
 
 		$this->assertStringContainsString(
-			"font-src 'self' data:", $response->getHeaders()['Content-Security-Policy']
+			"font-src 'self' data:",
+			$response->getHeaders()['Content-Security-Policy']
 		);
 	}
 
@@ -230,8 +234,8 @@ class PageControllerTest extends \Test\TestCase {
 		$this->urlGenerator->expects($this->once())
 						   ->method('linkToRoute')
 						   ->with(
-							   $this->appName . '.files_public.download',
-							   [
+						   	$this->appName . '.files_public.download',
+						   	[
 								   'token'    => $token,
 								   'fileId'   => $fileId,
 								   'filename' => $filename
@@ -241,7 +245,9 @@ class PageControllerTest extends \Test\TestCase {
 	}
 
 	private function mockGetTestAppValue(
-		$publicUploadEnabled, $mailNotificationEnabled, $mailPublicNotificationEnabled
+		$publicUploadEnabled,
+		$mailNotificationEnabled,
+		$mailPublicNotificationEnabled
 	) {
 		$map = [
 			['core', 'shareapi_allow_public_upload', 'yes', $publicUploadEnabled],

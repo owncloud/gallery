@@ -88,7 +88,8 @@ class EventSource implements \OCP\IEventSource {
 	 */
 	public function close() {
 		$this->send(
-			'__internal__', 'close'
+			'__internal__',
+			'close'
 		);
 	}
 

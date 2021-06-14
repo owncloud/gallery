@@ -71,8 +71,14 @@ class PreviewApiControllerTest extends PreviewControllerTest {
 
 		/** @type File $file */
 		$preview = $this->mockGetData(
-			$fileId, $file, $width, $height, $keepAspect = true, $animatedPreview = true,
-			$base64Encode = false, $previewRequired = false
+			$fileId,
+			$file,
+			$width,
+			$height,
+			$keepAspect = true,
+			$animatedPreview = true,
+			$base64Encode = false,
+			$previewRequired = false
 		);
 		$preview['name'] = $file->getName();
 
@@ -82,7 +88,8 @@ class PreviewApiControllerTest extends PreviewControllerTest {
 		$this->assertEquals(Http::STATUS_OK, $response->getStatus());
 
 		$this->assertEquals(
-			$expectedMimeType . '; charset=utf-8', $response->getHeaders()['Content-type']
+			$expectedMimeType . '; charset=utf-8',
+			$response->getHeaders()['Content-type']
 		);
 	}
 }

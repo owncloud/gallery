@@ -73,7 +73,9 @@ trait Files {
 		$albumConfig = $this->configService->getConfig($folderNode, $features);
 		if ($folderNode->getEtag() !== $etag) {
 			list($files, $albums) = $this->searchMediaService->getMediaFiles(
-				$folderNode, $mediatypes, $features
+				$folderNode,
+				$mediatypes,
+				$features
 			);
 		} else {
 			$updated = false;

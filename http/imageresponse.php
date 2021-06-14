@@ -39,8 +39,9 @@ class ImageResponse extends Response {
 
 		$this->setStatus($statusCode);
 		$this->addHeader('Content-type', $image['mimetype'] . '; charset=utf-8');
-		$this->addHeader('Content-Disposition',
-						 'attachment; filename*=UTF-8\'\'' . \rawurlencode($name) . '; filename="'
+		$this->addHeader(
+			'Content-Disposition',
+			'attachment; filename*=UTF-8\'\'' . \rawurlencode($name) . '; filename="'
 						 . \rawurlencode($name) . '"'
 		);
 	}

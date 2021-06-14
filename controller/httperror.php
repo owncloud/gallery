@@ -43,9 +43,11 @@ trait HttpError {
 	 *
 	 * @return JSONResponse
 	 */
-	public function jsonError(Exception $exception,
-							  IRequest $request,
-							  ILogger $logger) {
+	public function jsonError(
+		Exception $exception,
+		IRequest $request,
+		ILogger $logger
+	) {
 		$code = $this->getHttpStatusCode($exception);
 
 		// If the exception is not of type ForbiddenServiceException only show a
@@ -77,7 +79,8 @@ trait HttpError {
 		$message = $exception->getMessage();
 		$code = $this->getHttpStatusCode($exception);
 		$url = $urlGenerator->linkToRoute(
-			$appName . '.page.error_page', ['code' => $code]
+			$appName . '.page.error_page',
+			['code' => $code]
 		);
 
 		$response = new RedirectResponse($url);

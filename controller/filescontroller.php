@@ -134,7 +134,8 @@ class FilesController extends Controller {
 		} catch (ServiceException $exception) {
 			$code = $this->getHttpStatusCode($exception);
 			$url = $this->urlGenerator->linkToRoute(
-				$this->appName . '.page.error_page', ['code' => $code]
+				$this->appName . '.page.error_page',
+				['code' => $code]
 			);
 
 			$response = new RedirectResponse($url);

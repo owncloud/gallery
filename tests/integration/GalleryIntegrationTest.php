@@ -143,13 +143,15 @@ abstract class GalleryIntegrationTest extends \Codeception\TestCase\Test {
 	 */
 	private function instantiateEnvironment() {
 		$this->container->registerService(
-			'UserId', function ($c) {
+			'UserId',
+			function ($c) {
 				return $this->userId;
 			}
 		);
 
 		$this->container->registerService(
-			'userFolder', function ($c) {
+			'userFolder',
+			function ($c) {
 				return $this->userFolder;
 			}
 		);

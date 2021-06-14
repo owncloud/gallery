@@ -53,89 +53,149 @@ class SearchMediaServiceTest extends \Test\GalleryUnitTest {
 		$queryResult = false;
 
 		$folder1 = $this->mockFolder(
-			'home::user', 545454,
+			'home::user',
+			545454,
 			[
 				$this->mockJpgFile(11111),
 				$this->mockJpgFile(22222),
 				$this->mockJpgFile(33333)
 			],
-			$isReadable, $mounted, $mount, $query, $queryResult
+			$isReadable,
+			$mounted,
+			$mount,
+			$query,
+			$queryResult
 		);
 		$folder2 = $this->mockFolder(
-			'home::user', 767676,
+			'home::user',
+			767676,
 			[
 				$this->mockJpgFile(44444),
 				$this->mockJpgFile(55555),
 				$this->mockJpgFile(66666)
 			],
-			$isReadable, $mounted, $mount, $query, $queryResult
+			$isReadable,
+			$mounted,
+			$mount,
+			$query,
+			$queryResult
 		);
 		$folder33 = $this->mockFolder(
-			'home::user', 545454,
+			'home::user',
+			545454,
 			[
 				$this->mockJpgFile(11111),
 				$this->mockJpgFile(22222),
 				$this->mockJpgFile(33333)
 			],
-			$isReadable, $mounted, $mount, $query, $queryResult
+			$isReadable,
+			$mounted,
+			$mount,
+			$query,
+			$queryResult
 		);
 		$folder3 = $this->mockFolder(
-			'home::user', 101010, [$folder33], $isReadable, $mounted, $mount, $query, $queryResult
+			'home::user',
+			101010,
+			[$folder33],
+			$isReadable,
+			$mounted,
+			$mount,
+			$query,
+			$queryResult
 		);
 		$folder33b = $this->mockFolder(
-			'home::user', 545454,
+			'home::user',
+			545454,
 			[
 				$this->mockJpgFile(11111),
 				$this->mockJpgFile(22222),
 				$this->mockJpgFile(33333)
 			],
-			$isReadable, $mounted, $mount, $query, $queryResult
+			$isReadable,
+			$mounted,
+			$mount,
+			$query,
+			$queryResult
 		);
 		$folder3b = $this->mockFolder(
-			'home::user', 101010, [$folder33b], $isReadable, $mounted, $mount, $query, $queryResult
+			'home::user',
+			101010,
+			[$folder33b],
+			$isReadable,
+			$mounted,
+			$mount,
+			$query,
+			$queryResult
 		);
 		$folder44 = $this->mockFolder(
-			'home::user', 545454,
+			'home::user',
+			545454,
 			[
 				$this->mockJpgFile(11111),
 				$this->mockJpgFile(22222),
 				$this->mockJpgFile(33333)
 			],
-			$isReadable, $mounted, $mount, $query, $queryResult
+			$isReadable,
+			$mounted,
+			$mount,
+			$query,
+			$queryResult
 		);
 		$folder45 = $this->mockFolder(
-			'home::user', 767676,
+			'home::user',
+			767676,
 			[
 				$this->mockJpgFile(44444),
 				$this->mockJpgFile(55555),
 				$this->mockJpgFile(66666)
 			],
-			$isReadable, $mounted, $mount, $query, $queryResult
+			$isReadable,
+			$mounted,
+			$mount,
+			$query,
+			$queryResult
 		);
 		$folder4 = $this->mockFolder(
-			'home::user', 101010,
+			'home::user',
+			101010,
 			[
 				$folder44,
 				$folder45
 			],
-			$isReadable, $mounted, $mount, $query,
+			$isReadable,
+			$mounted,
+			$mount,
+			$query,
 			$queryResult
 		);
 		$folder5 = $this->mockFolder(
-			'home::user', 987234,
+			'home::user',
+			987234,
 			[
 				$this->mockJpgFile(998877),
 				$this->mockJpgFile(998876),
 				$this->mockNoMediaFile(998875)
 			],
-			$isReadable, $mounted, $mount, '.nomedia', true
+			$isReadable,
+			$mounted,
+			$mount,
+			'.nomedia',
+			true
 		);
 		$folder6 = $this->mockFolder(
-			'webdav::user@domain.com/dav', 545454, [$this->mockJpgFile(11111)], $isReadable, true,
-			$mount, $query, $queryResult
+			'webdav::user@domain.com/dav',
+			545454,
+			[$this->mockJpgFile(11111)],
+			$isReadable,
+			true,
+			$mount,
+			$query,
+			$queryResult
 		);
 		$folder7 = $this->mockFolder(
-			'home::user', 545454,
+			'home::user',
+			545454,
 			[
 				$this->mockJpgFile(1),
 				$this->mockJpgFile(2),
@@ -143,7 +203,11 @@ class SearchMediaServiceTest extends \Test\GalleryUnitTest {
 				$this->mockJpgFile(4),
 				$this->mockJpgFile(5),
 			],
-			$isReadable, $mounted, $mount, $query, $queryResult
+			$isReadable,
+			$mounted,
+			$mount,
+			$query,
+			$queryResult
 		);
 
 		// 2 folders and 3 files, everything is reachable
@@ -158,7 +222,14 @@ class SearchMediaServiceTest extends \Test\GalleryUnitTest {
 		$folder1Path = 'holidays';
 		$folder2Path = 'athletics';
 		$topFolder1 = $this->mockFolder(
-			'home::user', 909090, $config1, $isReadable, $mounted, $mount, $query, $queryResult
+			'home::user',
+			909090,
+			$config1,
+			$isReadable,
+			$mounted,
+			$mount,
+			$query,
+			$queryResult
 		);
 		$map1 = [
 			[$topFolder1, ''],
@@ -179,7 +250,14 @@ class SearchMediaServiceTest extends \Test\GalleryUnitTest {
 		$folder33Path = 'ninja/mma';
 		$folder33bPath = 'racing/f1';
 		$topFolder2 = $this->mockFolder(
-			'home::user', 909090, $config2, $isReadable, $mounted, $mount, $query, $queryResult
+			'home::user',
+			909090,
+			$config2,
+			$isReadable,
+			$mounted,
+			$mount,
+			$query,
+			$queryResult
 		);
 		$map2 = [
 			[$topFolder2, ''],
@@ -200,7 +278,14 @@ class SearchMediaServiceTest extends \Test\GalleryUnitTest {
 		$folder44Path = 'trips/NSA';
 		$folder45Path = 'trips/GCHQ';
 		$topFolder3 = $this->mockFolder(
-			'home::user', 909090, $config3, $isReadable, $mounted, $mount, $query, $queryResult
+			'home::user',
+			909090,
+			$config3,
+			$isReadable,
+			$mounted,
+			$mount,
+			$query,
+			$queryResult
 		);
 		$map3 = [
 			[$topFolder3, ''],
@@ -218,7 +303,14 @@ class SearchMediaServiceTest extends \Test\GalleryUnitTest {
 		];
 		$folder5Path = 'food';
 		$topFolder4 = $this->mockFolder(
-			'home::user', 909090, $config4, $isReadable, $mounted, $mount, $query, $queryResult
+			'home::user',
+			909090,
+			$config4,
+			$isReadable,
+			$mounted,
+			$mount,
+			$query,
+			$queryResult
 		);
 		$map4 = [
 			[$topFolder4, ''],
@@ -226,13 +318,18 @@ class SearchMediaServiceTest extends \Test\GalleryUnitTest {
 		];
 		// 1 standard folder, 1 external share (ignored) and 3 files
 		$folder1a = $this->mockFolder(
-			'home::user', 545454,
+			'home::user',
+			545454,
 			[
 				$this->mockJpgFile(11111),
 				$this->mockJpgFile(22222),
 				$this->mockJpgFile(33333)
 			],
-			$isReadable, $mounted, $mount, $query, $queryResult
+			$isReadable,
+			$mounted,
+			$mount,
+			$query,
+			$queryResult
 		);
 		$config5 = [
 			$folder1a,
@@ -244,7 +341,14 @@ class SearchMediaServiceTest extends \Test\GalleryUnitTest {
 		];
 		$folder6Path = 'pets';
 		$topFolder5 = $this->mockFolder(
-			'home::user', 909090, $config5, $isReadable, $mounted, $mount, $query, $queryResult
+			'home::user',
+			909090,
+			$config5,
+			$isReadable,
+			$mounted,
+			$mount,
+			$query,
+			$queryResult
 		);
 		$map5 = [
 			[$topFolder5, ''],
@@ -253,13 +357,18 @@ class SearchMediaServiceTest extends \Test\GalleryUnitTest {
 		];
 		// 1 standard folder (3), 1 deep folder and 3 files
 		$folder1b = $this->mockFolder(
-			'home::user', 545454,
+			'home::user',
+			545454,
 			[
 				$this->mockJpgFile(11111),
 				$this->mockJpgFile(22222),
 				$this->mockJpgFile(33333)
 			],
-			$isReadable, $mounted, $mount, $query, $queryResult
+			$isReadable,
+			$mounted,
+			$mount,
+			$query,
+			$queryResult
 		);
 		$config6 = [
 			$folder1b,
@@ -270,7 +379,14 @@ class SearchMediaServiceTest extends \Test\GalleryUnitTest {
 		];
 		$folder7Path = 'missions';
 		$topFolder6 = $this->mockFolder(
-			'home::user', 909090, $config6, $isReadable, $mounted, $mount, $query, $queryResult
+			'home::user',
+			909090,
+			$config6,
+			$isReadable,
+			$mounted,
+			$mount,
+			$query,
+			$queryResult
 		);
 		$map6 = [
 			[$topFolder6, ''],
@@ -345,13 +461,25 @@ class SearchMediaServiceTest extends \Test\GalleryUnitTest {
 			'mimetype'       => 'image/jpeg',
 		];
 		$file1 = $this->mockJpgFile(
-			$file1Data['nodeid'], 'home::user', $isReadable, $file1Data['path'],
-			$file1Data['etag'], $file1Data['size'], $file1Data['sharedwithuser'], null,
+			$file1Data['nodeid'],
+			'home::user',
+			$isReadable,
+			$file1Data['path'],
+			$file1Data['etag'],
+			$file1Data['size'],
+			$file1Data['sharedwithuser'],
+			null,
 			$file1Data['permissions']
 		);
 		$file1a = $this->mockJpgFile(
-			$file1Data['nodeid'], 'home::user', $isReadable, $file1Data['path'],
-			$file1Data['etag'], $file1Data['size'], $file1Data['sharedwithuser'], null,
+			$file1Data['nodeid'],
+			'home::user',
+			$isReadable,
+			$file1Data['path'],
+			$file1Data['etag'],
+			$file1Data['size'],
+			$file1Data['sharedwithuser'],
+			null,
 			$file1Data['permissions']
 		);
 
@@ -373,8 +501,14 @@ class SearchMediaServiceTest extends \Test\GalleryUnitTest {
 			'mimetype'       => 'image/jpeg',
 		];
 		$file2 = $this->mockJpgFile(
-			$file2Data['nodeid'], 'webdav::user@domain.com/dav', $isReadable, $file2Data['path'],
-			$file2Data['etag'], $file2Data['size'], $file2Data['sharedwithuser'], $owner,
+			$file2Data['nodeid'],
+			'webdav::user@domain.com/dav',
+			$isReadable,
+			$file2Data['path'],
+			$file2Data['etag'],
+			$file2Data['size'],
+			$file2Data['sharedwithuser'],
+			$owner,
 			$file2Data['permissions']
 		);
 
@@ -391,12 +525,22 @@ class SearchMediaServiceTest extends \Test\GalleryUnitTest {
 		];
 		$album1 = $this->mockFolder(
 			'home::user',
-			$album1Data['nodeid'], [
+			$album1Data['nodeid'],
+			[
 				$file2
 			],
-			$isReadable, $mounted, $mount, $query, $queryResult, $album1Data['sharedwithuser'],
-			$album1Data['etag'], $album1Data['size'], $album1Data['path'], null,
-			$album1Data['permissions'], $album1Data['freespace']
+			$isReadable,
+			$mounted,
+			$mount,
+			$query,
+			$queryResult,
+			$album1Data['sharedwithuser'],
+			$album1Data['etag'],
+			$album1Data['size'],
+			$album1Data['path'],
+			null,
+			$album1Data['permissions'],
+			$album1Data['freespace']
 		);
 
 		$topFolder1 = $this->mockFolder(
@@ -406,18 +550,37 @@ class SearchMediaServiceTest extends \Test\GalleryUnitTest {
 				$file1,
 				$album1
 			],
-			$isReadable, $mounted, $mount, $query, $queryResult, $topFolder1Data['sharedwithuser'],
-			$topFolder1Data['etag'], $topFolder1Data['size'], $topFolder1Data['path'], null,
-			$topFolder1Data['permissions'], $topFolder1Data['freespace']
+			$isReadable,
+			$mounted,
+			$mount,
+			$query,
+			$queryResult,
+			$topFolder1Data['sharedwithuser'],
+			$topFolder1Data['etag'],
+			$topFolder1Data['size'],
+			$topFolder1Data['path'],
+			null,
+			$topFolder1Data['permissions'],
+			$topFolder1Data['freespace']
 		);
 		$albumIgnored = $this->mockFolder(
 			'home::user',
-			$album1Data['nodeid'], [
+			$album1Data['nodeid'],
+			[
 				$file2
 			],
-			$isReadable, $mounted, $mount, '.nomedia', true, $album1Data['sharedwithuser'],
-			$album1Data['etag'], $album1Data['size'], $album1Data['path'], null,
-			$album1Data['permissions'], $album1Data['freespace']
+			$isReadable,
+			$mounted,
+			$mount,
+			'.nomedia',
+			true,
+			$album1Data['sharedwithuser'],
+			$album1Data['etag'],
+			$album1Data['size'],
+			$album1Data['path'],
+			null,
+			$album1Data['permissions'],
+			$album1Data['freespace']
 		);
 		$topFolder2 = $this->mockFolder(
 			'home::user',
@@ -426,9 +589,18 @@ class SearchMediaServiceTest extends \Test\GalleryUnitTest {
 				$file1a,
 				$albumIgnored
 			],
-			$isReadable, $mounted, $mount, $query, $queryResult, $topFolder1Data['sharedwithuser'],
-			$topFolder1Data['etag'], $topFolder1Data['size'], $topFolder1Data['path'], null,
-			$topFolder1Data['permissions'], $topFolder1Data['freespace']
+			$isReadable,
+			$mounted,
+			$mount,
+			$query,
+			$queryResult,
+			$topFolder1Data['sharedwithuser'],
+			$topFolder1Data['etag'],
+			$topFolder1Data['size'],
+			$topFolder1Data['path'],
+			null,
+			$topFolder1Data['permissions'],
+			$topFolder1Data['freespace']
 		);
 
 		$map1 = [
@@ -557,7 +729,7 @@ class SearchMediaServiceTest extends \Test\GalleryUnitTest {
 	private function mockNodePath($map) {
 		$this->environment->method('getPathFromVirtualRoot')
 						  ->will(
-							  $this->returnValueMap($map)
+						  	$this->returnValueMap($map)
 						  );
 	}
 }

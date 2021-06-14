@@ -25,11 +25,11 @@ $appName = $c->query('AppName');
  */
 $c->query('OCP\INavigationManager')
   ->add(
-	  function () use ($c, $appName) {
-	  	$urlGenerator = $c->query('OCP\IURLGenerator');
-	  	$l10n = $c->query('OCP\IL10N');
+  	function () use ($c, $appName) {
+		$urlGenerator = $c->query('OCP\IURLGenerator');
+		$l10n = $c->query('OCP\IL10N');
 
-	  	return [
+		return [
 			  'id'    => $appName,
 
 			  // Sorting weight for the navigation. The higher the number, the higher
@@ -48,7 +48,7 @@ $c->query('OCP\INavigationManager')
 			  // navigation or on the settings page
 			  'name'  => $l10n->t('Gallery')
 		  ];
-	  }
+	}
   );
 
 /**

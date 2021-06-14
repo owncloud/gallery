@@ -149,7 +149,15 @@ abstract class GalleryUnitTest extends \Test\TestCase {
 		$permissions = 31
 	) {
 		$file = $this->mockFile(
-			$fileId, $storageId, $isReadable, $path, $etag, $size, $isShared, $owner, $permissions
+			$fileId,
+			$storageId,
+			$isReadable,
+			$path,
+			$etag,
+			$size,
+			$isShared,
+			$owner,
+			$permissions
 		);
 		$this->mockJpgFileMethods($file);
 

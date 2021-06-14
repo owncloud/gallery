@@ -114,7 +114,14 @@ abstract class FilesService extends Service {
 		//$this->logger->debug("Image path : {var1}", ['var1' => $imagePath]);
 
 		return $this->formatNodeData(
-			$imagePath, $nodeId, $mTime, $etag, $size, $sharedWithUser, $ownerData, $permissions
+			$imagePath,
+			$nodeId,
+			$mTime,
+			$etag,
+			$size,
+			$sharedWithUser,
+			$ownerData,
+			$permissions
 		);
 	}
 
@@ -295,7 +302,14 @@ abstract class FilesService extends Service {
 	 * @return array
 	 */
 	private function formatNodeData(
-		$imagePath, $nodeId, $mTime, $etag, $size, $sharedWithUser, $ownerData, $permissions
+		$imagePath,
+		$nodeId,
+		$mTime,
+		$etag,
+		$size,
+		$sharedWithUser,
+		$ownerData,
+		$permissions
 	) {
 		return [
 			'path'           => $imagePath,

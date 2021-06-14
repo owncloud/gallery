@@ -171,12 +171,15 @@ class SearchFolderServiceTest extends \Test\GalleryUnitTest {
 	public function testRecoverFromGetNodesError($subDepth, $caughtException, $nodes) {
 		try {
 			$response = self::invokePrivate(
-				$this->service, 'recoverFromGetNodesError', [$subDepth, $caughtException]
+				$this->service,
+				'recoverFromGetNodesError',
+				[$subDepth, $caughtException]
 			);
 			$this->assertSame($nodes, $response);
 		} catch (\Exception $thisException) {
 			$this->assertInstanceOf(
-				'\OCA\Gallery\Service\NotFoundServiceException', $thisException
+				'\OCA\Gallery\Service\NotFoundServiceException',
+				$thisException
 			);
 			$this->assertSame($caughtException->getMessage(), $thisException->getMessage());
 		}
@@ -218,14 +221,21 @@ class SearchFolderServiceTest extends \Test\GalleryUnitTest {
 	 * @param bool $expectedResult
 	 */
 	public function testIsAllowedAndAvailableWithMountedFolder(
-		$mounted, $previewsAllowedOnMountedShare, $expectedResult
+		$mounted,
+		$previewsAllowedOnMountedShare,
+		$expectedResult
 	) {
 		$nodeId = 12345;
 		$files = [];
 		$isReadable = true;
 		$mount = $this->mockMountPoint($previewsAllowedOnMountedShare);
 		$node = $this->mockFolder(
-			'webdav::user@domain.com/dav', $nodeId, $files, $isReadable, $mounted, $mount
+			'webdav::user@domain.com/dav',
+			$nodeId,
+			$files,
+			$isReadable,
+			$mounted,
+			$mount
 		);
 
 		$response = self::invokePrivate($this->service, 'isAllowedAndAvailable', [$node]);
@@ -250,7 +260,9 @@ class SearchFolderServiceTest extends \Test\GalleryUnitTest {
 	 * @param bool $expectedResult
 	 */
 	public function testIsAllowedAndAvailable(
-		$rootStorageId, $externalSharesAllowed, $expectedResult
+		$rootStorageId,
+		$externalSharesAllowed,
+		$expectedResult
 	) {
 		$nodeId = 12345;
 		$files = [];
@@ -329,8 +341,8 @@ class SearchFolderServiceTest extends \Test\GalleryUnitTest {
 						   ->getMock();
 		$mountPoint->method('getOption')
 				   ->with(
-					   'previews',
-					   true
+				   	'previews',
+				   	true
 				   )
 				   ->willReturn($previewsAllowed);
 

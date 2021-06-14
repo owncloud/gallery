@@ -85,7 +85,9 @@ class GetConfigCest {
 	 * @param ApiTester $I
 	 * @param $scenario
 	 */
-	public function getConfigWithExtraMediaTypes(\Step\Api\User $I, \Codeception\Scenario $scenario
+	public function getConfigWithExtraMediaTypes(
+		\Step\Api\User $I,
+		\Codeception\Scenario $scenario
 	) {
 		$I->am('an app');
 		$I->wantTo('get the current Gallery configuration which should include extra media types');
