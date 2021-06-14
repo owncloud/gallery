@@ -691,6 +691,7 @@ def phpTests(ctx, testType, withCoverage):
 					},
 					'steps':
 						installCore('daily-master-qa', db, False) +
+						composerInstall(phpVersion) +
 						installApp(phpVersion) +
 						installExtraApps(phpVersion, params['extraApps']) +
 						setupServerAndApp(phpVersion, params['logLevel']) +
