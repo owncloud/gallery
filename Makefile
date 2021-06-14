@@ -114,7 +114,7 @@ PHPUNITDBG=phpdbg -qrr -d memory_limit=4096M -d zend.enable_gc=0 "./vendor/bin/p
 .PHONY: test-php-style
 test-php-style:            ## Run php-cs-fixer and check owncloud code-style
 test-php-style: vendor-bin/owncloud-codestyle/vendor
-	$(PHP_CS_FIXER) fix -v --diff --diff-format udiff --allow-risky yes --dry-run
+	$(PHP_CS_FIXER) fix -v --diff --allow-risky yes --dry-run
 
 .PHONY: test-php-integration
 test-php-integration:
@@ -129,7 +129,7 @@ test-acceptance: vendor/bin/codecept
 .PHONY: test-php-style-fix
 test-php-style-fix:        ## Run php-cs-fixer and fix code style issues
 test-php-style-fix: vendor-bin/owncloud-codestyle/vendor
-	$(PHP_CS_FIXER) fix -v --diff --diff-format udiff --allow-risky yes
+	$(PHP_CS_FIXER) fix -v --diff --allow-risky yes
 
 
 .PHONY: test-php-unit

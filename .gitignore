@@ -1,6 +1,7 @@
 build
 vendor
 .php_cs.cache
+.php-cs-fixer.cache
 c3.php
 
 vendor-bin/**/composer.lock
