@@ -185,16 +185,23 @@ class PageController extends Controller {
 		$params = [
 			'appName' => $appName,
 			'uploadUrl' => $this->urlGenerator->linkTo(
-				'files', 'ajax/upload.php'
+				'files',
+				'ajax/upload.php'
 			),
 			'publicUploadEnabled' => $this->appConfig->getAppValue(
-				'core', 'shareapi_allow_public_upload', 'yes'
+				'core',
+				'shareapi_allow_public_upload',
+				'yes'
 			),
 			'mailNotificationEnabled' => $this->appConfig->getAppValue(
-				'core', 'shareapi_allow_mail_notification', 'no'
+				'core',
+				'shareapi_allow_mail_notification',
+				'no'
 			),
 			'mailPublicNotificationEnabled' => $this->appConfig->getAppValue(
-				'core', 'shareapi_allow_public_notification', 'no'
+				'core',
+				'shareapi_allow_public_notification',
+				'no'
 			)
 		];
 
@@ -237,7 +244,9 @@ class PageController extends Controller {
 	 */
 	private function getServer2ServerProperties() {
 		$server2ServerSharing = $this->appConfig->getAppValue(
-			'files_sharing', 'outgoing_server2server_share_enabled', 'yes'
+			'files_sharing',
+			'outgoing_server2server_share_enabled',
+			'yes'
 		);
 		$server2ServerSharing = ($server2ServerSharing === 'yes') ? true : false;
 		$password = $this->environment->getSharePassword();

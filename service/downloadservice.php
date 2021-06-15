@@ -34,7 +34,8 @@ class DownloadService extends Service {
 	public function downloadFile($file, $base64Encode = false) {
 		try {
 			$this->logger->debug(
-				"[DownloadService] File to Download: {name}", ['name' => $file->getName()]
+				"[DownloadService] File to Download: {name}",
+				['name' => $file->getName()]
 			);
 			$download = [
 				'preview'  => $file->getContent(),

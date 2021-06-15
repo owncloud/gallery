@@ -81,7 +81,9 @@ class ConnectWithTokenCest {
 	}
 
 	private function connect(
-		\Step\Api\TokenUser $I, $url, $params = [],
+		\Step\Api\TokenUser $I,
+		$url,
+		$params = [],
 		$acceptHeaders = 'application/json, text/javascript, */*;q=0.01'
 	) {
 		$I->haveHttpHeader('Accept', $this->browserHeader);
@@ -96,7 +98,8 @@ class ConnectWithTokenCest {
 		$I->haveHttpHeader('requesttoken', $requestToken);
 
 		$params = \array_merge(
-			$params, [
+			$params,
+			[
 					   'token'    => $this->folderMetaData['token'],
 					   'password' => $this->folderMetaData['password']
 				   ]

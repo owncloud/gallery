@@ -98,7 +98,11 @@ class PreviewService extends Service {
 	 * @throws InternalServerErrorServiceException
 	 */
 	public function createPreview(
-		$file, $maxX = 0, $maxY = 0, $keepAspect = true, $base64Encode = false
+		$file,
+		$maxX = 0,
+		$maxY = 0,
+		$keepAspect = true,
+		$base64Encode = false
 	) {
 		try {
 			$userId = $this->environment->getUserId();
@@ -189,7 +193,9 @@ class PreviewService extends Service {
 			while (!\feof($fileHandle) && $count < 2) {
 				$chunk = \fread($fileHandle, 1024 * 100); //read 100kb at a time
 				$count += \preg_match_all(
-					'#\x00\x21\xF9\x04.{4}\x00(\x2C|\x21)#s', $chunk, $matches
+					'#\x00\x21\xF9\x04.{4}\x00(\x2C|\x21)#s',
+					$chunk,
+					$matches
 				);
 			}
 			\fclose($fileHandle);

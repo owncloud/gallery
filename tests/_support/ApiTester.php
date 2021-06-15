@@ -33,7 +33,8 @@ class ApiTester extends \Codeception\Actor {
 		$I->seeResponseCodeIs(200);
 		$I->seeHttpHeader('Content-type', $file['mediatype'] . '; charset=utf-8');
 		$I->seeHttpHeader(
-			'Content-Disposition', 'attachment; filename*=UTF-8\'\'' . $filename . '; filename="'
+			'Content-Disposition',
+			'attachment; filename*=UTF-8\'\'' . $filename . '; filename="'
 								   . $filename . '"'
 		);
 	}

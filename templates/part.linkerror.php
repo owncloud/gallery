@@ -29,7 +29,7 @@ style(
 		<?php endif; ?>
 		</br>
 		<p><?php p(
-				$l->t('For more information, please ask the person who has sent you this link.')
-			); ?></p>
+	$l->t('For more information, please ask the person who has sent you this link.')
+); ?></p>
 	</li>
 </ul>

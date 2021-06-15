@@ -141,7 +141,8 @@ class FilesControllerTest extends \Test\GalleryUnitTest {
 
 		$this->assertEquals(Http::STATUS_OK, $response->getStatus());
 		$this->assertEquals(
-			$expectedMimeType . '; charset=utf-8', $response->getHeaders()['Content-type']
+			$expectedMimeType . '; charset=utf-8',
+			$response->getHeaders()['Content-type']
 		);
 		$this->assertEquals($download['preview'], $response->render());
 	}
@@ -163,7 +164,8 @@ class FilesControllerTest extends \Test\GalleryUnitTest {
 		$this->assertEquals($redirectUrl, $response->getRedirectURL());
 		$this->assertEquals(Http::STATUS_SEE_OTHER, $response->getStatus());
 		$this->assertEquals(
-			$exception->getMessage(), $response->getCookies()['galleryErrorMessage']['value']
+			$exception->getMessage(),
+			$response->getCookies()['galleryErrorMessage']['value']
 		);
 	}
 
@@ -234,7 +236,14 @@ class FilesControllerTest extends \Test\GalleryUnitTest {
 	 * @internal param $ $
 	 */
 	public function testGetFilesWithWorkingSetup(
-		$location, $folderPathFromRoot, $folder, $albumConfig, $files, $albums, $etag, $result
+		$location,
+		$folderPathFromRoot,
+		$folder,
+		$albumConfig,
+		$files,
+		$albums,
+		$etag,
+		$result
 	) {
 		$features = '';
 		$mediatypes = 'image/png';
@@ -263,8 +272,8 @@ class FilesControllerTest extends \Test\GalleryUnitTest {
 		$this->searchFolderService->expects($this->once())
 								  ->method('getCurrentFolder')
 								  ->with(
-									  $location,
-									  [$features]
+								  	$location,
+								  	[$features]
 								  )
 								  ->willThrowException(new ServiceException($exceptionMessage));
 		// Default status code when something breaks
@@ -434,8 +443,8 @@ class FilesControllerTest extends \Test\GalleryUnitTest {
 		$this->searchFolderService->expects($this->once())
 								  ->method('getCurrentFolder')
 								  ->with(
-									  $location,
-									  $features
+								  	$location,
+								  	$features
 								  )
 								  ->willReturn($answer);
 	}
@@ -469,9 +478,9 @@ class FilesControllerTest extends \Test\GalleryUnitTest {
 		$this->searchMediaService->expects($this->any())
 								 ->method('getMediaFiles')
 								 ->with(
-									 $folderNode,
-									 $mediatypes,
-									 $features
+								 	$folderNode,
+								 	$mediatypes,
+								 	$features
 								 )
 								 ->willReturn($answer);
 	}

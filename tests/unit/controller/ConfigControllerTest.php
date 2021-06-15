@@ -160,7 +160,8 @@ class ConfigControllerTest extends \Test\TestCase {
 		$response = $this->controller->get($slideshow);
 
 		$this->assertEquals(
-			['features' => $features, 'mediatypes' => $this->baseMimeTypes], $response
+			['features' => $features, 'mediatypes' => $this->baseMimeTypes],
+			$response
 		);
 	}
 
@@ -206,8 +207,8 @@ class ConfigControllerTest extends \Test\TestCase {
 		$this->configService->expects($this->any())
 							 ->method('getSupportedMediaTypes')
 							 ->with(
-								 $this->equalTo($slideshow),
-								 $this->equalTo($nativeSvgSupport)
+							 	$this->equalTo($slideshow),
+							 	$this->equalTo($nativeSvgSupport)
 							 )
 							 ->willReturn($mimeTypes);
 	}

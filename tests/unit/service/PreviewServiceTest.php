@@ -88,7 +88,9 @@ class PreviewServiceTest extends \Test\GalleryUnitTest {
 	 * @param bool $expected
 	 */
 	public function testIsPreviewRequiredWithAnimatedGif(
-		$isMimeSupported, $animatedPreview, $expected
+		$isMimeSupported,
+		$animatedPreview,
+		$expected
 	) {
 		/** @type File $file */
 		$file = $this->mockAnimatedGifFile(12345);
@@ -136,7 +138,11 @@ class PreviewServiceTest extends \Test\GalleryUnitTest {
 		$this->mockGetUserIdFails();
 
 		$this->service->createPreview(
-			$file, $maxX = 0, $maxY = 0, $keepAspect = true, $base64Encode = false
+			$file,
+			$maxX = 0,
+			$maxY = 0,
+			$keepAspect = true,
+			$base64Encode = false
 		);
 	}
 
@@ -150,7 +156,7 @@ class PreviewServiceTest extends \Test\GalleryUnitTest {
 		];
 		$this->previewManager->method('isMimeSupported')
 							 ->will(
-								 $this->returnValueMap($map)
+							 	$this->returnValueMap($map)
 							 );
 	}
 

@@ -46,7 +46,8 @@ class ApplicationTest extends GalleryIntegrationTest {
 
 	public function testToken() {
 		$this->container->registerService(
-			'Request', function ($c) {
+			'Request',
+			function ($c) {
 				$request = $this->getMockBuilder('\OCP\IRequest')
 							->disableOriginalConstructor()
 							->getMock();

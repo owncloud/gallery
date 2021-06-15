@@ -265,12 +265,20 @@ class ConfigParserTest extends \Test\GalleryUnitTest {
 	 * @param array $expectedResult
 	 */
 	public function testGetFolderConfig(
-		$currentConfig, $completionStatus, $newConfig, $level, $expectedResult
+		$currentConfig,
+		$completionStatus,
+		$newConfig,
+		$level,
+		$expectedResult
 	) {
 		$folder = $this->mockFolderWithConfig($newConfig);
 
 		$response = $this->configParser->getFolderConfig(
-			$folder, $this->configName, $currentConfig, $completionStatus, $level
+			$folder,
+			$this->configName,
+			$currentConfig,
+			$completionStatus,
+			$level
 		);
 
 		$this->assertEquals($expectedResult, $response);

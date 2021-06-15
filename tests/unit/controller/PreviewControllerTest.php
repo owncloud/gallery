@@ -162,11 +162,19 @@ class PreviewControllerTest extends \Test\GalleryUnitTest {
 		$file = $this->mockJpgFile($thumbnailId);
 		$mockedPreview =
 			$this->mockGetData(
-				$thumbnailId, $file, $width, $height, $aspect, $animatedPreview, $base64Encode
+				$thumbnailId,
+				$file,
+				$width,
+				$height,
+				$aspect,
+				$animatedPreview,
+				$base64Encode
 			);
 
 		list($preview, $status) = self::invokePrivate(
-			$this->controller, 'getThumbnail', [$thumbnailId, $square, $scale]
+			$this->controller,
+			'getThumbnail',
+			[$thumbnailId, $square, $scale]
 		);
 
 		$this->assertEquals(Http::STATUS_OK, $status);
@@ -194,11 +202,19 @@ class PreviewControllerTest extends \Test\GalleryUnitTest {
 		/** @type File $file */
 		$file = $this->mockJpgFile($thumbnailId);
 		$this->mockGetDataWithBrokenPreview(
-			$thumbnailId, $file, $width, $height, $aspect, $animatedPreview, $base64Encode
+			$thumbnailId,
+			$file,
+			$width,
+			$height,
+			$aspect,
+			$animatedPreview,
+			$base64Encode
 		);
 
 		list($preview, $status) = self::invokePrivate(
-			$this->controller, 'getThumbnail', [$thumbnailId, $square, $scale]
+			$this->controller,
+			'getThumbnail',
+			[$thumbnailId, $square, $scale]
 		);
 
 		$this->assertEquals(Http::STATUS_INTERNAL_SERVER_ERROR, $status);
@@ -217,7 +233,9 @@ class PreviewControllerTest extends \Test\GalleryUnitTest {
 		$this->mockIsPreviewRequiredThrowsException($file, $animatedPreview);
 
 		list($preview, $status) = self::invokePrivate(
-			$this->controller, 'getThumbnail', [$thumbnailId, $square, $scale]
+			$this->controller,
+			'getThumbnail',
+			[$thumbnailId, $square, $scale]
 		);
 
 		$this->assertEquals(Http::STATUS_INTERNAL_SERVER_ERROR, $status);
@@ -242,7 +260,8 @@ class PreviewControllerTest extends \Test\GalleryUnitTest {
 
 		// Media type of a JPG preview is always PNG
 		$this->assertEquals(
-			'image/png; charset=utf-8', $response->getHeaders()['Content-type']
+			'image/png; charset=utf-8',
+			$response->getHeaders()['Content-type']
 		);
 	}
 
@@ -294,8 +313,14 @@ class PreviewControllerTest extends \Test\GalleryUnitTest {
 	 * @return array
 	 */
 	protected function mockGetData(
-		$fileId, $file, $width, $height, $keepAspect = true, $animatedPreview = true,
-		$base64Encode = false, $previewRequired = true
+		$fileId,
+		$file,
+		$width,
+		$height,
+		$keepAspect = true,
+		$animatedPreview = true,
+		$base64Encode = false,
+		$previewRequired = true
 	) {
 		$this->mockGetFile($this->previewService, $fileId, $file);
 
@@ -304,7 +329,12 @@ class PreviewControllerTest extends \Test\GalleryUnitTest {
 
 		if ($previewRequired) {
 			$this->mockCreatePreview(
-				$file, $width, $height, $keepAspect, $base64Encode, $previewData
+				$file,
+				$width,
+				$height,
+				$keepAspect,
+				$base64Encode,
+				$previewData
 			);
 		} else {
 			$this->mockDownloadFile($file, $base64Encode, $previewData);
@@ -327,7 +357,12 @@ class PreviewControllerTest extends \Test\GalleryUnitTest {
 	 * @return array
 	 */
 	private function mockGetDataWithBrokenPreview(
-		$fileId, $file, $width, $height, $keepAspect = true, $animatedPreview = true,
+		$fileId,
+		$file,
+		$width,
+		$height,
+		$keepAspect = true,
+		$animatedPreview = true,
 		$base64Encode = false
 	) {
 		$this->mockGetFile($this->previewService, $fileId, $file);
@@ -351,7 +386,12 @@ class PreviewControllerTest extends \Test\GalleryUnitTest {
 	 * @return array
 	 */
 	private function mockGetDataWithEmptyPreview(
-		$fileId, $file, $width, $height, $keepAspect = true, $animatedPreview = true,
+		$fileId,
+		$file,
+		$width,
+		$height,
+		$keepAspect = true,
+		$animatedPreview = true,
 		$base64Encode = false
 	) {
 		$this->mockGetFile($this->previewService, $fileId, $file);
@@ -385,8 +425,8 @@ class PreviewControllerTest extends \Test\GalleryUnitTest {
 		$this->previewService->expects($this->once())
 							 ->method('isPreviewRequired')
 							 ->with(
-								 $this->equalTo($file),
-								 $this->equalTo($animatedPreview)
+							 	$this->equalTo($file),
+							 	$this->equalTo($animatedPreview)
 							 )
 							 ->willReturn($response);
 	}
@@ -400,8 +440,8 @@ class PreviewControllerTest extends \Test\GalleryUnitTest {
 		$this->previewService->expects($this->once())
 							 ->method('isPreviewRequired')
 							 ->with(
-								 $this->equalTo($file),
-								 $this->equalTo($animatedPreview)
+							 	$this->equalTo($file),
+							 	$this->equalTo($animatedPreview)
 							 )
 							 ->willThrowException($exception);
 	}
@@ -446,16 +486,22 @@ class PreviewControllerTest extends \Test\GalleryUnitTest {
 	 * @param bool $base64Encode
 	 * @param array $preview
 	 */
-	private function mockCreatePreview($file, $width, $height, $keepAspect, $base64Encode, $preview
+	private function mockCreatePreview(
+		$file,
+		$width,
+		$height,
+		$keepAspect,
+		$base64Encode,
+		$preview
 	) {
 		$this->previewService->expects($this->once())
 							 ->method('createPreview')
 							 ->with(
-								 $this->equalTo($file),
-								 $this->equalTo($width),
-								 $this->equalTo($height),
-								 $this->equalTo($keepAspect),
-								 $this->equalTo($base64Encode)
+							 	$this->equalTo($file),
+							 	$this->equalTo($width),
+							 	$this->equalTo($height),
+							 	$this->equalTo($keepAspect),
+							 	$this->equalTo($base64Encode)
 							 )
 							 ->willReturn($preview);
 	}
@@ -468,17 +514,21 @@ class PreviewControllerTest extends \Test\GalleryUnitTest {
 	 * @param bool $base64Encode
 	 */
 	private function mockCreatePreviewThrowsException(
-		$file, $width, $height, $keepAspect, $base64Encode
+		$file,
+		$width,
+		$height,
+		$keepAspect,
+		$base64Encode
 	) {
 		$exception = new InternalServerErrorServiceException('Encryption ate your file');
 		$this->previewService->expects($this->once())
 							 ->method('createPreview')
 							 ->with(
-								 $this->equalTo($file),
-								 $this->equalTo($width),
-								 $this->equalTo($height),
-								 $this->equalTo($keepAspect),
-								 $this->equalTo($base64Encode)
+							 	$this->equalTo($file),
+							 	$this->equalTo($width),
+							 	$this->equalTo($height),
+							 	$this->equalTo($keepAspect),
+							 	$this->equalTo($base64Encode)
 							 )
 							 ->willthrowException($exception);
 	}
@@ -492,8 +542,8 @@ class PreviewControllerTest extends \Test\GalleryUnitTest {
 		$this->downloadService->expects($this->once())
 							  ->method('downloadFile')
 							  ->with(
-								  $this->equalTo($file),
-								  $this->equalTo($base64Encode)
+							  	$this->equalTo($file),
+							  	$this->equalTo($base64Encode)
 							  )
 							  ->willReturn($preview);
 	}
@@ -507,8 +557,8 @@ class PreviewControllerTest extends \Test\GalleryUnitTest {
 		$this->eventSource->expects($this->once())
 						  ->method('send')
 						  ->with(
-							  $event,
-							  $data
+						  	$event,
+						  	$data
 						  )
 						  ->willReturn($message);
 	}
@@ -522,8 +572,8 @@ class PreviewControllerTest extends \Test\GalleryUnitTest {
 		$this->thumbnailService->expects($this->once())
 							   ->method('getThumbnailSpecs')
 							   ->with(
-								   $square,
-								   $scale
+							   	$square,
+							   	$scale
 							   )
 							   ->willReturn($array);
 	}
@@ -533,7 +583,8 @@ class PreviewControllerTest extends \Test\GalleryUnitTest {
 			[
 				'message' => "I'm truly sorry, but we were unable to generate a preview for this file",
 				'success' => false
-			], $code
+			],
+			$code
 		);
 	}
 }

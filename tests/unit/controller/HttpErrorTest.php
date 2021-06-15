@@ -99,7 +99,8 @@ class HttpErrorTest extends \Test\TestCase {
 		$response = $httpError->jsonError($exception, $request, $logger);
 
 		$this->assertSame(
-			['message' => $message, 'success' => false], $response->getData()
+			['message' => $message, 'success' => false],
+			$response->getData()
 		);
 		$this->assertEquals($status, $response->getStatus());
 	}

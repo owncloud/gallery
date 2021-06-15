@@ -246,7 +246,11 @@ class ConfigService extends FilesService {
 	 * @return array <null|array,bool>
 	 */
 	private function collectConfig(
-		$folder, $ignoreAlbum, $configName, $level = 0, $configSoFar = []
+		$folder,
+		$ignoreAlbum,
+		$configName,
+		$level = 0,
+		$configSoFar = []
 	) {
 		if ($folder->nodeExists($ignoreAlbum)) {
 			// Cancel as soon as we find out that the folder is private or external
@@ -279,7 +283,11 @@ class ConfigService extends FilesService {
 	private function buildFolderConfig($folder, $configName, $collectedConfig, $level) {
 		try {
 			list($collectedConfig, $completionStatus) = $this->configParser->getFolderConfig(
-				$folder, $configName, $collectedConfig, $this->completionStatus, $level
+				$folder,
+				$configName,
+				$collectedConfig,
+				$this->completionStatus,
+				$level
 			);
 			$this->completionStatus = $completionStatus;
 		} catch (ConfigException $exception) {
@@ -352,13 +360,22 @@ class ConfigService extends FilesService {
 	 *
 	 * @return array<null|array,bool>
 	 */
-	private function getParentConfig($folder, $privacyChecker, $configName, $level, $collectedConfig
+	private function getParentConfig(
+		$folder,
+		$privacyChecker,
+		$configName,
+		$level,
+		$collectedConfig
 	) {
 		$parentFolder = $folder->getParent();
 		$level++;
 
 		return $this->collectConfig(
-			$parentFolder, $privacyChecker, $configName, $level, $collectedConfig
+			$parentFolder,
+			$privacyChecker,
+			$configName,
+			$level,
+			$collectedConfig
 		);
 	}
 }

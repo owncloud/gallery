@@ -96,10 +96,14 @@ class ConfigServiceTest extends \Test\GalleryUnitTest {
 	 * @param $expectedResult
 	 */
 	public function testGetSupportedMediaTypes(
-		$baseMimeTypes, $extraMediaTypes, $nativeSvgSupport, $expectedResult
+		$baseMimeTypes,
+		$extraMediaTypes,
+		$nativeSvgSupport,
+		$expectedResult
 	) {
 		$this->assertSame(
-			$baseMimeTypes, self::invokePrivate($this->service, 'baseMimeTypes', [$baseMimeTypes])
+			$baseMimeTypes,
+			self::invokePrivate($this->service, 'baseMimeTypes', [$baseMimeTypes])
 		);
 
 		$this->mockIsMimeSupported($nativeSvgSupport);
@@ -221,7 +225,9 @@ class ConfigServiceTest extends \Test\GalleryUnitTest {
 	 */
 	public function testAddSvgSupport($supportedMimes, $nativeSvgSupport, $expectedResult) {
 		$response = self::invokePrivate(
-			$this->service, 'addSvgSupport', [$supportedMimes, $nativeSvgSupport]
+			$this->service,
+			'addSvgSupport',
+			[$supportedMimes, $nativeSvgSupport]
 		);
 
 		$this->assertSame($expectedResult, $response);
@@ -243,11 +249,18 @@ class ConfigServiceTest extends \Test\GalleryUnitTest {
 
 		$this->mockGetPathFromVirtualRoot($folder, $configPath);
 		$this->mockGetFolderConfigWithBrokenSetup(
-			$folder, $configName, $config, $configItems, $level, $exception
+			$folder,
+			$configName,
+			$config,
+			$configItems,
+			$level,
+			$exception
 		);
 
 		$response = self::invokePrivate(
-			$this->service, 'buildFolderConfig', [$folder, $configName, $config, $level]
+			$this->service,
+			'buildFolderConfig',
+			[$folder, $configName, $config, $level]
 		);
 
 		$this->assertSame($result, $response);
@@ -287,7 +300,10 @@ class ConfigServiceTest extends \Test\GalleryUnitTest {
 	 * @param $modifiedAlbumConfig
 	 */
 	public function testValidatesInfoConfig(
-		$level, $virtualRootLevel, $albumConfig, $modifiedAlbumConfig
+		$level,
+		$virtualRootLevel,
+		$albumConfig,
+		$modifiedAlbumConfig
 	) {
 		self::invokePrivate($this->service, 'virtualRootLevel', [$virtualRootLevel]);
 		$albumConfig['information']['level'] = $level;
@@ -310,7 +326,7 @@ class ConfigServiceTest extends \Test\GalleryUnitTest {
 		];
 		$this->previewManager->method('isMimeSupported')
 							 ->will(
-								 $this->returnValueMap($map)
+							 	$this->returnValueMap($map)
 							 );
 	}
 
@@ -322,12 +338,21 @@ class ConfigServiceTest extends \Test\GalleryUnitTest {
 	}
 
 	private function mockGetFolderConfigWithBrokenSetup(
-		$folder, $configName, $config, $configItems, $level, $exception
+		$folder,
+		$configName,
+		$config,
+		$configItems,
+		$level,
+		$exception
 	) {
 		$this->configParser->expects($this->any())
 						   ->method('getFolderConfig')
 						   ->with(
-							   $folder, $configName, $config, $configItems, $level
+						   	$folder,
+						   	$configName,
+						   	$config,
+						   	$configItems,
+						   	$level
 						   )
 						   ->willThrowException($exception);
 	}

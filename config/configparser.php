@@ -66,7 +66,12 @@ class ConfigParser {
 	 * @return array <null|array,array<string,bool>>
 	 * @throws ConfigException
 	 */
-	public function getFolderConfig($folder, $configName, $currentConfig, $completionStatus, $level
+	public function getFolderConfig(
+		$folder,
+		$configName,
+		$currentConfig,
+		$completionStatus,
+		$level
 	) {
 		$parsedConfig = $this->parseConfig($folder, $configName);
 		list($config, $completionStatus) =

@@ -139,8 +139,13 @@ class EnvCheckMiddlewareTest extends \Test\GalleryUnitTest {
 		$this->mockGetTokenAndPasswordParams($token, null);
 
 		$share = $this->mockShare(
-			'folder', 'tester', 'shared1', Share::SHARE_TYPE_LINK, null,
-			Constants::PERMISSION_READ, null
+			'folder',
+			'tester',
+			'shared1',
+			Share::SHARE_TYPE_LINK,
+			null,
+			Constants::PERMISSION_READ,
+			null
 		);
 
 		$this->mockShareManagerGetShareByToken($token, $share);
@@ -159,8 +164,13 @@ class EnvCheckMiddlewareTest extends \Test\GalleryUnitTest {
 		$this->mockGetTokenAndPasswordParams($token, $password);
 
 		$share = $this->mockShare(
-			'folder', 'tester', 'shared1', Share::SHARE_TYPE_LINK, null,
-			Constants::PERMISSION_READ, 'validpassword'
+			'folder',
+			'tester',
+			'shared1',
+			Share::SHARE_TYPE_LINK,
+			null,
+			Constants::PERMISSION_READ,
+			'validpassword'
 		);
 
 		$this->mockShareManagerGetShareByToken($token, $share);
@@ -183,8 +193,13 @@ class EnvCheckMiddlewareTest extends \Test\GalleryUnitTest {
 		$this->mockGetTokenAndPasswordParams($token, $password);
 
 		$share = $this->mockShare(
-			'folder', 'tester', 'shared1', Share::SHARE_TYPE_LINK, null,
-			Constants::PERMISSION_READ, 'validpassword'
+			'folder',
+			'tester',
+			'shared1',
+			Share::SHARE_TYPE_LINK,
+			null,
+			Constants::PERMISSION_READ,
+			'validpassword'
 		);
 
 		$this->mockShareManagerGetShareByToken($token, $share);
@@ -257,8 +272,13 @@ class EnvCheckMiddlewareTest extends \Test\GalleryUnitTest {
 	public function testCheckPasswordAfterValidPasswordEntry() {
 		$password = 'Je suis une pipe';
 		$share = $this->mockShare(
-			'file', 'tester', 'image.png', Share::SHARE_TYPE_USER, 'externaluser',
-			Constants::PERMISSION_READ, $password
+			'file',
+			'tester',
+			'image.png',
+			Share::SHARE_TYPE_USER,
+			'externaluser',
+			Constants::PERMISSION_READ,
+			$password
 		);
 
 		$this->mockShareManagerCheckPassword($share, $password, true);
@@ -276,7 +296,11 @@ class EnvCheckMiddlewareTest extends \Test\GalleryUnitTest {
 		$password = 'Je suis une pipe';
 		$wrongPassword = 'Empyrion Galactic Survival';
 		$share = $this->mockShare(
-			'file', 'tester', 'image.png', Share::SHARE_TYPE_USER, 'externaluser',
+			'file',
+			'tester',
+			'image.png',
+			Share::SHARE_TYPE_USER,
+			'externaluser',
 			Constants::PERMISSION_READ,
 			$wrongPassword
 		);
@@ -289,7 +313,12 @@ class EnvCheckMiddlewareTest extends \Test\GalleryUnitTest {
 	public function testAuthenticateAfterValidPasswordEntry() {
 		$password = 'Je suis une pipe';
 		$share = $this->mockShare(
-			'file', 'tester', 'image.png', Share::SHARE_TYPE_LINK, null, Constants::PERMISSION_READ,
+			'file',
+			'tester',
+			'image.png',
+			Share::SHARE_TYPE_LINK,
+			null,
+			Constants::PERMISSION_READ,
 			$password
 		);
 
@@ -310,7 +339,12 @@ class EnvCheckMiddlewareTest extends \Test\GalleryUnitTest {
 		$password = 'Je suis une pipe';
 		$wrongPassword = 'Empyrion Galactic Survival';
 		$share = $this->mockShare(
-			'file', 'tester', 'image.png', Share::SHARE_TYPE_LINK, null, Constants::PERMISSION_READ,
+			'file',
+			'tester',
+			'image.png',
+			Share::SHARE_TYPE_LINK,
+			null,
+			Constants::PERMISSION_READ,
 			$wrongPassword
 		);
 
@@ -326,8 +360,13 @@ class EnvCheckMiddlewareTest extends \Test\GalleryUnitTest {
 
 		$password = 'Je suis une pipe';
 		$share = $this->mockShare(
-			'file', 'tester', 'image.png', Share::SHARE_TYPE_LINK, 'tester',
-			Constants::PERMISSION_READ, $password
+			'file',
+			'tester',
+			'image.png',
+			Share::SHARE_TYPE_LINK,
+			'tester',
+			Constants::PERMISSION_READ,
+			$password
 		);
 
 		$this->mockShareManagerCheckPassword($share, $password, false);
@@ -338,8 +377,13 @@ class EnvCheckMiddlewareTest extends \Test\GalleryUnitTest {
 	public function testCheckAuthorisationAfterValidPasswordEntry() {
 		$password = 'Je suis une pipe';
 		$share = $this->mockShare(
-			'file', 'tester', 'image.png', Share::SHARE_TYPE_LINK, 'tester',
-			Constants::PERMISSION_READ, $password
+			'file',
+			'tester',
+			'image.png',
+			Share::SHARE_TYPE_LINK,
+			'tester',
+			Constants::PERMISSION_READ,
+			$password
 		);
 
 		$this->mockShareManagerCheckPassword($share, $password, true);
@@ -357,8 +401,13 @@ class EnvCheckMiddlewareTest extends \Test\GalleryUnitTest {
 		$password = 'Je suis une pipe';
 		$wrongPassword = 'Empyrion Galactic Survival';
 		$share = $this->mockShare(
-			'file', 'tester', 'image.png', Share::SHARE_TYPE_LINK, 'tester',
-			Constants::PERMISSION_READ, $wrongPassword
+			'file',
+			'tester',
+			'image.png',
+			Share::SHARE_TYPE_LINK,
+			'tester',
+			Constants::PERMISSION_READ,
+			$wrongPassword
 		);
 
 		$this->mockShareManagerCheckPassword($share, $password, false);
@@ -374,8 +423,13 @@ class EnvCheckMiddlewareTest extends \Test\GalleryUnitTest {
 		$password = null;
 		$wrongPassword = 'Empyrion Galactic Survival';
 		$share = $this->mockShare(
-			'file', 'tester', 'image.png', Share::SHARE_TYPE_LINK, 'tester',
-			Constants::PERMISSION_READ, $wrongPassword
+			'file',
+			'tester',
+			'image.png',
+			Share::SHARE_TYPE_LINK,
+			'tester',
+			Constants::PERMISSION_READ,
+			$wrongPassword
 		);
 
 		$this->mockSessionExists((string)$share->getId());
@@ -473,7 +527,9 @@ class EnvCheckMiddlewareTest extends \Test\GalleryUnitTest {
 
 		$response =
 			$this->middleware->afterException(
-				$this->controller, 'checkShareIsValid', $exception
+				$this->controller,
+				'checkShareIsValid',
+				$exception
 			);
 
 		$this->assertEquals($template, $response);
@@ -645,9 +701,9 @@ class EnvCheckMiddlewareTest extends \Test\GalleryUnitTest {
 						   ->method('getShareByToken')
 						   ->with($token)
 						   ->willThrowException(
-							   new \OCP\Share\Exceptions\ShareNotFound(
-								   "Can't find a share using that token"
-							   )
+						   	new \OCP\Share\Exceptions\ShareNotFound(
+								"Can't find a share using that token"
+							)
 						   );
 	}
 

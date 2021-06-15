@@ -126,7 +126,8 @@ class EnvCheckMiddleware extends CheckMiddleware {
 		$token = $this->request->getParam('token');
 		if (!$token) {
 			throw new CheckException(
-				"Can't access a public resource without a token", Http::STATUS_NOT_FOUND
+				"Can't access a public resource without a token",
+				Http::STATUS_NOT_FOUND
 			);
 		} else {
 			$share = $this->getShare($token);
@@ -236,7 +237,8 @@ class EnvCheckMiddleware extends CheckMiddleware {
 		} else {
 			throw new CheckException(
 				'Unknown share type ' . $share->getShareType() . ' for share id '
-				. $share->getId(), Http::STATUS_NOT_FOUND
+				. $share->getId(),
+				Http::STATUS_NOT_FOUND
 			);
 		}
 

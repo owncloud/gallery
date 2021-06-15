@@ -155,9 +155,9 @@ class SharingCheckMiddlewareTest extends \Test\TestCase {
 		$this->config->expects($this->once())
 					 ->method('getAppValue')
 					 ->with(
-						 'core',
-						 'shareapi_allow_links',
-						 'yes'
+					 	'core',
+					 	'shareapi_allow_links',
+					 	'yes'
 					 )
 					 ->willReturn($state);
 	}

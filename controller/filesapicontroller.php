@@ -137,7 +137,8 @@ class FilesApiController extends ApiController {
 		} catch (ServiceException $exception) {
 			$code = $this->getHttpStatusCode($exception);
 			$url = $this->urlGenerator->linkToRoute(
-				$this->appName . '.page.error_page', ['code' => $code]
+				$this->appName . '.page.error_page',
+				['code' => $code]
 			);
 
 			// Don't set a cookie for the error message, we don't want it in the API

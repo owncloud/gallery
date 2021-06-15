@@ -131,7 +131,8 @@ class PreviewController extends Controller {
 				[
 					'message' => "I'm truly sorry, but we were unable to generate a preview for this file",
 					'success' => false
-				], $status
+				],
+				$status
 			);
 		}
 		$preview['name'] = $file->getName();

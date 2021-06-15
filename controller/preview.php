@@ -82,7 +82,12 @@ trait Preview {
 		/** @type File $file */
 		list($file, $preview, $status) =
 			$this->getData(
-				$fileId, $width, $height, $aspect, $animatedPreview, $base64Encode
+				$fileId,
+				$width,
+				$height,
+				$aspect,
+				$animatedPreview,
+				$base64Encode
 			);
 		if ($preview === null) {
 			$preview = $this->prepareEmptyThumbnail($file, $status);
@@ -106,14 +111,24 @@ trait Preview {
 	 * @throws NotFoundServiceException
 	 */
 	private function getData(
-		$fileId, $width, $height, $keepAspect = true, $animatedPreview = true, $base64Encode = false
+		$fileId,
+		$width,
+		$height,
+		$keepAspect = true,
+		$animatedPreview = true,
+		$base64Encode = false
 	) {
 		/** @type File $file */
 		list($file, $status) = $this->getFile($fileId);
 		try {
 			if ($file !== null) {
 				$data = $this->getPreviewData(
-					$file, $animatedPreview, $width, $height, $keepAspect, $base64Encode
+					$file,
+					$animatedPreview,
+					$width,
+					$height,
+					$keepAspect,
+					$base64Encode
 				);
 			} else {
 				$data = $this->getErrorData($status);
@@ -158,12 +173,21 @@ trait Preview {
 	 * @return array
 	 */
 	private function getPreviewData(
-		$file, $animatedPreview, $width, $height, $keepAspect, $base64Encode
+		$file,
+		$animatedPreview,
+		$width,
+		$height,
+		$keepAspect,
+		$base64Encode
 	) {
 		$status = Http::STATUS_OK;
 		if ($this->previewService->isPreviewRequired($file, $animatedPreview)) {
 			$preview = $this->previewService->createPreview(
-				$file, $width, $height, $keepAspect, $base64Encode
+				$file,
+				$width,
+				$height,
+				$keepAspect,
+				$base64Encode
 			);
 		} else {
 			$preview = $this->downloadService->downloadFile($file, $base64Encode);
