@@ -20,7 +20,6 @@ config = {
 	'phpunit': {
 		'reducedDatabases' : {
 			'phpVersions': [
-				'7.2',
 				'7.3',
 				'7.4',
 			],
