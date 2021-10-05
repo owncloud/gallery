@@ -55,6 +55,7 @@ clean-deps:
 .PHONY: dist
 dist:
 	make source
+	make vendor
 	make appstore
 
 # Builds the source package
