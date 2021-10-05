@@ -20,7 +20,7 @@ Media gallery that adds image viewing capabilities to files view and public link
 - Mobile support</description>
 	<licence>AGPL</licence>
 	<author>Olivier Paroz, Robin Appelman, Thomas Müller</author>
-	<version>16.1.1</version>
+	<version>16.1.2</version>
 	<namespace>Gallery</namespace>
 	<documentation>
 		<user>https://doc.owncloud.com/server/latest/user_manual/files/gallery_app.html</user>

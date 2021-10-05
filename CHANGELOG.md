@@ -4,7 +4,15 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 
-## [Unreleased]
+## [16.1.2] - 2021-10-05
+
+### Fixed
+
+- Show proper name in file menu - Fileactions: get rid of deprecate register function, adjust name, displayName and icon [#836](https://github.com/owncloud/gallery/pull/836)
+- Don't return files when accessing a share files drop [#839](https://github.com/owncloud/gallery/pull/839)
+- Unbreak gallery with gallery.cnf [#840](https://github.com/owncloud/gallery/pull/840)
+- Align password public protected link, with new Login-UI - Apply new auth form design [#846](https://github.com/owncloud/gallery/pull/846)
+
 
 ## [16.1.1] - 2018-12-11
 
@@ -20,7 +28,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 - Do not break if mount is not available [#739](https://github.com/owncloud/gallery/pull/739)
 - Fix to work properly with 10.0.9 [738](https://github.com/owncloud/gallery/pull/738)
 
-[Unreleased]: https://github.com/owncloud/gallery/compare/v16.1.1...master
+[Unreleased]: https://github.com/owncloud/gallery/compare/v16.1.2...master
+[16.1.2]: https://github.com/owncloud/gallery/compare/v16.1.1...v16.1.2
 [16.1.1]: https://github.com/owncloud/gallery/compare/v16.1.0...v16.1.1
 [16.1.0]: https://github.com/owncloud/gallery/compare/v16.0.2...v16.1.0
 
