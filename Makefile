@@ -3,9 +3,6 @@
 # @author Ilja Neumann <ineumann@owncloud.com>
 
 COMPOSER_BIN := $(shell command -v composer 2> /dev/null)
-ifndef COMPOSER_BIN
-    $(error composer is not available on your system, please install composer)
-endif
 
 app_name=$(notdir $(CURDIR))
 project_directory=$(CURDIR)/../$(app_name)
