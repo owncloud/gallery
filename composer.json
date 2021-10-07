@@ -33,8 +33,8 @@
   },
   "require-dev": {
     "guzzlehttp/guzzle": "^5.0|^6.2",
-    "phpunit/phpunit": "^8.5",
-    "codeception/codeception": "3.1.*",
+    "phpunit/phpunit": "^9.5",
+    "codeception/codeception": "^4.1",
     "codeception/phpbuiltinserver": "*",
     "composer-plugin-api": "^2.0",
     "codeception/c3": "2.*",
