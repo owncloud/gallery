@@ -634,14 +634,20 @@ class EnvCheckMiddlewareTest extends \Test\GalleryUnitTest {
 	 * @param string $password
 	 */
 	private function mockGetTokenAndPasswordParams($token, $password = null) {
-		$this->request->expects($this->at(0))
+		$this->request->expects($this->exactly(2))
 					  ->method('getParam')
-					  ->with('token')
-					  ->willReturn($token);
-		$this->request->expects($this->at(1))
-					  ->method('getParam')
-					  ->with('password')
-					  ->willReturn($password);
+					  ->withConsecutive(
+					  	[
+							  'token'
+						  ],
+					  	[
+							  'password'
+						  ]
+					  )
+					  ->willReturn(
+					  	$token,
+					  	$password
+					  );
 	}
 
 	/**
