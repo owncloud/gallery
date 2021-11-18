@@ -52,6 +52,7 @@ clean-deps:
 .PHONY: dist
 dist:
 	make source
+	make vendor
 	make appstore
 
 # Builds the source package
@@ -147,27 +148,27 @@ test-php-lint: vendor/bin/parallel-lint
 #
 # Dependency management
 #--------------------------------------
- composer.lock: composer.json
+composer.lock: composer.json
 	@echo composer.lock is not up to date.
 
- vendor: composer.lock
+vendor: composer.lock
 	composer install --no-dev
 
- vendor/bin/phpunit: composer.lock
+vendor/bin/phpunit: composer.lock
 	composer install
 
- vendor/bin/codecept: composer.lock
+vendor/bin/codecept: composer.lock
 	composer install
 
- vendor/bin/parallel-lint: composer.lock
+vendor/bin/parallel-lint: composer.lock
 	composer install
 
- vendor/bamarni/composer-bin-plugin: composer.lock
+vendor/bamarni/composer-bin-plugin: composer.lock
 	composer install
 
- vendor-bin/owncloud-codestyle/vendor: vendor/bamarni/composer-bin-plugin vendor-bin/owncloud-codestyle/composer.lock
+vendor-bin/owncloud-codestyle/vendor: vendor/bamarni/composer-bin-plugin vendor-bin/owncloud-codestyle/composer.lock
 	composer bin owncloud-codestyle install --no-progress
 
- vendor-bin/owncloud-codestyle/composer.lock: vendor-bin/owncloud-codestyle/composer.json
+vendor-bin/owncloud-codestyle/composer.lock: vendor-bin/owncloud-codestyle/composer.json
 	@echo owncloud-codestyle composer.lock is not up to date.
 
