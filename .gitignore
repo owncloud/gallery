@@ -7,3 +7,9 @@ c3.php
 vendor-bin/**/composer.lock
 tests/_output/
 tests/_support/_generated/
+
+# Generated from .drone.star
+.drone.yml
+
+# IDE Cache
+.idea
