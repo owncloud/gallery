@@ -89,11 +89,11 @@
 			var targetPath = $(event.target).data('dir').toString();
 			var dir = Gallery.currentAlbum;
 
-			while (dir.substr(0, 1) === '/') {//remove extra leading /'s
-				dir = dir.substr(1);
+			while (dir.slice(0, 1) === '/') {//remove extra leading /'s
+				dir = dir.slice(1);
 			}
 			dir = '/' + dir;
-			if (dir.substr(-1, 1) !== '/') {
+			if (dir.slice(-1) !== '/') {
 				dir = dir + '/';
 			}
 			// Do nothing if dragged on current dir
