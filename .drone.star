@@ -53,7 +53,6 @@ config = {
     "phpunit": {
         "reducedDatabases": {
             "phpVersions": [
-                "7.3",
                 DEFAULT_PHP_VERSION,
             ],
             "databases": [
