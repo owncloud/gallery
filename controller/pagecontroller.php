@@ -248,10 +248,10 @@ class PageController extends Controller {
 			'outgoing_server2server_share_enabled',
 			'yes'
 		);
-		$server2ServerSharing = ($server2ServerSharing === 'yes') ? true : false;
-		$password = $this->environment->getSharePassword();
-		$passwordProtected = ($password) ? 'true' : 'false';
 
-		return [$server2ServerSharing, $passwordProtected];
+		return [
+			($server2ServerSharing === 'yes'),
+			($this->environment->getSharePassword()) ? 'true' : 'false'
+		];
 	}
 }
