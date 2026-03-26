@@ -27,7 +27,7 @@ abstract class FilesService extends Service {
 	/** @var int */
 	protected $virtualRootLevel = null;
 	/** @var string[] */
-	protected $features;
+	protected $features = [];
 	/** @var string */
 	protected $ignoreAlbum = '.nomedia';
 
