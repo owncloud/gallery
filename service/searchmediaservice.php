@@ -27,7 +27,7 @@ class SearchMediaService extends FilesService {
 	/** @var null|array<string,string|int> */
 	private $albums = [];
 	/** @var string[] */
-	private $supportedMediaTypes;
+	private $supportedMediaTypes = [];
 
 	/**
 	 * This returns the list of all media files which can be shown starting from the given folder
