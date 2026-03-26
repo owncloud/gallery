@@ -26,29 +26,29 @@ $appName = $c->query('AppName');
 $c->query('OCP\INavigationManager')
   ->add(
   	function () use ($c, $appName) {
-		$urlGenerator = $c->query('OCP\IURLGenerator');
-		$l10n = $c->query('OCP\IL10N');
+  		$urlGenerator = $c->query('OCP\IURLGenerator');
+  		$l10n = $c->query('OCP\IL10N');
 
-		return [
-			  'id'    => $appName,
+  		return [
+  			  'id'    => $appName,
 
-			  // Sorting weight for the navigation. The higher the number, the higher
-			  // will it be listed in the navigation
-			  'order' => 2,
+  			  // Sorting weight for the navigation. The higher the number, the higher
+  			  // will it be listed in the navigation
+  			  'order' => 2,
 
-			  // The route that will be shown on startup when called from within the GUI
-			  // Public links are using another route, see appinfo/routes.php
-			  'href'  => $urlGenerator->linkToRoute($appName . '.page.index'),
+  			  // The route that will be shown on startup when called from within the GUI
+  			  // Public links are using another route, see appinfo/routes.php
+  			  'href'  => $urlGenerator->linkToRoute($appName . '.page.index'),
 
-			  // The icon that will be shown in the navigation
-			  // This file needs to exist in img/
-			  'icon'  => $urlGenerator->imagePath($appName, 'app.svg'),
+  			  // The icon that will be shown in the navigation
+  			  // This file needs to exist in img/
+  			  'icon'  => $urlGenerator->imagePath($appName, 'app.svg'),
 
-			  // The title of the application. This will be used in the
-			  // navigation or on the settings page
-			  'name'  => $l10n->t('Gallery')
-		  ];
-	}
+  			  // The title of the application. This will be used in the
+  			  // navigation or on the settings page
+  			  'name'  => $l10n->t('Gallery')
+  		  ];
+  	}
   );
 
 /**

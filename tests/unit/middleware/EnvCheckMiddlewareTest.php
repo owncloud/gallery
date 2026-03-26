@@ -708,8 +708,8 @@ class EnvCheckMiddlewareTest extends \Test\GalleryUnitTest {
 						   ->with($token)
 						   ->willThrowException(
 						   	new \OCP\Share\Exceptions\ShareNotFound(
-								"Can't find a share using that token"
-							)
+						   		"Can't find a share using that token"
+						   	)
 						   );
 	}
 

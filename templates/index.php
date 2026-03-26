@@ -16,5 +16,5 @@
 	} else {
 		print_unescaped($this->inc('part.content'));
 	}
-	?>
+?>
 </div>

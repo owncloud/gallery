@@ -56,7 +56,7 @@ trait Preview {
 	protected function exitController() {
 		if (\defined('PHPUNIT_RUN')) {
 			throw new \Exception();
-		// @codeCoverageIgnoreStart
+			// @codeCoverageIgnoreStart
 		} else {
 			exit();
 		}
