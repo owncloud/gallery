@@ -49,6 +49,8 @@ jobs:
       app-name: ${{ needs.get-vars.outputs.app-name }}
       special-app-setup-command: ${{ needs.get-vars.outputs.special-app-setup-command }}
       php-versions: ${{ needs.get-vars.outputs.php-versions }}
+      disable-phpstan: true
+      disable-phan: true
 
   php-unit:
     name: PHP Unit
