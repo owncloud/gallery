@@ -1,0 +1,154 @@
+on:
+  workflow_call:
+    inputs:
+      app-name:
+        description: 'Name of the app'
+        required: true
+        type: string
+      php-versions:
+        description: JSON array of PHP versions
+        required: true
+        type: string
+      app-repository:
+        description: 'Repository of the app (optional, defaults to the current repository)'
+        required: false
+        type: string
+        default: ''
+      disable-phpstan:
+        description: 'Whether to disable PHPStan checks'
+        required: false
+        type: boolean
+        default: false
+      disable-phan:
+        description: 'Whether to disable Phan checks'
+        required: false
+        type: boolean
+        default: false
+      additional-app:
+        description: 'Additional app to enable for testing'
+        required: false
+        type: string
+        default: ''
+      additional-app-github-token:
+        description: 'GitHub PAT to access the additional app repo - required if private'
+        required: false
+        type: string
+        default: ''
+      additional-packages:
+        description: Additional Linux packages to be installed - space separated
+        required: false
+        type: string
+        default: ''
+      special-app-setup-command:
+        description: 'Command that needs to be executed after the app is checked out and PHP is available'
+        required: false
+        type: string
+        default: ''
+
+jobs:
+  php-codestyle:
+    name: PHP Code Style
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: true
+      matrix:
+        php: ${{ fromJSON(inputs.php-versions) }}
+
+    steps:
+      - name: Clone owncloud/core
+        uses: actions/checkout@v6
+        with:
+          repository: owncloud/core
+
+      - name: Checkout apps/${{ inputs.app-name }}
+        uses: actions/checkout@v6
+        with:
+          path: apps/${{ inputs.app-name }}
+          repository: ${{ inputs.app-repository }}
+
+      - name: Checkout apps/${{ inputs.additional-app }}
+        if: ${{ inputs.additional-app != '' }}
+        uses: actions/checkout@v6
+        with:
+          path: apps/${{ inputs.additional-app }}
+          repository: owncloud/${{ inputs.additional-app }}
+          token: ${{ inputs.additional-app-github-token || github.token }}
+
+      - name: Install Linux packages
+        if: ${{ inputs.additional-packages }}
+        run: |
+          sudo apt-get install ${{ inputs.additional-packages }}
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          extensions: apcu, ctype, curl, exif, fileinfo, gd, iconv, imagick, intl, json, mbstring, memcached, pdo, posix, simplexml, xml, zip, smbclient, ldap, krb5
+          ini-values: "memory_limit=1024M"
+        env:
+          fail-fast: true
+          KRB5_LINUX_LIBS: libkrb5-dev
+
+      - name: Install Core Dependencies
+        run: |
+          make
+
+      - name: Special app setup/${{ inputs.app-name }}
+        if: ${{ inputs.special-app-setup-command != '' }}
+        run: |
+          cd apps/${{ inputs.app-name }}
+          ${{ inputs.special-app-setup-command }}
+
+      - name: Install Server
+        env:
+          DATA_DIRECTORY: ${{ github.workspace }}/data
+          DB_TYPE: "sqlite"
+          DB_NAME: owncloud
+          ADMIN_LOGIN: admin
+          ADMIN_PASSWORD: admin
+
+        run: |
+          install_cmd="maintenance:install -vvv \
+            --database=${DB_TYPE} \
+            --database-name=${DB_NAME} \
+            --admin-user=${ADMIN_LOGIN} \
+            --admin-pass=${ADMIN_PASSWORD} \
+            --data-dir=${DATA_DIRECTORY} "
+          
+          php occ ${install_cmd}
+          echo "enabling apps"
+          php occ app:enable files_sharing
+          php occ app:enable files_trashbin
+          php occ app:enable files_versions
+          php occ app:enable provisioning_api
+          php occ app:enable federation
+          php occ app:enable federatedfilesharing
+
+      - name: Setup apps/${{ inputs.additional-app }}
+        if: ${{ inputs.additional-app != '' }}
+        run: |
+          ( cd apps/${{ inputs.additional-app }} && make vendor || true)
+          php occ a:e ${{ inputs.additional-app }}
+
+      - name: Setup apps/${{ inputs.app-name }}
+        run: |
+          ( cd apps/${{ inputs.app-name }} && make vendor || true)
+          php occ a:e ${{ inputs.app-name }}
+
+      - name: Run PHP Code Style Checks
+        run: |
+          cd apps/${{ inputs.app-name }}
+          make test-php-style
+
+      - name: Run PHP Stan
+        if: ${{ !inputs.disable-phpstan }}
+        run: |
+          cd apps/${{ inputs.app-name }}
+          make test-php-phpstan
+
+      - name: Run PHP Phan
+        if: ${{ !inputs.disable-phan }}
+        run: |
+          cd apps/${{ inputs.app-name }}
+          make test-php-phan
+
