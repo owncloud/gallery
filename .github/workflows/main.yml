@@ -19,6 +19,7 @@ concurrency:
 
 env:
   APP_NAME: gallery
+  SPECIAL_APP_SETUP_COMMAND: composer install
   PHP_VERSIONS: '["8.3"]'
 
 jobs:
@@ -26,11 +27,13 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       app-name: ${{ env.APP_NAME }}
+      special-app-setup-command: ${{ env.SPECIAL_APP_SETUP_COMMAND }}
       php-versions: ${{ env.PHP_VERSIONS }}
     steps:
       - name: Set variables
         run: |
           echo "App name $APP_NAME"
+          echo "Special App Setup Command: $SPECIAL_APP_SETUP_COMMAND"
           echo "PHP versions string: $PHP_VERSIONS"
 
   semantic-git-messages:
@@ -50,7 +53,8 @@ jobs:
     name: PHP Unit
     needs:
       - get-vars
-    uses: owncloud/reusable-workflows/.github/workflows/php-unit.yml@main
+    uses: ./.github/workflows/php-unit.yml
     with:
       app-name: ${{ needs.get-vars.outputs.app-name }}
+      special-app-setup-command: ${{ needs.get-vars.outputs.special-app-setup-command }}
       php-versions: ${{ needs.get-vars.outputs.php-versions }}
