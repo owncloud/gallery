@@ -1,3 +1,6 @@
+> **⚠️ This repository is archived and no longer maintained.**
+> It is read-only and will not receive further updates or contributions.
+
 # Gallery 
 [![Build Status](https://drone.owncloud.com/api/badges/owncloud/gallery/status.svg?branch=master)](https://drone.owncloud.com/owncloud/gallery)
 
